@@ -37,9 +37,21 @@ Employer Dashboard -->
                 </div>
               </div>
             </div>
-
-        </div>
-        <div class="row mb-3 mb-lg-5 mt-3 mt-lg-0">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="candidates-feature-info "style="background-color: #00aeef "">
+                <div class="candidates-info-icon text-white">
+                  <i class="fas fa-globe-asia"></i>
+                </div>
+                <div class="candidates-info-content">
+                 <h6 class="candidates-info-title text-white">Publicités</h6>
+                </div>
+                <div class="candidates-info-count">
+                    <a href="">
+                        <h3 class="mb-0 text-white"><a href="/cabinet/publicites"><i class="far fa-eye"></i></a></h3>
+                    </a>
+                </div>
+              </div>
+            </div> 
             <!-- <div class="col-lg-4 mb-4 mb-lg-0">
               <div class="candidates-feature-info" style="background-color: #00aeef ">
                 <div class="candidates-info-icon text-white">
@@ -55,7 +67,24 @@ Employer Dashboard -->
                 </div>
               </div>
             </div> -->
-            <!-- <div class="col-lg-4 mb-4 mb-lg-0">
+        </div>
+        <!-- <div class="row mb-3 mb-lg-5 mt-3 mt-lg-0">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="candidates-feature-info" style="background-color: #00aeef ">
+                <div class="candidates-info-icon text-white">
+                  <i class="fas fa-globe-asia"></i>
+                </div>
+                <div class="candidates-info-content">
+                 <h6 class="candidates-info-title text-white">Total Candidature</h6>
+                </div>
+                <div class="candidates-info-count">
+                    <a href="">
+                        <h3 class="mb-0 text-white"><a href="/cabinet/employeurs"><i class="far fa-eye"></i></a></h3>
+                    </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 mb-4 mb-lg-0">
               <div class="candidates-feature-info bg-success">
                 <div class="candidates-info-icon text-white">
                   <i class="fas fa-thumbs-up"></i>
@@ -84,8 +113,8 @@ Employer Dashboard -->
                     </a>
                 </div>
               </div>
-            </div> -->
-          </div>
+            </div>
+          </div> -->
           <div class="row mb-3 mb-lg-5 mt-3 mt-lg-0">
             <div class="col-lg-4 mb-4 mb-lg-0">
               <div class="candidates-feature-info "style="background-color: #00aeef ">
@@ -116,10 +145,25 @@ Employer Dashboard -->
                     </a>
                 </div>
               </div>
-            </div> 
+            </div>
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="candidates-feature-info "style="background-color: #00aeef "">
+                <div class="candidates-info-icon text-white">
+                  <i class="fas fa-globe-asia"></i>
+                </div>
+                <div class="candidates-info-content">
+                 <h6 class="candidates-info-title text-white">Actualités</h6>
+                </div>
+                <div class="candidates-info-count">
+                    <a href="">
+                        <h3 class="mb-0 text-white"><a href="/cabinet/actualites"><i class="far fa-eye"></i></a></h3>
+                    </a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="row mb-3 mb-lg-5 mt-3 mt-lg-0">
-            <div class="col-lg-4 mb-4 mb-lg-0">
+            <!-- <div class="col-lg-4 mb-4 mb-lg-0">
               <div class="candidates-feature-info "style="background-color: #00aeef "">
                 <div class="candidates-info-icon text-white">
                   <i class="fas fa-globe-asia"></i>
@@ -148,7 +192,7 @@ Employer Dashboard -->
                     </a>
                 </div>
               </div>
-            </div> 
+            </div>  -->
           </div>
         <div class="user-dashboard-info-box pb-0">
           <div id="chart">

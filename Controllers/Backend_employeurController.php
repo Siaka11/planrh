@@ -582,6 +582,10 @@ class Backend_employeurController extends Controller{
             exit;
         }
 
+        $employeurmodel = new EmployeurModel;
+        $employeur = $employeurmodel->find($_SESSION['useremployeur']['id']);
+
+
         if(isset($_POST['charger'])){
 
             $namedate = new DateTime();
@@ -607,7 +611,7 @@ class Backend_employeurController extends Controller{
         }
 
 
-        $this->render("employeur/backend-employeur-honoraire.php", [], 'home_backend_employeur.php');
+        $this->render("employeur/backend-employeur-honoraire.php", compact('employeur'), 'home_backend_employeur.php');
 
     }
 

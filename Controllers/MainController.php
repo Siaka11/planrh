@@ -213,58 +213,43 @@ class MainController extends Controller
             $candidatmodel->createOne();
 
             $mail = new PHPMailer(true);
-
             try {
                 //Server settings
                // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
                 $mail->isSMTP();                                            //Send using SMTP
-                // $mail->Host       = 'smtp.office365.com';                    //Set the SMTP server to send through
-                // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                // $mail->Username   = 'dsi-appli@artci.ci';                     //SMTP username
-                // $mail->Password   = 'SABD/2022#';                               //SMTP password
-                // $mail->SMTPSecure = 'STARTTLS';            //Enable implicit TLS encryption
-                ////
                 $mail->Host       = 'smtp.hostinger.com';                    //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
                 $mail->Username   = 'lamutuelle@mudesgo.com';                     //SMTP username
-                $mail->Password   = '@dmin/MUDESGO-2023#'; 
-                $mail->SMTPSecure = 'tls';  
-                ////
+                $mail->Password   = '@dmin/MUDESGO-2023#';                               //SMTP password
+               $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
                 $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                // $mail->SMTPDebug = 3;
                 //Recipients
                 $mail->setFrom('lamutuelle@mudesgo.com');
-                $mail->addAddress($email, 'You karlo');
+                $mail->addAddress($email, '');
                 $mail->CharSet = "utf-8";// set charset to utf8
 
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject =  "Votre mot de passe par defaut";
+                $mail->Subject =  "Mise à jour de votre compte";
                 $mail->Body    = '
                 Bonjour '.$nom.',<br/>
-                Vous venez de vous inscrire sur la plateforme web de la PLANRH,
-                Veuillez recevoir vos accès de connexion:
+                Vous période de validation de votre compte vient d\'être modifiée.
                 <br/>
+                <br/>
+                <br/>
+                Passez cette date votre compte risque d\'être inactif, <br/>
+                veuillez s\'il vous plaît prendre les dispositions pour vous acquitter regulièrement de votre cotisation mensuelle.
                 <br/>
 
-                Login: '.$email.'<br/>
-                Mot de passe: <b>'.$createdefaultpass.'</b><br/>
-                <br/>
-                PLANRH vous remercie de votre attachement à notre plateforme .
-                <br/>
-                Revenir au site: <a href="www.planrh.com/main/login">www.planrh.com</a>
+                
                 ';
                 //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             
                 $mail->send();
-                $_SESSION['message'] = "Votre compte a été crée.<br/>
-                Votre mot de passe : $createdefaultpass <br/>
-                Merci de vous rendre également sur votre boîte mail pour récupérer le mot de passe.";
-                
-                header("Location: /main");
-                exit;
+               // echo 'Message has been sent';
             } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                echo "Une erreur s'est produite lors de l\'envoie de mail de notification: {$mail->ErrorInfo}";
             }
 
 

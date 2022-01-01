@@ -164,7 +164,7 @@ Browse listing -->
 
 <!--=================================
 Category-style -->
-<section class="space-ptb">
+<!-- <section class="space-ptb">
   <div class="container">
     <div class="section-title center">
       <h2 class="title">CATÉGORIES D'EMPLOI</h2>
@@ -376,7 +376,7 @@ Category-style -->
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!--=================================
 Category-style -->
 
@@ -490,14 +490,14 @@ Top Companies -->
 
 <!--=================================
 Easiest Way to Use -->
-<section class="space-ptb bg-primary">
+<!-- <section class="space-ptb bg-primary">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-10">
         <div class="section-title-02 text-center text-white">
           <h2 class="text-white">Nos services ?</h2>
           <p>Recrutements & Placements- Formations & Coachings-Consultations & Solutions RH
-Dans l’optique de mener a bien votre dotation, Plan RH inc vous assiste dès les premières heures jusqu’à compléter le processus.</p>
+  Dans l’optique de mener a bien votre dotation, Plan RH inc vous assiste dès les premières heures jusqu’à compléter le processus.</p>
           <p>Suivez toutes les étape ci-dessous : </p>
         </div>
       </div>
@@ -538,7 +538,7 @@ Dans l’optique de mener a bien votre dotation, Plan RH inc vous assiste dès l
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <br>
 <br>
 <!--=================================

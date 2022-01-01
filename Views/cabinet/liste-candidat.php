@@ -53,10 +53,11 @@ Dashboard Nav -->
               <!-- <li><a href="../cabinet/profil">Mon Profil</a></li> -->
               <!-- <li><a href="../cabinet/modification_pass">Modifier mon passe</a></li> -->
               <li><a href="../cabinet/offres">Offres</a></li>
-              <li><a href="../cabinet/emplois_postules">Emplois postulés</a></li>
+              <li><a href="../cabinet/emplois_postules">Candidatures</a></li>
               <li><a href="../cabinet/employeurs">Employeurs</a></li>
               <li><a class="active"  href="../cabinet/candidats">Candidats</a></li>
               <li><a href="../cabinet/formations">Formations</a></li>
+              <li><a href="../cabinet/publicites">publicites</a></li>
               <li><a href="../cabinet/actualites">Actualités</a></li>
               <li><a href="../main/logout">Quitter</a></li>
 
