@@ -23,7 +23,7 @@
     <!-- Page CSS Implementing Plugins (Remove the plugin CSS here if site does not use that feature)-->
     <link rel="stylesheet" href="../css/range-slider/ion.rangeSlider.css" />
     <link rel="stylesheet" href="../css/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/subtle-slideshow.css" />
+    <link rel="stylesheet" href="../css/subtle-slideshow.css" />
 
     <!-- Template Style -->
     <link rel="stylesheet" href="../css/style.css" />
@@ -39,6 +39,17 @@
 <body>
 <!--=================================
 header -->
+
+<?php if(!empty($_SESSION['message'])): ?>
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+  
+  <?=$_SESSION['message'];
+    unset($_SESSION['message']); 
+  ?>
+
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<?php endif; ?>
 <header class="header bg-dark">
   <nav class="navbar navbar-static-top navbar-expand-lg header-sticky">
     <div class="container-fluid">
@@ -101,8 +112,10 @@ header -->
       <div class="add-listing"> 
       <div class="login d-inline-block me-4">
             <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])): ?>
+             
 
-              <a href="/logout" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="far fa-user pe-2"></i>Deconnexion</a>
+
+              <a href="main/logout"><i class="far fa-user pe-2"></i>Deconnexion</a>
 
             <?php else: ?>
               <a href="login.html" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="far fa-user pe-2"></i>Connexion</a>

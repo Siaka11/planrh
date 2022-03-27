@@ -10,21 +10,21 @@
     <title>Accueil | Tableau de Bord</title>
 
     <!-- Favicon -->
-    <link href="../images/log.png" rel="shortcut icon" />
+    <link href="../../images/log.png" rel="shortcut icon" />
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
 
     <!-- CSS Global Compulsory (Do not remove)-->
-    <link rel="stylesheet" href="../css/font-awesome/all.min.css" />
+    <link rel="stylesheet" href="http://monsite.local:8888/css/font-awesome/all.min.css" />
     <link rel="stylesheet" href="../css/flaticon/flaticon.css" />
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://monsite.local:8888/css/bootstrap/bootstrap.min.css" />
 
     <!-- map -->
     <link rel="stylesheet" href="../css/apexcharts/apexcharts.css" />
 
     <!-- Template Style -->
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="http://monsite.local:8888/css/style.css" />
 
 </head>
 

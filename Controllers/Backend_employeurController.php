@@ -40,9 +40,13 @@ class Backend_employeurController extends Controller{
 
     public function profil(){
 
+        
         $employeur = new EmployeurModel;
         $employeur = $employeur->retrievedatafromprofil($_SESSION['user']['id']);
-        
+       // var_dump($employeur);
+       // echo "Bonjour";
+        //die;
+
         $updateemployeur = new EmployeurModel;
 
         if(isset($_POST['updateemployeur'])){
@@ -81,6 +85,8 @@ class Backend_employeurController extends Controller{
                           ;
             $updateemployeur->update();
         }
+
+       
 
         $this->render("employeur/backend-employeur-profil.php", compact("employeur"), 'home_backend_employeur.php');
 
@@ -133,6 +139,8 @@ class Backend_employeurController extends Controller{
                               ->setId_cabinet(0)
                               
                               ;
+                            
+
                 $offremodel->createOne();
 
             }

@@ -1,4 +1,6 @@
-
+<?php
+  use App\Models\FormationModel;
+?>
     <!--=================================
     inner banner -->
     <div class="header-inner bg-light">
@@ -8,11 +10,11 @@
         <div class="candidates-user-info">
           <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid " src="../images/avatar/06.jpg" alt="">
+              <img class="img-fluid " src="../../images/avatar/06.jpg" alt="">
               <i class="fas fa-pencil-alt"></i>
             </div>
             <div class="profile-avatar-info ms-4">
-              <h3>Ange Brou</h3>
+              <h3>Ange Brou1</h3>
             </div>
           </div>
         </div>
@@ -86,47 +88,49 @@
           </div>
           <div class="collapse show" id="dateposted">
             <div class="bg-light p-3 mt-4">
-              <form class="row">
+              <form class="row" method="POST">
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Titre</label>
-                  <input type="text" class="form-control" value="">
+                  <input type="text" class="form-control" name="titre" value="">
                 </div>
                 <div class="form-group mb-3 col-md-6 select-border">
                   <label class="form-label">Année</label>
-                  <select class="form-control basic-select">
-                    <option value="value 01" selected="selected">2020</option>
-                    <option value="value 02">2008</option>
-                    <option value="value 03">2009</option>
-                    <option value="value 04">2010</option>
-                    <option value="value 05">2011</option>
-                    <option value="value 06">2012</option>
-                    <option value="value 07">2013</option>
-                    <option value="value 08">2014</option>
-                    <option value="value 09">2015</option>
-                    <option value="value 10">2016</option>
-                    <option value="value 11">2017</option>
-                    <option value="value 12">2018</option>
-                    <option value="value 13">2019</option>
-                    <option value="value 14">2020</option>
-                    <option value="value 15">2021</option>
-                    <option value="value 16">2022</option>
+                  <select name="annee" class="form-control  basic-select">
+                    <option value="2020" selected="selected">2020</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
                   </select>
                 </div>
                 <div class="form-group mb-3 col-md-6">
                   <label class="form-label">Etablissement de formation</label>
-                  <input type="text" class="form-control" value="">
+                  <input type="text" name="etablissement" class="form-control" value="">
                 </div>
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Description</label>
-                  <textarea class="form-control" rows="4"></textarea>
+                  <textarea class="form-control" name="description" rows="4"></textarea>
                 </div>
                 <div class="form-group col-md-12 mb-0">
-                  <a class="btn btn-md btn-primary" href="#">Ajouter</a>
+                    <button class="btn btn-primary d-grid" name="send" >Connexion</button>
                 </div>
               </form>
             </div>
           </div>
           <div class="jobber-candidate-timeline mt-4">
+          <?php foreach($findFormation as $findFormationOne): ?>
+            
             <div class="jobber-timeline-icon">
               <i class="fas fa-graduation-cap"></i>
             </div>
@@ -134,124 +138,76 @@
               <div class="jobber-timeline-cricle">
                 <i class="far fa-circle"></i>
               </div>
+              <!-- first -->
+              
               <div class="jobber-timeline-info">
+              
                 <div class="dashboard-timeline-info">
+                
                   <div class="dashboard-timeline-edit">
                     <ul class="list-unstyled d-flex">
                       <li><a class="text-end" data-bs-toggle="collapse" href="#dateposted-02" role="button" aria-expanded="false" aria-controls="dateposted"> <i class="fas fa-pencil-alt text-info me-2"></i> </a></li>
-                      <li><a href="#"><i class="far fa-trash-alt text-danger"></i></a></li>
+                      <li><a href="/backend_candidat/supprimer/<?=$findFormationOne->id?>"><i class="far fa-trash-alt text-danger"></i></a></li>
                     </ul>
                   </div>
-                  <span class="jobber-timeline-time">2018 - 2019</span>
-                  <h6 class="mb-2">Formation</h6>
-                  <span>- Etablissement</span>
-                  <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin. Nulla leo est, aliquam et nisi pellentesque, pellentesque commodo urna.</p>
-                </div>
-                <div class="collapse show" id="dateposted-02">
-                  <div class="bg-light p-3">
-                    <form class="row collapse show" id="dateposted-01">
+                  <span class="jobber-timeline-time"><?=$findFormationOne->annee?></span>
+                  <h6 class="mb-2"><?=$findFormationOne->titre?></h6>
+                  <span>- <?=$findFormationOne->etablissement?></span>
+                  <p class="mt-2"><?=$findFormationOne->description?>.</p>
+                    <!-- panel dash -->
+                  <div class="collapse show" id="dateposted-02">
+                    <div class="bg-light p-3">
+                     
+                    <form method="POST" class="row collapse show" id="dateposted-01">
                       <div class="form-group mb-3 col-md-12">
                         <label class="form-label">Titre</label>
-                        <input type="text" class="form-control" value="Titre de la formation">
+                        <input type="text" name="titre" class="form-control" value="<?=$findFormationOne->titre?>">
                       </div>
                       <div class="form-group mb-3 col-md-6 select-border">
                         <label class="form-label">Année</label>
-                        <select class="form-control basic-select">
-                          <option value="value 01" selected="selected">2020</option>
-                          <option value="value 02">2008</option>
-                          <option value="value 03">2009</option>
-                          <option value="value 04">2010</option>
-                          <option value="value 05">2011</option>
-                          <option value="value 06">2012</option>
-                          <option value="value 07">2013</option>
-                          <option value="value 08">2014</option>
-                          <option value="value 09">2015</option>
-                          <option value="value 10">2016</option>
-                          <option value="value 11">2017</option>
-                          <option value="value 12">2018</option>
-                          <option value="value 13">2019</option>
-                          <option value="value 14">2020</option>
-                          <option value="value 15">2021</option>
-                          <option value="value 16">2022</option>
+                        <select name="annee" value="" class="form-control basic-select">
+                          <option value="<?=$findFormationOne->annee?>" selected="selected"><?=$findFormationOne->annee?></option>
+                          <option value="2008">2008</option>
+                          <option value="2009">2009</option>
+                          <option value="2010">2010</option>
+                          <option value="2011">2011</option>
+                          <option value="2012">2012</option>
+                          <option value="2013">2013</option>
+                          <option value="2014">2014</option>
+                          <option value="2015">2015</option>
+                          <option value="2016">2016</option>
+                          <option value="2017">2017</option>
+                          <option value="2018">2018</option>
+                          <option value="2019">2019</option>
+                          <option value="2020">2020</option>
+                          <option value="2021">2021</option>
+                          <option value="2022">2022</option>
                         </select>
                       </div>
                       <div class="form-group mb-3 col-md-6">
                         <label class="form-label">Etablissement de formation</label>
-                        <input type="text" class="form-control" value="Etablissement">
+                        <input type="text" name="etablissement" class="form-control" value="<?=$findFormationOne->etablissement?>">
+                        <input type="hidden" name="myid" value="<?=$findFormationOne->id ?>">
                       </div>
                       <div class="form-group mb-3 col-md-12">
                         <label class="form-label">Description de la formation</label>
-                        <textarea class="form-control" rows="4" placeholder="descrisption de la formation."></textarea>
+                        <textarea class="form-control" name="description" rows="4" placeholder="descrisption de la formation."><?=$findFormationOne->description?></textarea>
                       </div>
                       <div class="form-group col-md-12 mb-0">
-                        <a class="btn btn-md btn-primary" href="#">Mittre à jour</a>
+                      <button class="btn btn-primary d-grid" name="send1" >Mettez à jour </button>
                       </div>
-                    </form>
-                  </div>
-                </div>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- end panel dash -->
+                </div> 
+                
               </div>
-            </div>
-            <div class="jobber-timeline-item mb-0">
-              <div class="jobber-timeline-cricle">
-                <i class="far fa-circle"></i>
-              </div>
-              <div class="jobber-timeline-info">
-                <div class="dashboard-timeline-info">
-                  <div class="dashboard-timeline-edit">
-                    <ul class="list-unstyled d-flex">
-                      <li><a class="text-end" data-bs-toggle="collapse" href="#dateposted-03" role="button" aria-expanded="false" aria-controls="dateposted"> <i class="fas fa-pencil-alt text-info me-2"></i> </a></li>
-                      <li><a href="#"><i class="far fa-trash-alt text-danger"></i></a></li>
-                    </ul>
-                  </div>
-                  <span class="jobber-timeline-time">2014 - 2018</span>
-                  <h6 class="mb-2">Formation</h6>
-                  <span>- Etablisement de le formation</span>
-                  <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin. Nulla leo est, aliquam et nisi pellentesque, pellentesque commodo urna.</p>
-                </div>
-                <div class="collapse" id="dateposted-03">
-                  <div class="bg-light p-3">
-                    <form class="row collapse show" id="dateposted-04">
-                      <div class="form-group mb-3 col-md-12">
-                        <label class="form-label">Titre</label>
-                        <input type="text" class="form-control" value="Titre de la formation">
-                      </div>
-                      <div class="form-group mb-3 col-md-6 select-border">
-                        <label class="form-label">Année</label>
-                        <select class="form-control basic-select">
-                          <option value="value 01" selected="selected">2020</option>
-                          <option value="value 02">2008</option>
-                          <option value="value 03">2009</option>
-                          <option value="value 04">2010</option>
-                          <option value="value 05">2011</option>
-                          <option value="value 06">2012</option>
-                          <option value="value 07">2013</option>
-                          <option value="value 08">2014</option>
-                          <option value="value 09">2015</option>
-                          <option value="value 10">2016</option>
-                          <option value="value 11">2017</option>
-                          <option value="value 12">2018</option>
-                          <option value="value 13">2019</option>
-                          <option value="value 14">2020</option>
-                          <option value="value 15">2021</option>
-                          <option value="value 16">2022</option>
-                        </select>
-                      </div>
-                      <div class="form-group mb-3 col-md-6">
-                        <label class="form-label">Etablissement de la formation</label>
-                        <input type="text" class="form-control" value="Etablissement">
-                      </div>
-                      <div class="form-group mb-3 col-md-12">
-                        <label class="form-label">Description de la formation</label>
-                        <textarea class="form-control" rows="4" placeholder="Description de la formation."></textarea>
-                      </div>
-                      <div class="form-group col-md-12 mb-0">
-                        <a class="btn btn-md btn-primary" href="#">Mettre à jour</a>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+             
+              
+              <!-- end first -->
+            </div> 
+            <?php endforeach; ?>
           </div>
         </div>
         <!--=================================
@@ -265,19 +221,19 @@
           </div>
           <div class="collapse show" id="dateposted-05">
             <div class="bg-light p-3 mt-4">
-              <form class="row">
+              <form method="POST" class="row">
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Titre</label>
-                  <input type="text" class="form-control" value="">
+                  <input type="text" name="titre" class="form-control" value="">
                 </div>
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Nom de l'Entreprise</label>
-                  <input type="text" class="form-control" value="">
+                  <input type="text" name="nom" class="form-control" value="">
                 </div>
                 <div class="mb-3 col-md-6 datetimepickers">
                   <label class="form-label">De</label>
                   <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" value="08/11/2010" data-target="#datetimepicker-01">
+                    <input type="text" name="datedebut" class="form-control datetimepicker-input" value="08/11/2010" data-target="#datetimepicker-01">
                     <div class="input-group-append d-flex" data-target="#datetimepicker-01" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                     </div>
@@ -286,7 +242,7 @@
                 <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                   <label class="form-label">au</label>
                   <div class="input-group date" id="datetimepicker-02" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" value="08/10/2012" data-target="#datetimepicker-02">
+                    <input type="text" name="datefin" class="form-control datetimepicker-input" value="08/10/2012" data-target="#datetimepicker-02">
                     <div class="input-group-append d-flex" data-target="#datetimepicker-02" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                     </div>
@@ -294,10 +250,10 @@
                 </div>
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Description</label>
-                  <textarea class="form-control" rows="4"></textarea>
+                  <textarea class="form-control" name="description" rows="4"></textarea>
                 </div>
                 <div class="form-group col-md-12 mb-0">
-                  <a class="btn btn-md btn-primary" href="#">Ajouter</a>
+                    <button class="btn btn-primary d-grid" name="send0" >Connexion</button>
                 </div>
               </form>
             </div>
@@ -357,7 +313,7 @@
                         <textarea class="form-control" rows="4" placeholder="Description du poste."></textarea>
                       </div>
                       <div class="form-group col-md-12 mb-0">
-                        <a class="btn btn-md btn-primary" href="#">Mettre à jour</a>
+                      <button class="btn btn-primary d-grid" name="send2">Metre à jour</button>
                       </div>
                     </form>
                   </div>

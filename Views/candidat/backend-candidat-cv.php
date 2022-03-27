@@ -1,9 +1,8 @@
 
 
-
     <!--=================================
     My Resume -->
-<section class="space-ptb">
+<div class="space-ptb" id="getElt">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-9">
@@ -16,7 +15,7 @@
                     <img class="img-fluid " src="../images/avatar/06.jpg" alt="">
                   </div>
                   <div class="profile-avatar-info mt-3">
-                    <h5>Ange Brou</h5>
+                    <h5>Ange Brou <?php echo "<br/> Option: Travailleur" ?></h5>
                   </div>
                 </div>
               </div>
@@ -149,7 +148,12 @@
       </div>
     </div>
   </div>
-</section>
+</div>
+<button onclick="generatePDF()">Télécharger le PDF</button>
+
+
+
+
 <!--=================================
 My Resume -->
 

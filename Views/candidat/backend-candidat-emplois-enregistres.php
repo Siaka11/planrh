@@ -1,6 +1,6 @@
 <?php
 
-var_dump($jaime);
+//var_dump($jaime);
 
   foreach($jaime as $jaomeone){
    // var_dump($jaomeone->adresse);

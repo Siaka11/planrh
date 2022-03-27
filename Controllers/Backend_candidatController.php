@@ -5,6 +5,9 @@ namespace App\Controllers;
 use App\Models\CandidatModel;
 use App\Models\Domaine;
 use App\Models\JaimeModel;
+use App\Models\FormationModel;
+use App\Models\ExperienceModel;
+use Dompdf\dompdf;
 
 class Backend_candidatController extends Controller{
 
@@ -16,8 +19,32 @@ class Backend_candidatController extends Controller{
             exit;
         }
 
+      
+
         return $this->render('candidat/index.php', [], 'home_backend_candidat.php');
     }
+
+    public function imprimer(){
+
+        //  ob_start();
+        // require_once '../Views/candidat/backend-candidat-cv.php';
+        // $html = ob_get_contents();
+        
+        // ob_get_clean();
+        // //die($html);
+        // require_once '../dompdf/autoload.inc.php';
+
+        // $dompdf = new Dompdf();
+        // $dompdf->loadHTML($html);
+        // $dompdf->setPaper("A4");
+
+        // $dompdf->render();
+        // $dompdf->stream();
+        return $this->render('candidat/backend-candidat-cv.php', [], 'generatepdf.php');
+
+
+    }
+
 
     public function profil(){
 
@@ -36,11 +63,11 @@ class Backend_candidatController extends Controller{
             $can = $can->find($_SESSION['user']['id']);
           //  var_dump($can);
 
-
+          $candidat = new CandidatModel;
         if(isset($_POST)){
 
             
-            $candidat = new CandidatModel;
+           
 
             if(isset($_POST['updatecandidat'])){
                 
@@ -122,20 +149,198 @@ class Backend_candidatController extends Controller{
 
     public function modification_cv(){
         if(!$_SESSION["user"]["id"]){
+            echo "nok";
             $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
             header("Location: /");
             exit;
         }
+        
+        if(isset($_POST)){
 
-        return $this->render('candidat/backend-candidat-modification-cv.php', [], 'home_backend_candidat.php');
+           
+           if(isset($_POST['send'])){
+                //echo "merci";
+
+                $titre = strip_tags($_POST['titre']);
+                $description = strip_tags($_POST['description']);
+                $annee = strip_tags($_POST['annee']);
+                $etablissement = strip_tags($_POST['etablissement']);
+
+                 
+                $formation = new FormationModel;
+                $formation ->setTitre($titre)
+                              ->setDescription($description)
+                              ->setAnnee($annee)
+                              ->setEtablissement($etablissement)
+                              ->setId_candidat1($_SESSION["user"]["id"])
+
+                              ;
+                  
+                $formation->createOne();  
+
+               $_SESSION["message"] = "Vous avez saisi une formation";
+               //$_SESSION["information"] = "Vous avez saisi une formation";
+                header("Location: /backend_candidat/modification_cv");
+                exit;
+
+            
+           }
+
+           if(isset($_POST['send0'])){
+            //echo "merci";
+
+           
+            $titre = strip_tags($_POST['titre']);
+            $description = strip_tags($_POST['description']);
+            $datedebut = strip_tags($_POST['datedebut']);
+            $datefin = strip_tags($_POST['datefin']);
+            //$etablissement = strip_tags($_POST['etablissement']);
+
+             
+            $formation = new ExperienceModel;
+            $formation ->setTitre($titre)
+                          ->setDescription($description)
+                          ->setDatefin($datefin)
+                          ->setDatedebut($datedebut)
+                         // ->setEtablissement($etablissement)
+                          ->setId_candidats($_SESSION["user"]["id"])
+
+                          ;
+              
+                           $formation->createOne();         
+          // var_dump($formation->createOne());
+             }
+
+             if(isset($_POST['send1'])){
+                $myid = $_POST['myid'];
+              //die;
+                //echo "merci";
+
+                $titre = strip_tags($_POST['titre']);
+                $description = strip_tags($_POST['description']);
+                $annee = strip_tags($_POST['annee']);
+                $etablissement = strip_tags($_POST['etablissement']);
+
+                
+                $formation = new FormationModel;
+                $formation  ->setId($myid)
+                            ->setTitre($titre)
+                            ->setDescription($description)
+                            ->setAnnee($annee)
+                            ->setEtablissement($etablissement)
+                            // ->setId_candidat1($_SESSION["user"]["id"])
+                            ;
+                  
+                $formation->update();  
+
+              $_SESSION["message"] = "Vous avez effectué une nouvelle modification";
+              //$_SESSION["information"] = "Vous avez saisi une formation";
+                header("Location: /backend_candidat/modification_cv");
+                exit;
+
+
+              }
+
+         
+        }
+        
+        if(isset($_POST)){
+
+           
+           
+         }
+
+         $findFormation = new FormationModel;
+         $findFormation = $findFormation->findAll();
+       
+
+        return $this->render('candidat/backend-candidat-modification-cv.php', compact('findFormation'), 'home_backend_candidat.php');
 
     }
 
+    public function modification($id){
+        if(isset($_POST['send1'])){
+            //echo "merci";
+
+            $titre = strip_tags($_POST['titre']);
+            $description = strip_tags($_POST['description']);
+            $annee = strip_tags($_POST['annee']);
+            $etablissement = strip_tags($_POST['etablissement']);
+
+             
+            $formation = new FormationModel;
+            $formation  ->setId($id)
+                        ->setTitre($titre)
+                        ->setDescription($description)
+                        ->setAnnee($annee)
+                        ->setEtablissement($etablissement)
+                        // ->setId_candidat1($_SESSION["user"]["id"])
+                        ;
+              
+            $formation->update();  
+
+           $_SESSION["message"] = "Vous avez saisi une formation";
+           //$_SESSION["information"] = "Vous avez saisi une formation";
+            header("Location: /backend_candidat/modification_cv");
+            exit;
+
+        
+       }
+    }
+
+    public function supprimer($id){
+        //echo "merci";
+        
+        $formation1 = new FormationModel;
+        $formation1 = $formation1->delete($id);
+        $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+        header("Location: /backend_candidat/modification_cv");
+       
+        return $this->render('candidat/backend-candidat-modification-cv.php', [], 'home_backend_candidat1.php');
+
+    }
     public function modification_pass(){
         if(!$_SESSION["user"]["id"]){
             $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
             header("Location: /");
             exit;
+        }
+
+        $candidat = new CandidatModel;
+        $candidat = $candidat->find($_SESSION['user']['id']);
+
+        $can = new CandidatModel;
+
+        
+        if(isset($_POST['send'])){
+
+            if(!empty($_POST['password1']) && !empty($_POST['password2'])){
+
+                $pass1 = $_POST['password1'];
+                $pass2 = $_POST['password2'];
+                $pass = $_POST['pass'];
+
+                if($candidat != $pass){
+                    $_SESSION["message"] = "Votre mot de passe ne correspond!";
+                }
+
+                var_dump($pass1);
+                var_dump($pass2);
+                if($pass1 == $pass2){
+
+                    $can->setId($_SESSION['user']['id'])
+                            ->setMotdepasse($pass1)
+                            ;
+                    $can->update();
+
+                }else
+                {
+                    
+                    $_SESSION["message"] = "Les mots de passe ne correspondent pas!";
+                    //header("Location: /Backend_candidat/modification_pass");
+                }
+            }
+
         }
 
         return $this->render('candidat/backend-candidat-modification-pass.php', [], 'home_backend_candidat.php');
