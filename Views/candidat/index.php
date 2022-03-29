@@ -1,43 +1,4 @@
 
-
- <form method="POST" class="row" >
-                <div class="form-group mb-3 col-md-12">
-                  <label class="form-label">Titre</label>
-                  <input type="text" class="form-control" name="titre" value="">
-                </div>
-                <div class="form-group mb-3 col-md-6 select-border">
-                  <label class="form-label">Année</label>
-                  <select name="annee" class="form-control  basic-select">
-                    <option value="2020" selected="selected">2020</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                    <option value="2015">2015</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                  </select>
-                </div>
-                <div class="form-group mb-3 col-md-6">
-                  <label class="form-label">Etablissement de formation</label>
-                  <input type="text" name="etablissement" class="form-control" value="">
-                </div>
-                <div class="form-group mb-3 col-md-12">
-                  <label class="form-label">Description</label>
-                  <textarea class="form-control" name="description" rows="4"></textarea>
-                </div>
-                <div class="form-group col-md-12 mb-0">
-                    <button class="btn btn-primary d-grid" name="send2" >Connexion</button>
-                </div>
-              </form>
 <!--=================================
 inner banner -->
 <div class="header-inner bg-light">

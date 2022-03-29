@@ -156,7 +156,7 @@ class Backend_candidatController extends Controller{
         }
         
         if(isset($_POST)){
-
+           
            
            if(isset($_POST['send'])){
                 //echo "merci";
@@ -242,19 +242,47 @@ class Backend_candidatController extends Controller{
               }
 
          
-        }
-        
-        if(isset($_POST)){
+            }
+            if(isset($_POST['send2'])){
 
-           
-           
-         }
+                
+            $titre = strip_tags($_POST['titre']);
+            $description = strip_tags($_POST['description']);
+            $datedebut = strip_tags($_POST['datedebut']);
+            $datefin = strip_tags($_POST['datefin']);
+            //$etablissement = strip_tags($_POST['etablissement']);
+
+             
+            $experience = new ExperienceModel;
+            $experience ->setTitre($titre)
+                          ->setDescription($description)
+                          ->setDatefin($datefin)
+                          ->setDatedebut($datedebut)
+                         // ->setEtablissement($etablissement)
+                          ->setId_candidats($_SESSION["user"]["id"])
+                          ;
+              
+                           $experience->update();
+                
+            }
+      
+      
+       
+       
+        
+       
 
          $findFormation = new FormationModel;
          $findFormation = $findFormation->findAll();
+
+         $findExperience = new ExperienceModel;
+         $findExperience = $findExperience->findAll();
+
+        //  var_dump($findExperience);
+        //  die;
        
 
-        return $this->render('candidat/backend-candidat-modification-cv.php', compact('findFormation'), 'home_backend_candidat.php');
+        return $this->render('candidat/backend-candidat-modification-cv.php', compact('findFormation', 'findExperience'), 'home_backend_candidat.php');
 
     }
 

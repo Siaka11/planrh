@@ -34,7 +34,7 @@
             //nom du fichier | file name
            // var nom_fichier = prompt("Nom du fichier PDF :");
             //generer le pdf
-            var element = document.querySelector("body")
+            var element = document.querySelector("#getElt")
             var opt = {
                     margin:  1,
                     filename:     "ange.pdf",
