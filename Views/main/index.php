@@ -179,21 +179,18 @@ Browse listing -->
                       </div>
                       <div class="job-list-favourite-time" > 
                       <?php if($jaime): ?>
-                        <?php foreach($jaime as $jaimeone): ?>
-                              
-                                  
-                                  <a class="job-list-favourite order-2" > <i class="far fa-heart" data-id="<?=$emploiRecentnew->id ?>"></i></a>
-
+                      <?php foreach($jaime as $jaimeone): ?>
                                 
-                
-                        <?php endforeach; ?>
-                    
-                      <?php else:?>
+                                    
+                        <a class="job-list-favourite order-2 " > <i class="fas fa-heart favouritejaime"  data-id="<?=$emploiRecentnew->id ?>"></i></a>
+
+                                  
+                  
+                          <?php endforeach; ?>
+                      
+                        <?php else:?>
                         <a class="job-list-favourite order-2" > <i class="far fa-heart" data-id="<?=$emploiRecentnew->id ?>"></i></a>
-
-                      <?php endif;?>
-
-
+                        <?php endif;?>
                         <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>Durée : <?= $date;?></span>
                       </div>
                     </div>

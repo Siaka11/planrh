@@ -55,7 +55,7 @@
               <li><a href="../backend_candidat/modification_cv">Modifier Mon CV</a></li>
               <li><a href="../backend_candidat/liste_emplois">Emplois</a></li>
               <li><a href="../backend_candidat/emplois_enregistres">Emploi Enregistré</a></li>
-              <li><a href="../login.php">Quitter</a></li>
+              <li><a href="../backend_candidat/quitter">Quitter</a></li>
             </ul>
           </div>
         </div>
@@ -123,7 +123,7 @@
                   <textarea class="form-control" name="description" rows="4"></textarea>
                 </div>
                 <div class="form-group col-md-12 mb-0">
-                    <button class="btn btn-primary d-grid" name="send" >Connexion</button>
+                    <button class="btn btn-primary d-grid" name="send" >Ajouter</button>
                 </div>
               </form>
             </div>
@@ -147,7 +147,7 @@
                   <div class="dashboard-timeline-edit">
                     <ul class="list-unstyled d-flex">
                       <li><a class="text-end" data-bs-toggle="collapse" href="#dateposted-02" role="button" aria-expanded="false" aria-controls="dateposted"> <i class="fas fa-pencil-alt text-info me-2"></i> </a></li>
-                      <li><a href="/backend_candidat/supprimer/<?=$findFormationOne->id?>"><i class="far fa-trash-alt text-danger"></i></a></li>
+                      <li><a href="/backend_candidat/supprimerformation/<?=$findFormationOne->id?>"><i class="far fa-trash-alt text-danger"></i></a></li>
                     </ul>
                   </div>
                   <span class="jobber-timeline-time"><?=$findFormationOne->annee?></span>
@@ -228,7 +228,7 @@
                 </div>
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Nom de l'Entreprise</label>
-                  <input type="text" name="nom" class="form-control" value="">
+                  <input type="text" name="entreprise" class="form-control" value="">
                 </div>
                 <div class="mb-3 col-md-6 datetimepickers">
                   <label class="form-label">De</label>
@@ -253,7 +253,7 @@
                   <textarea class="form-control" name="description" rows="4"></textarea>
                 </div>
                 <div class="form-group col-md-12 mb-0">
-                    <button class="btn btn-primary d-grid" name="send2" >Connexion</button>
+                    <button class="btn btn-primary d-grid" name="send2" >Ajouter</button>
                 </div>
               </form>
             </div>
@@ -273,29 +273,29 @@
                   <div class="dashboard-timeline-edit">
                     <ul class="list-unstyled d-flex">
                       <li><a class="text-end" data-bs-toggle="collapse" href="#dateposted-06" role="button" aria-expanded="false" aria-controls="dateposted"> <i class="fas fa-pencil-alt text-info me-2"></i> </a></li>
-                      <li><a href="#"><i class="far fa-trash-alt text-danger"></i></a></li>
+                      <li><a href="/backend_candidat/supprimerexperience/<?=$findExperienceOne->id ?>"><i class="far fa-trash-alt text-danger"></i></a></li>
                     </ul>
                   </div>
-                  <span class="jobber-timeline-time"><?=$findExperience->datedebut ?> au  <?=$findExperience->datefin ?></span>
-                  <h6 class="mb-2"><?=$findExperience->titre ?></h6>
-                  <span>- <?=$findExperience->entreprise ?></span>
-                  <p class="mt-2"><?=$findExperience->description ?></p>
+                  <span class="jobber-timeline-time"><?=$findExperienceOne->datedebut ?> au  <?=$findExperienceOne->datefin ?></span>
+                  <h6 class="mb-2"><?=$findExperienceOne->titre ?></h6>
+                  <span>- <?=$findExperienceOne->entreprise ?></span>
+                  <p class="mt-2"><?=$findExperienceOne->description ?></p>
                 </div>
                 <div class="collapse show" id="dateposted-06">
                   <div class="bg-light p-3">
-                    <form class="row collapse show" id="dateposted-form-01">
+                    <form method="POST" class="row collapse show" id="dateposted-form-01">
                       <div class="form-group mb-3 col-md-12">
                         <label class="form-label">Titre du poste</label>
-                        <input type="text" class="form-control" value="<?=$findExperience->titre ?>">
+                        <input type="text" name="titre" class="form-control" value="<?=$findExperienceOne->titre ?>">
                       </div>
                       <div class="form-group mb-3 col-md-12">
                         <label class="form-label">Nom de l'entreprise</label>
-                        <input type="text" class="form-control" value="<?=$findExperience->datedebut ?>">
+                        <input type="text" name="entreprise" class="form-control" value="<?=$findExperienceOne->entreprise ?>">
                       </div>
                       <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                         <label class="form-label">Du</label>
                         <div class="input-group date" id="datetimepicker-05" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" value="<?=$findExperience->datedebut ?>" data-target="#datetimepicker-05">
+                          <input type="text" name="datedebut" class="form-control datetimepicker-input" value="<?=$findExperienceOne->datedebut ?>" data-target="#datetimepicker-05">
                           <div class="input-group-append d-flex" data-target="#datetimepicker-05" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                           </div>
@@ -304,7 +304,9 @@
                       <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                         <label class="form-label">Au</label>
                         <div class="input-group date" id="datetimepicker-06" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" value="<?=$findExperience->datefin ?>" data-target="#datetimepicker-06">
+                          <input type="text" name="datefin" class="form-control datetimepicker-input" value="<?=$findExperienceOne->datefin ?>" data-target="#datetimepicker-06">
+                          <input type="hidden" name="myidexp" value="<?=$findExperienceOne->id ?>">
+
                           <div class="input-group-append d-flex" data-target="#datetimepicker-06" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                           </div>
@@ -312,10 +314,10 @@
                       </div>
                       <div class="form-group mb-3 col-md-12">
                         <label class="form-label">Description</label>
-                        <textarea class="form-control" rows="4" placeholder="Description du poste."><?=$findExperience->description ?></textarea>
+                        <textarea class="form-control" name="description" rows="4" placeholder="Description du poste."><?=$findExperienceOne->description ?></textarea>
                       </div>
                       <div class="form-group col-md-12 mb-0">
-                      <button class="btn btn-primary d-grid" name="send2">Metre à jour</button>
+                      <button class="btn btn-primary d-grid" name="send3">Metre à jour</button>
                       </div>
                     </form>
                   </div>
@@ -407,19 +409,19 @@
           </div>
           <div class="collapse show" id="dateposted-15">
             <div class="bg-light p-3 mt-4">
-              <form class="row">
+              <form  method="POST" class="row">
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Titre de la récompense</label>
-                  <input type="text" class="form-control" value="">
+                  <input type="text" name="titre" class="form-control" value="">
                 </div>
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Institution</label>
-                  <input type="text" class="form-control" value="">
+                  <input type="text" name="institution" class="form-control" value="">
                 </div>
                 <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                   <label class="form-label">Du</label>
                   <div class="input-group date" id="datetimepicker-09" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" value="07/03/2010" data-target="#datetimepicker-09">
+                    <input type="text" name="datedebut" class="form-control datetimepicker-input" value="07/03/2010" data-target="#datetimepicker-09">
                     <div class="input-group-append d-flex" data-target="#datetimepicker-09" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                     </div>
@@ -428,7 +430,7 @@
                 <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                   <label class="form-label">Au</label>
                   <div class="input-group date" id="datetimepicker-10" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" value="08/10/2011" data-target="#datetimepicker-10">
+                    <input type="text" name="datefin" class="form-control datetimepicker-input" value="08/10/2011" data-target="#datetimepicker-10">
                     <div class="input-group-append d-flex" data-target="#datetimepicker-10" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                     </div>
@@ -436,15 +438,18 @@
                 </div>
                 <div class="form-group mb-3 col-md-12">
                   <label class="form-label">Description</label>
-                  <textarea class="form-control" rows="4"></textarea>
+                  <textarea name="description" class="form-control" rows="4"></textarea>
                 </div>
                 <div class="form-group col-md-12 mb-0">
-                  <a class="btn btn-md btn-primary" href="#">Ajouter</a>
+                  <button class="btn btn-primary d-grid" name="send4">Ajouter</button>
                 </div>
               </form>
             </div>
             <div class="jobber-candidate-timeline mt-4">
+             <!-- third group -->
+             <?php foreach($findReccompense as $findRecompenseOne ): ?>
               <div class="jobber-timeline-icon">
+
                 <i class="fas fa-trophy"></i>
               </div>
               <div class="jobber-timeline-item">
@@ -456,29 +461,29 @@
                     <div class="dashboard-timeline-edit">
                       <ul class="list-unstyled d-flex">
                         <li><a class="text-end" data-bs-toggle="collapse" href="#dateposted-16" role="button" aria-expanded="false" aria-controls="dateposted"> <i class="fas fa-pencil-alt text-info me-2"></i> </a></li>
-                        <li><a href="#"><i class="far fa-trash-alt text-danger"></i></a></li>
+                        <li><a href="/backend_candidat/supprimerrecompense/<?=$findRecompenseOne->id?>"><i class="far fa-trash-alt text-danger"></i></a></li>
                       </ul>
                     </div>
-                    <span class="jobber-timeline-time">2008 - 2012</span>
-                    <h6 class="mb-2">Titre de la Recompence</h6>
-                    <span>- Institution</span>
-                    <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin. Nulla leo est, aliquam et nisi pellentesque, pellentesque commodo urna.</p>
+                    <span class="jobber-timeline-time"><?=$findRecompenseOne->datedebut?> - <?=$findRecompenseOne->datefin?> </span>
+                    <h6 class="mb-2"><?=$findRecompenseOne->titre?> </h6>
+                    <span>- <?=$findRecompenseOne->institution?> </span>
+                    <p class="mt-2"><?=$findRecompenseOne->description ?></p>
                   </div>
                   <div class="collapse show" id="dateposted-16">
                     <div class="bg-light p-3">
                       <form class="row collapse show" id="dateposted-form-07">
                         <div class="form-group mb-3 col-md-12">
                           <label class="form-label">Titre</label>
-                          <input type="text" class="form-control" value="Titre de la Recompence">
+                          <input type="text" class="form-control" name="titre" value="<?=$findRecompenseOne->titre?> ">
                         </div>
                         <div class="form-group mb-3 col-md-12">
                           <label class="form-label">Institution</label>
-                          <input type="text" class="form-control" value="Institution">
+                          <input type="text" class="form-control" name="institution" value="<?=$findRecompenseOne->institution?> ">
                         </div>
                         <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                           <label class="form-label">Du</label>
                           <div class="input-group date" id="datetimepicker-11" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" value="08/11/1999" data-target="#datetimepicker-11">
+                            <input type="text" class="form-control datetimepicker-input" name="datedebut" value="<?=$findRecompenseOne->datedebut?> " data-target="#datetimepicker-11">
                             <div class="input-group-append d-flex" data-target="#datetimepicker-11" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                             </div>
@@ -487,7 +492,7 @@
                         <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                           <label class="form-label">Au</label>
                           <div class="input-group date" id="datetimepicker-12" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" value="08/11/1999" data-target="#datetimepicker-12">
+                            <input type="text" class="form-control datetimepicker-input" name="datefin" value="<?=$findRecompenseOne->datefin?> " data-target="#datetimepicker-12">
                             <div class="input-group-append d-flex" data-target="#datetimepicker-12" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                             </div>
@@ -495,80 +500,24 @@
                         </div>
                         <div class="form-group mb-3 col-md-12">
                           <label class="form-label">Description</label>
-                          <textarea class="form-control" rows="4" placeholder="Descriptionde la Recompence"></textarea>
+                          <textarea class="form-control" rows="4" name="description" placeholder="<?=$findRecompenseOne->description?> "></textarea>
                         </div>
                         <div class="form-group col-md-12 mb-0">
-                          <a class="btn btn-md btn-primary" href="#">Mettre à jour</a>
+                         <button class="btn btn-primary d-grid" name="sendR">Metre à jour</button>
                         </div>
                       </form>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="jobber-timeline-item mb-0">
-                <div class="jobber-timeline-cricle">
-                  <i class="far fa-circle"></i>
-                </div>
-                <div class="jobber-timeline-info">
-                  <div class="dashboard-timeline-info">
-                    <div class="dashboard-timeline-edit">
-                      <ul class="list-unstyled d-flex">
-                        <li><a class="text-end" data-bs-toggle="collapse" href="#dateposted-17" role="button" aria-expanded="false" aria-controls="dateposted"> <i class="fas fa-pencil-alt text-info me-2"></i> </a></li>
-                        <li><a href="#"><i class="far fa-trash-alt text-danger"></i></a></li>
-                      </ul>
-                    </div>
-                    <span class="jobber-timeline-time">2012 - 2014</span>
-                    <h6 class="mb-2">Recompence</h6>
-                    <span>- Institution</span>
-                    <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin. Nulla leo est, aliquam et nisi pellentesque, pellentesque commodo urna.</p>
-                  </div>
-                  <div class="collapse" id="dateposted-17">
-                    <div class="bg-light p-3">
-                      <form class="row collapse show" id="dateposted-form-08">
-                        <div class="form-group mb-3 col-md-12">
-                          <label class="form-label">Titre</label>
-                          <input type="text" class="form-control" value="Titre de la Recompence">
-                        </div>
-                        <div class="form-group mb-3 col-md-12">
-                          <label class="form-label">Institution</label>
-                          <input type="text" class="form-control" value="Institution">
-                        </div>
-                        <div class="form-group mb-3 col-md-6 select-border datetimepickers">
-                          <label class="form-label">Du</label>
-                          <div class="input-group date" id="datetimepicker-13" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" value="08/11/1999" data-target="#datetimepicker-13">
-                            <div class="input-group-append d-flex" data-target="#datetimepicker-13" data-toggle="datetimepicker">
-                              <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group mb-3 col-md-6 select-border datetimepickers">
-                          <label class="form-label">Au</label>
-                          <div class="input-group date" id="datetimepicker-14" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" value="08/11/1999" data-target="#datetimepicker-14">
-                            <div class="input-group-append d-flex" data-target="#datetimepicker-14" data-toggle="datetimepicker">
-                              <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group mb-3 col-md-12">
-                          <label class="form-label">Description</label>
-                          <textarea class="form-control" rows="4" placeholder="Description de la Recompence"></textarea>
-                        </div>
-                        <div class="form-group col-md-12 mb-0">
-                          <a class="btn btn-md btn-primary" href="#">Mettre à jour</a>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              
+           
+            <?php endforeach ; ?>
           </div>
         </div>
         <!--=================================
         Awards -->
-        <a class="btn btn-md btn-primary" href="#">Enregistrez</a>
+        <!-- <a class="btn btn-md btn-primary" href="#">Enregistrez</a> -->
       </div>
     </div>
   </div>

@@ -53,7 +53,7 @@ Dashboard Nav -->
               <li><a href="../backend_candidat/modification_cv">Modifier Mon CV</a></li>
               <li><a href="../backend_candidat/liste_emplois">Emplois</a></li>
               <li><a href="../backend_candidat/emplois_enregistres">Emploi Enregistré</a></li>
-              <li><a href="../login.php">Quitter</a></li>
+              <li><a href="../backend_candidat/quitter">Quitter</a></li>
             </ul>
           </div>
         </div>
@@ -79,7 +79,7 @@ Change Password -->
               <form method="POST" class="row">
                 <div class="form-group col-md-12 mb-3">
                   <label class="form-label">Mot de passe actuel</label>
-                  <input type="text" name="pass" class="form-control" value="" >
+                  <input type="password" name="pass" class="form-control" value="" >
                 </div>
                 <div class="form-group col-md-12 mb-3">
                   <label class="form-label">Nouveau mot de passe</label>

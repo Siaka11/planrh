@@ -39,8 +39,9 @@
                     margin:  1,
                     filename:     "ange.pdf",
                     image:        { type: 'jpeg', quality: 1 },
-                    html2canvas:  { scale: 1 },
-                    jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' },
+                    html2canvas:  { scale: 2, logging: true, dpi: 102, letterRendering: true },
+
+                    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
                     
                 };
            

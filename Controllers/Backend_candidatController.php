@@ -7,6 +7,7 @@ use App\Models\Domaine;
 use App\Models\JaimeModel;
 use App\Models\FormationModel;
 use App\Models\ExperienceModel;
+use App\Models\RecompenseModel;
 use Dompdf\dompdf;
 
 class Backend_candidatController extends Controller{
@@ -40,7 +41,21 @@ class Backend_candidatController extends Controller{
 
         // $dompdf->render();
         // $dompdf->stream();
-        return $this->render('candidat/backend-candidat-cv.php', [], 'generatepdf.php');
+
+        $user = new CandidatModel;
+        $users = $user->find($_SESSION["user"]["id"]);
+        
+
+        $findFormation = new FormationModel;
+        $findFormation = $findFormation->findAll();
+
+        $findExperience = new ExperienceModel;
+        $findExperience = $findExperience->findAll();
+
+        $findReccompense = new RecompenseModel;
+        $findReccompense = $findReccompense->findAll();
+
+        return $this->render('candidat/backend-candidat-cv.php', compact('findFormation', 'findExperience', 'findReccompense', 'users'), 'generatepdf.php');
 
 
     }
@@ -125,7 +140,21 @@ class Backend_candidatController extends Controller{
             exit;
         }
 
-        return $this->render('candidat/backend-candidat-cv.php', [], 'home_backend_candidat.php');
+        $user = new CandidatModel;
+        $users = $user->find($_SESSION["user"]["id"]);
+
+        //var_dump($user);
+
+        $findFormation = new FormationModel;
+        $findFormation = $findFormation->findAll();
+
+        $findExperience = new ExperienceModel;
+        $findExperience = $findExperience->findAll();
+
+        $findReccompense = new RecompenseModel;
+        $findReccompense = $findReccompense->findAll();
+
+        return $this->render('candidat/backend-candidat-cv.php', compact('findFormation', 'findExperience', 'findReccompense', 'users'), 'home_backend_candidat.php');
 
     }
 
@@ -186,7 +215,7 @@ class Backend_candidatController extends Controller{
             
            }
 
-           if(isset($_POST['send0'])){
+           if(isset($_POST['send2'])){
             //echo "merci";
 
            
@@ -194,7 +223,7 @@ class Backend_candidatController extends Controller{
             $description = strip_tags($_POST['description']);
             $datedebut = strip_tags($_POST['datedebut']);
             $datefin = strip_tags($_POST['datefin']);
-            //$etablissement = strip_tags($_POST['etablissement']);
+            $entreprise = strip_tags($_POST['entreprise']);
 
              
             $formation = new ExperienceModel;
@@ -202,7 +231,7 @@ class Backend_candidatController extends Controller{
                           ->setDescription($description)
                           ->setDatefin($datefin)
                           ->setDatedebut($datedebut)
-                         // ->setEtablissement($etablissement)
+                          ->setEntreprise($entreprise)
                           ->setId_candidats($_SESSION["user"]["id"])
 
                           ;
@@ -210,6 +239,40 @@ class Backend_candidatController extends Controller{
                            $formation->createOne();         
           // var_dump($formation->createOne());
              }
+
+             if(isset($_POST['send4'])){
+                //echo "merci";
+    
+               
+                $titre = strip_tags($_POST['titre']);
+                $description = strip_tags($_POST['description']);
+                $datedebut = strip_tags($_POST['datedebut']);
+                $datefin = strip_tags($_POST['datefin']);
+                $institution = strip_tags($_POST['institution']);
+
+    
+                 
+                $recompense = new RecompenseModel;
+                $recompense ->setTitre($titre)
+                              ->setDescription($description)
+                              ->setDatefin($datefin)
+                              ->setDatedebut($datedebut)
+                              ->setInstitution($institution)
+                              ->setId_candidat($_SESSION["user"]["id"])
+    
+                              ;
+                //   var_dump($recompense);
+                //   die;
+
+                               $recompense->createOne();    
+                               
+                               
+               $_SESSION["message"] = "Vous avez saisi une recompense";
+               //$_SESSION["information"] = "Vous avez saisi une formation";
+                header("Location: /backend_candidat/modification_cv");
+                exit;
+              // var_dump($formation->createOne());
+                 }
 
              if(isset($_POST['send1'])){
                 $myid = $_POST['myid'];
@@ -243,30 +306,33 @@ class Backend_candidatController extends Controller{
 
          
             }
-            if(isset($_POST['send2'])){
+            if(isset($_POST['send3'])){
 
+            $myid = $_POST['myidexp'];
                 
             $titre = strip_tags($_POST['titre']);
             $description = strip_tags($_POST['description']);
             $datedebut = strip_tags($_POST['datedebut']);
             $datefin = strip_tags($_POST['datefin']);
-            //$etablissement = strip_tags($_POST['etablissement']);
+            $entreprise = strip_tags($_POST['entreprise']);
 
              
             $experience = new ExperienceModel;
-            $experience ->setTitre($titre)
+            $experience   ->setId($myid)
+                          ->setTitre($titre)
                           ->setDescription($description)
                           ->setDatefin($datefin)
                           ->setDatedebut($datedebut)
-                         // ->setEtablissement($etablissement)
+                          ->setEntreprise($entreprise)
                           ->setId_candidats($_SESSION["user"]["id"])
                           ;
+                         
               
                            $experience->update();
                 
             }
       
-      
+        
        
        
         
@@ -278,11 +344,14 @@ class Backend_candidatController extends Controller{
          $findExperience = new ExperienceModel;
          $findExperience = $findExperience->findAll();
 
+         $findReccompense = new RecompenseModel;
+         $findReccompense = $findReccompense->findAll();
+
         //  var_dump($findExperience);
         //  die;
        
 
-        return $this->render('candidat/backend-candidat-modification-cv.php', compact('findFormation', 'findExperience'), 'home_backend_candidat.php');
+        return $this->render('candidat/backend-candidat-modification-cv.php', compact('findFormation', 'findExperience', 'findReccompense'), 'home_backend_candidat.php');
 
     }
 
@@ -316,7 +385,7 @@ class Backend_candidatController extends Controller{
        }
     }
 
-    public function supprimer($id){
+    public function supprimerformation($id){
         //echo "merci";
         
         $formation1 = new FormationModel;
@@ -327,6 +396,31 @@ class Backend_candidatController extends Controller{
         return $this->render('candidat/backend-candidat-modification-cv.php', [], 'home_backend_candidat1.php');
 
     }
+
+    public function supprimerexperience($id){
+        //echo "merci";
+        
+        $experience = new ExperienceModel;
+        $experience = $experience->delete($id);
+        $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+        header("Location: /backend_candidat/modification_cv");
+       
+        return $this->render('candidat/backend-candidat-modification-cv.php', [], 'home_backend_candidat1.php');
+
+    }
+
+    public function supprimerrecompense($id){
+        //echo "merci";
+        
+        $experience = new RecompenseModel;
+        $experience = $experience->delete($id);
+        $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+        header("Location: /backend_candidat/modification_cv");
+       
+        return $this->render('candidat/backend-candidat-modification-cv.php', [], 'home_backend_candidat1.php');
+
+    }
+
     public function modification_pass(){
         if(!$_SESSION["user"]["id"]){
             $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
@@ -335,7 +429,7 @@ class Backend_candidatController extends Controller{
         }
 
         $candidat = new CandidatModel;
-        $candidat = $candidat->find($_SESSION['user']['id']);
+        $candidatpass = $candidat->find($_SESSION['user']['motdepasse']);
 
         $can = new CandidatModel;
 
@@ -348,18 +442,20 @@ class Backend_candidatController extends Controller{
                 $pass2 = $_POST['password2'];
                 $pass = $_POST['pass'];
 
-                if($candidat != $pass){
+                if($candidatpass != $pass){
                     $_SESSION["message"] = "Votre mot de passe ne correspond!";
                 }
 
-                var_dump($pass1);
-                var_dump($pass2);
+                //var_dump($pass1);
+                //var_dump($pass2);
                 if($pass1 == $pass2){
 
                     $can->setId($_SESSION['user']['id'])
                             ->setMotdepasse($pass1)
                             ;
                     $can->update();
+                    $_SESSION["message"] = "Votre mot de passe a été modifié!";
+
 
                 }else
                 {
@@ -384,6 +480,12 @@ class Backend_candidatController extends Controller{
 
         return $this->render('candidat/backend-liste-emplois.php', [], 'home_backend_candidat.php');
 
+    }
+
+    public function quitter(){
+
+        unset($_SESSION['user']);
+        header('Location: /login' );
     }
 }
 

@@ -53,7 +53,7 @@ Dashboard Nav -->
               <li><a href="../backend_candidat/modification_cv">Modifier Mon CV</a></li>
               <li><a href="../backend_candidat/liste_emplois">Emplois</a></li>
               <li><a href="../backend_candidat/emplois_enregistres">Emploi Enregistré</a></li>
-              <li><a href="../login.php">Quitter</a></li>
+              <li><a href="../backend_candidat/quitter">Quitter</a></li>
             </ul>
           </div>
         </div>

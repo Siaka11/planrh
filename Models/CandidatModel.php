@@ -7,7 +7,7 @@ class CandidatModel extends Model{
 
     protected $id;
     protected $nom;
-   // protected $prenom;
+   //protected $prenom;
   //  protected $pseudo;
     protected $motdepasse;
     protected $email;

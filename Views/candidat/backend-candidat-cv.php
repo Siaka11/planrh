@@ -1,40 +1,43 @@
 
 
+
     <!--=================================
     My Resume -->
-<div class="space-ptb" id="getElt">
+    <div class="space-ptb" >
   <div class="container" >
-    <div class="row justify-content-center">
-      <div class="col-md-9">
+    <div class="row justify-content-center" >
+    <button class="btn btn-primary d-grid" onclick="generatePDF()">Télécharger le PDF</button>
+      <div class="col-md-9" id="getElt">
         <div class="row">
           <div class="col-lg-5">
             <div class="resume-base bg-light user-dashboard-info-box">
+
               <div class="profile">
                 <div class="jobber-user-info">
                   <div class="profile-avatar">
                     <img class="img-fluid " src="../images/avatar/06.jpg" alt="">
                   </div>
                   <div class="profile-avatar-info mt-3">
-                    <h5>Ange Brou <?php echo "<br/> Option: Travailleur" ?></h5>
+                    <h5><?=$users->nom?> <?php echo "<br/> Option: Travailleur" ?></h5>
                   </div>
                 </div>
               </div>
               <div class="about-candidate border-top">
                 <div class="candidate-info">
                   <h6>Nom :</h6>
-                  <p>Ange Brou</p>
+                  <p><?=$users->nom?></p>
                 </div>
                 <div class="candidate-info">
                   <h6>Email:</h6>
-                  <p>angetbrou@gmail.com</p>
+                  <p><?=$users->email?></p>
                 </div>
                 <div class="candidate-info">
                   <h6>Téléphone :</h6>
-                  <p>+225 0747306382</p>
+                  <p><?=$users->contact?></p>
                 </div>
                 <div class="candidate-info">
                   <h6>Date de Naissance:</h6>
-                  <p>17-01-2022</p>
+                  <p><?=$users->datenaissance?></p>
                 </div>
                 <div class="candidate-info">
                   <h6>Adresse:</h6>
@@ -42,16 +45,19 @@
                 </div>
                 <div class="candidate-info">
                   <h6>Genre:</h6>
-                  <p>Homme</p>
+                  <p><?=$users->genre?></p>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin. Nulla leo est, aliquam et nisi pellentesque, pellentesque commodo urna. Nullam vestibulum orci non velit lacinia consequat. Proin eget lacus vitae magna dictum commodo sit amet a enim.</p>
+                <p><?=$users->description?></p>
               </div>
+            
+              <!-- end profile -->
             </div>
           </div>
           <div class="col-lg-7">
             <div class="resume-experience ps-0">
               <div class="timeline-box">
                 <h5 class="resume-experience-title">Formation:</h5>
+                <?php foreach($findFormation as $findFormationOne): ?>
                 <div class="jobber-candidate-timeline">
                   <div class="jobber-timeline-item">
                     <div class="jobber-timeline-cricle">
@@ -59,57 +65,35 @@
                     </div>
                     <div class="jobber-timeline-info">
                       <div class="dashboard-timeline-info">
-                        <span class="jobber-timeline-time">2014 - 2018</span>
-                        <h6 class="mb-2">Formation 01</h6>
+                        <span class="jobber-timeline-time"><?=$findFormationOne->annee ?></span>
+                        <h6 class="mb-2"><?=$findFormationOne->titre ?></h6>
                         <span>- Lieu de formation</span>
-                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin. Nulla leo est, aliquam et nisi pellentesque, pellentesque commodo urna.</p>
+                        <p class="mt-2"><?=$findFormationOne->description ?></p>
                       </div>
                     </div>
-                  </div>
-                  <div class="jobber-timeline-item mb-0">
-                    <div class="jobber-timeline-cricle">
-                      <i class="far fa-circle"></i>
-                    </div>
-                    <div class="jobber-timeline-info">
-                      <div class="dashboard-timeline-info">
-                        <span class="jobber-timeline-time">2018 - 2020</span>
-                        <h6 class="mb-2">Formation 02</h6>
-                        <span>- Lieu de formation</span>
-                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin.</p>
-                      </div>
-                    </div>
-                  </div>
+                  </div> 
                 </div>
+                <?php endforeach ; ?>
               </div>
               <div class="timeline-box mt-4">
                 <h5 class="resume-experience-title">Expériences Professionnelles:</h5>
                 <div class="jobber-candidate-timeline">
+
+                <?php foreach($findExperience as $experienceOne): ?>
                   <div class="jobber-timeline-item">
                     <div class="jobber-timeline-cricle">
                       <i class="far fa-circle"></i>
                     </div>
                     <div class="jobber-timeline-info">
                       <div class="dashboard-timeline-info">
-                        <span class="jobber-timeline-time">6-01-2020 au 6-01-2021</span>
-                        <h6 class="mb-2">Poste 01</h6>
-                        <span>- Entreprise 01</span>
-                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin.</p>
+                        <span class="jobber-timeline-time"><?=$experienceOne->datedebut ?> au <?=$experienceOne->datefin ?></span>
+                        <h6 class="mb-2"><?=$experienceOne->titre ?></h6>
+                        <span>- <?=$experienceOne->entreprise ?></span>
+                        <p class="mt-2"><?=$experienceOne->description ?></p>
                       </div>
                     </div>
                   </div>
-                  <div class="jobber-timeline-item mb-0">
-                    <div class="jobber-timeline-cricle">
-                      <i class="far fa-circle"></i>
-                    </div>
-                    <div class="jobber-timeline-info">
-                      <div class="dashboard-timeline-info">
-                        <span class="jobber-timeline-time">6-01-2020 au 6-01-2021</span>
-                        <h6 class="mb-2">Poste 02</h6>
-                        <span>- Entreprise 02</span>
-                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate placerat nunc eu sollicitudin.</p>
-                      </div>
-                    </div>
-                  </div>
+                <?php endforeach ; ?>
                 </div>
               </div>
                 <div class="mt-4">
@@ -149,12 +133,12 @@
     </div>
   </div>
 </div>
-<button onclick="generatePDF()">Télécharger le PDF</button>
 
 
 
 
 <!--=================================
 My Resume -->
+
 
 

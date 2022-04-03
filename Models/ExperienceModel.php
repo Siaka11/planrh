@@ -11,6 +11,7 @@ class ExperienceModel extends Model{
     protected $datedebut;
     protected $datefin;
     protected $id_candidats;
+    protected $entreprise;
     //etablissemnt
 
    
@@ -159,6 +160,46 @@ class ExperienceModel extends Model{
     public function setDatefin($datefin)
     {
         $this->datefin = $datefin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of entreprise
+     */ 
+    public function getEntreprise()
+    {
+        return $this->entreprise;
+    }
+
+    /**
+     * Set the value of entreprise
+     *
+     * @return  self
+     */ 
+    public function setEntreprise($entreprise)
+    {
+        $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

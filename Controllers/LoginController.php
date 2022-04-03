@@ -1,28 +1,15 @@
 <?php
 
-
 namespace App\Controllers;
 use App\Controllers\Controller;
-use App\Models\CandidatModel;
-use App\Models\Domaine;
+use App\Models\candidatmodel;
 use App\Models\EmployeurModel;
-use App\Models\JaimeModel;
-use App\Models\Model;
-use App\Models\OffreModel;
-use App\Models\OffresModel;
-use DateTime;
 
-class MainController extends Controller
-{
-    
-    public function index()
-    {
-        $i = 0;
-        $emploiModel = new OffreModel();
-        $emploiRecent = $emploiModel->findAll();
 
-        $domaine = new Domaine;
-        $domaine = $domaine->findAll();
+class LoginController extends Controller{
+
+    public function index(){
+        //echo "merci"; 
 
         if(isset($_POST)){
             if(isset($_POST['send'])){
@@ -69,14 +56,12 @@ class MainController extends Controller
                 if ($pass == $motdepasse) {
                     $user->setSession();
                     var_dump($user);
-                    header('Location:  /backend_candidat');
+                    header('Location:  /candidat');
                     exit;
                 } else {
-                    //var_dump($pass);
-                    
                     $_SESSION['message'] = 'Le mot de passe est incorrect';
-                    //header('Location: /');
-                    //exit;
+                    header('Location: /login');
+                    exit;
                 }
 
             }
@@ -136,58 +121,7 @@ class MainController extends Controller
                     exit;
                 }
         }
-
-      
-        $this->render('main/index.php', compact('emploiRecent', 'domaine'));
+        $this->render("main/login.php", [], 'login.php');
     }
-
-    public function logout()
-    {
-        unset($_SESSION['user']);
-        header('Location: /' );
-    }
-
-    public function jaime($id){
-        if(!$_SESSION["user"]["id"]){
-            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
-            header("Location: /");
-            exit;
-        }
-        $jaimeinit = new JaimeModel;
-        $jaimevalue = $jaimeinit->findjaime($id, $_SESSION["user"]['id']);
-        echo "merci";
-        if($jaimevalue){
-           
-            $jaimeinit->delete($jaimevalue->id);
-        }else{
-            echo "merci";
-            //$jaimeinit = $jaimeinit->find()
-            //var_dump($jaime);
-            //die;
-            $newdate = new DateTime();
-            $newdate = $newdate->format("Y-m-d H:i:s");
-            $jaime = new JaimeModel;
-            $jaime->setLikeoffre(1)
-                  ->setDateheurejaime($newdate)
-                  ->setId_candidat($_SESSION["user"]['id'])
-                  ->setId_offre($id)
-                  ;
-                  var_dump($jaime);
-                  $jaime->createOne();
-                 
-        }
-      
-        
-    }
-    
-
-   /*  public function actualite(){
-        $this->render('main/actualite.php', [], 'home.php');
-    } */
-
-    /* public function merci($params)
-    {
-        var_dump($params);
-        echo 'ceci est la foonction merci';
-    } */
 }
+
