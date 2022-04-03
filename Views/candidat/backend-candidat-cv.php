@@ -5,8 +5,9 @@
     My Resume -->
     <div class="space-ptb" >
   <div class="container" >
+  <button class="btn btn-primary "  onclick="generatePDF()">Télécharger le PDF</button>
+
     <div class="row justify-content-center" >
-    <button class="btn btn-primary d-grid" onclick="generatePDF()">Télécharger le PDF</button>
       <div class="col-md-9" id="getElt">
         <div class="row">
           <div class="col-lg-5">

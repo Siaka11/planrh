@@ -443,7 +443,9 @@ class Backend_candidatController extends Controller{
                 $pass = $_POST['pass'];
 
                 if($candidatpass != $pass){
-                    $_SESSION["message"] = "Votre mot de passe ne correspond!";
+                    $_SESSION["message"] = "Vous avez saisir un mot de passe incorrect!";
+                    header("Location: /Backend_candidat/modification_pass");
+                    exit;
                 }
 
                 //var_dump($pass1);

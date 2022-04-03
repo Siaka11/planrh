@@ -72,11 +72,11 @@ Signin -->
                 <div class="row">
                   <div class="mb-3 col-12">
                     <label class="form-label" for="Email2">Nom d'utilisateur *</label>
-                    <input type="text" class="form-control" id="Email2">
+                    <input type="text" name="email" class="form-control" id="Email2">
                   </div>
                   <div class="mb-3 col-12">
                     <label class="form-label" for="password2">Mot de Passe *</label>
-                    <input type="password" class="form-control" id="password2">
+                    <input type="password" name="motdepasse" class="form-control" id="password2">
                   </div>
                 </div>
                 <div class="row">

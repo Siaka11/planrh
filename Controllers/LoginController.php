@@ -76,19 +76,22 @@ class LoginController extends Controller{
             $email = strip_tags($_POST['email']);
             $motdepasse = $_POST['motdepasse'];
 
+            
+
             $employeurModel = new EmployeurModel;
                 //var_dump($userModel);
                 $emailExist = $employeurModel->findOneByEmail($email);
+                var_dump($emailExist);
                 if($emailExist == false){
                        $_SESSION['message'] = 'Le login  ou le mot de passe est incorrect';
-                    header('Location: /main');
+                    header('Location: /login');
                     exit;
                 }
                //$passwordExist = $userModel->findOneByPassword($password);
                 //$passwordExist = $emailExist->findOneByLogin($login);
                 //var_dump($passwordExist);
                 $pass= $emailExist->motdepasse;
-               // var_dump($pass);
+                var_dump($pass);
                 //die;
                //var_dump($passwordExist->password);
                //var_dump($password);

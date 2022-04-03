@@ -49,7 +49,7 @@ Dashboard Nav -->
               <li><a class="active" href="../backend_candidat/">Accueil</a></li>
               <li><a href="../backend_candidat/profil">Mon Profil</a></li>
               <li><a href="../backend_candidat/modification_pass">Modifier Mon Pass</a></li>
-              <li><a href="../backend_candidat/mon_cv" target="_blank">Mon CV</a></li>
+              <li><a href="../backend_candidat/imprimer" target="_blank">Mon CV</a></li>
               <li><a href="../backend_candidat/modification_cv">Modifier Mon CV</a></li>
               <li><a href="../backend_candidat/liste_emplois">Emplois</a></li>
               <li><a href="../backend_candidat/emplois_enregistres">Emploi Enregistré</a></li>

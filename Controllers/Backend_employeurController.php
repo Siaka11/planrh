@@ -13,6 +13,12 @@ class Backend_employeurController extends Controller{
 
     public function index(){
 
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
+
         $this->render("employeur/index.php", [], 'home_backend_employeur.php');
     }
 

@@ -52,7 +52,7 @@ class EmployeurModel extends Model{
 
     public function setSession()
     {
-        $_SESSION['user'] = [
+        $_SESSION['useremployeur'] = [
             'id' => $this->id,
             'nom' => $this->nom,
             'prenom' => $this->prenom,

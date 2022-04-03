@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF GENERATOR</title>
+    <title>Générer mon pdf</title>
     
     <!-- Favicon -->
     <link href="../../images/log.png" rel="shortcut icon" />
@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/../../all.min.css" />
     <link rel="stylesheet" href="/../../css/flaticon/flaticon.css" />
     <link rel="stylesheet" href="/../../css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
 
     <!-- map -->
     <link rel="stylesheet" href="../../css/apexcharts/apexcharts.css" />
@@ -39,7 +41,7 @@
                     margin:  1,
                     filename:     "ange.pdf",
                     image:        { type: 'jpeg', quality: 1 },
-                    html2canvas:  { scale: 2, logging: true, dpi: 102, letterRendering: true },
+                    html2canvas:  { scale: 2, logging: true, dpi: 500, letterRendering: true },
 
                     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
                     
