@@ -95,10 +95,20 @@ Manage Jobs -->
                 </tr>
               </thead>
               <tbody>
+              
+                <?php foreach($infojob as $info) : ?>
+                  <?php 
+                    $off = $offre->find($info->id_offre);
+                    $emp = $off->id_employeur;
+                                   // echo "la valeur $emp";
+                   $company = $findcompany->find($emp);
+                                    //var_dump($company->entreprise);
+                                   // die;
+              ?>
                 <tr>
-                  <th scope="row">Emplois 01
-                    <p class="mb-1 mt-2">Expire le : Date d'expiration</p>
-                    <p class="mb-0">Adresse : lieu du poste</p>
+                  <th scope="row"><?= $info->secteur ?>  
+                    <p class="mb-1 mt-2">Expire le : <?= $info->secteur ?></p>
+                    <p class="mb-0">Adresse : <?= $company->entreprise ?></p>
                   </th>
                   <td>Slectionné</td>
                   <td><i class="far fa-star"></i></td>
@@ -109,49 +119,8 @@ Manage Jobs -->
                     </ul>
                   </td>
                 </tr>
-                <tr>
-                  <th scope="row">Emplois 02
-                    <p class="mb-1 mt-2">Expire le : Date d'expiration</p>
-                    <p class="mb-0">Adresse : lieu du poste</p>
-                  </th>
-                  <td>Slectionné</td>
-                  <td><i class="far fa-star"></i></td>
-                  <td>
-                    <ul class="list-unstyled mb-0 d-flex">
-                      <li><a href="#" class="text-primary" data-bs-toggle="tooltip" title="Afficher"><i class="far fa-eye"></i></a></li>
-                      <li><a href="#" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Emplois 03
-                    <p class="mb-1 mt-2">Expire le : Date d'expiration</p>
-                    <p class="mb-0">Adresse : lieu du poste</p>
-                  </th>
-                  <td>Slectionné</td>
-                  <td><i class="far fa-star"></i></td>
-                  <td>
-                    <ul class="list-unstyled mb-0 d-flex">
-                      <li><a href="#" class="text-primary" data-bs-toggle="tooltip" title="Afficher"><i class="far fa-eye"></i></a></li>
-                      <li><a href="#" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Emplois 04
-                    <p class="mb-1 mt-2">Expire le : Date d'expiration</p>
-                    <p class="mb-0">Adresse : lieu du poste</p>
-                  </th>
-                  <td>Slectionné</td>
-                  <td><i class="far fa-star"></i></td>
-                  <td>
-                    <ul class="list-unstyled mb-0 d-flex">
-                      <li><a href="#" class="text-primary" data-bs-toggle="tooltip" title="Afficher"><i class="far fa-eye"></i></a></li>
-                      <li><a href="#" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
+                <?php endforeach; ?>
+               </tbody>
             </table>
           </div>
           <div class="row justify-content-center">

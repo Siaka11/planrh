@@ -16,6 +16,9 @@ class JaimeModel extends Model{
         $this->table = "jaimeoffre";
     }
 
+    public static function valueentre(){
+        return 'merci';
+    }
     public function findjaimechoix(){
         return $this->requete(
             "SELECT * FROM jaimeoffre

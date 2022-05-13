@@ -2,13 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Models\CandidatModel;
+use Dompdf\dompdf;
 use App\Models\Domaine;
 use App\Models\JaimeModel;
+use App\Models\OffreModel;
+use App\Models\CandidatModel;
+use App\Models\EmployeurModel;
 use App\Models\FormationModel;
 use App\Models\ExperienceModel;
 use App\Models\RecompenseModel;
-use Dompdf\dompdf;
 
 class Backend_candidatController extends Controller{
 
@@ -20,7 +22,37 @@ class Backend_candidatController extends Controller{
             exit;
         }
 
-      
+       
+        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+           $tailleMax = 2097152;
+           $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+           if($_FILES['avatar']['size'] <= $tailleMax) {
+              $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+              if(in_array($extensionUpload, $extensionsValides)) {
+                 $chemin = "../public_html/images/".$_SESSION["user"]["id"].".".$extensionUpload;
+                 //var_dump($_FILES['avatar']['tmp_name']);
+                 //die;
+                 $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+                 if($resultat) {
+                    var_dump($resultat);
+                    die;
+                   // $updateavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
+                   // $updateavatar->execute(array(
+                      // 'avatar' => $_SESSION['id'].".".$extensionUpload,
+                    //   'id' => $_SESSION['id']
+                    //   ));
+                   // header('Location: profil.php?id='.$_SESSION['id']);
+                 } else {
+                    $msg = "Erreur durant l'importation de votre photo de profil";
+                 }
+              } else {
+                 $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+              }
+           } else {
+              $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+           }
+        }
+       
 
         return $this->render('candidat/index.php', [], 'home_backend_candidat.php');
     }
@@ -167,12 +199,15 @@ class Backend_candidatController extends Controller{
     
         $jaime = new JaimeModel;
         $jaime = $jaime->findjaimechoix();
+        $ar = JaimeModel::valueentre();
 
-      
-       
-        
+        $offre = new OffreModel;
+        $findcompany = new EmployeurModel;
+        //var_dump($findcompany->findBy());
+        //die;
 
-        return $this->render('candidat/backend-candidat-emplois-enregistres.php', compact('jaime'), 'home_backend_candidat.php');
+
+        return $this->render('candidat/backend-candidat-emplois-enregistres.php', compact('jaime', 'offre', 'findcompany'), 'home_backend_candidat.php');
 
     }
 
@@ -483,8 +518,17 @@ class Backend_candidatController extends Controller{
             header("Location: /");
             exit;
         }
+        $info = new JaimeModel;
+        $infojob = $info->findjaimechoix();
 
-        return $this->render('candidat/backend-liste-emplois.php', [], 'home_backend_candidat.php');
+        //$jaime = new JaimeModel;
+        //$jaime = $jaime->findjaimechoix();
+      //  $ar = JaimeModel::valueentre();
+
+        $offre = new OffreModel;
+        $findcompany = new EmployeurModel;
+
+        return $this->render('candidat/backend-liste-emplois.php', compact('infojob', 'offre', 'findcompany'), 'home_backend_candidat.php');
 
     }
 

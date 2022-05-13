@@ -8,11 +8,28 @@ inner banner -->
         <div class="candidates-user-info">
           <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid " src="../images/avatar/06.jpg" alt="">
-              <i class="fas fa-pencil-alt"></i>
+              <img class="img-fluid " src="../images/avatar/06.jpg" alt="" data-bs-target="#staticBackdrop">
+                <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="profile-avatar-info ms-4">
               <h3>Ange Brou</h3>
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Prendre une image</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form method='post' action='' enctype="multipart/form-data">
+                      Selectionnez une image : 
+                      <input type='file' name='avatar'id='file' class='form-control' ><br>
+                      <input type='submit' class='btn btn-info' value='Charger' name="submit" id='btn_upload'>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                </div>
             </div>
           </div>
         </div>

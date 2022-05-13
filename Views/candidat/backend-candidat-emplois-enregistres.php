@@ -96,10 +96,18 @@ Dashboard Nav -->
                             <div class="job-list-info">
                               <div class="job-list-title">
                                 <h5 class="mb-0"><a href="#"><?=$jaimeone->secteur?></a></h5>
+                                <?php 
+                                    $off = $offre->find($jaimeone->id_offre);
+                                    $emp = $off->id_employeur;
+                                   // echo "la valeur $emp";
+                                    $company = $findcompany->find($emp);
+                                    //var_dump($company->entreprise);
+                                   // die;
+                                ?>
                               </div>
                               <div class="job-list-option">
                                 <ul class="list-unstyled">
-                                  <li> <span>via</span> <a href="#"> aaa<?=$jaimeone->id?></a> </li>
+                                  <li> <span>via</span> <a href="#"> <?= $company->entreprise ?></a> </li>
                                   <li><i class="fas fa-map-marker-alt pe-1"><?=$jaimeone->adresse?></i></li>
                                   <li><i class="fas fa-filter pe-1"></i><?=$jaimeone->typedemande?></li>
                                   <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i><?=$jaimeone->typeemploi?></a></li>
