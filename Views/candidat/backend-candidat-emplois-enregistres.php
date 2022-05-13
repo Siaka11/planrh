@@ -59,13 +59,13 @@ Dashboard Nav -->
         <div class="sticky-top secondary-menu-sticky-top">
           <div class="secondary-menu">
             <ul class="list-unstyled mb-0">
-              <li><a class="active" href="../backend_candidat/">Accueil</a></li>
+              <li><a  href="../backend_candidat/">Accueil</a></li>
               <li><a href="../backend_candidat/profil">Mon Profil</a></li>
               <li><a href="../backend_candidat/modification_pass">Modifier Mon Pass</a></li>
               <li><a href="../backend_candidat/imprimer" target="_blank">Mon CV</a></li>
               <li><a href="../backend_candidat/modification_cv">Modifier Mon CV</a></li>
               <li><a href="../backend_candidat/liste_emplois">Emplois</a></li>
-              <li><a href="../backend_candidat/emplois_enregistres">Emploi Enregistré</a></li>
+              <li><a href="../backend_candidat/emplois_enregistres" class="active">Emploi Enregistré</a></li>
               <li><a href="../backend_candidat/quitter">Quitter</a></li>
             </ul>
           </div>
@@ -95,11 +95,11 @@ Dashboard Nav -->
                           <div class="job-list-details">
                             <div class="job-list-info">
                               <div class="job-list-title">
-                                <h5 class="mb-0"><a href="#">Emplois 01</a></h5>
+                                <h5 class="mb-0"><a href="#"><?=$jaimeone->secteur?></a></h5>
                               </div>
                               <div class="job-list-option">
                                 <ul class="list-unstyled">
-                                  <li> <span>via</span> <a href="#"><?=$jaimeone->id?></a> </li>
+                                  <li> <span>via</span> <a href="#"> aaa<?=$jaimeone->id?></a> </li>
                                   <li><i class="fas fa-map-marker-alt pe-1"><?=$jaimeone->adresse?></i></li>
                                   <li><i class="fas fa-filter pe-1"></i><?=$jaimeone->typedemande?></li>
                                   <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i><?=$jaimeone->typeemploi?></a></li>

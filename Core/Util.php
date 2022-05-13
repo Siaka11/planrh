@@ -4,6 +4,10 @@ namespace App\Core;
 
 class Util {
 
+    public static function red(){
+        
+        header('Location: /');
+    }
     // Separer les mots avec une limite d'affichage
     public function seperate($texte){
 

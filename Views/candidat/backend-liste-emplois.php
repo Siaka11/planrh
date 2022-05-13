@@ -46,12 +46,12 @@ Dashboard Nav -->
         <div class="sticky-top secondary-menu-sticky-top">
           <div class="secondary-menu">
             <ul class="list-unstyled mb-0">
-              <li><a class="active" href="../backend_candidat/">Accueil</a></li>
+              <li><a  href="../backend_candidat/">Accueil</a></li>
               <li><a href="../backend_candidat/profil">Mon Profil</a></li>
               <li><a href="../backend_candidat/modification_pass">Modifier Mon Pass</a></li>
               <li><a href="../backend_candidat/imprimer" target="_blank">Mon CV</a></li>
               <li><a href="../backend_candidat/modification_cv">Modifier Mon CV</a></li>
-              <li><a href="../backend_candidat/liste_emplois">Emplois</a></li>
+              <li><a href="../backend_candidat/liste_emplois" class="active">Emplois</a></li>
               <li><a href="../backend_candidat/emplois_enregistres">Emploi Enregistré</a></li>
               <li><a href="../backend_candidat/quitter">Quitter</a></li>
             </ul>

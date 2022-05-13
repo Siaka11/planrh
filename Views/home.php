@@ -16,7 +16,7 @@
 
     <!-- CSS Global Compulsory (Do not remove)-->
     <link rel="stylesheet" href="css/font-awesome/all.min.css" />
-    <link rel="stylesheet" href="css/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="../../css/flaticon/flaticon.css" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
 
     <!-- Page CSS Implementing Plugins (Remove the plugin CSS here if site does not use that feature)-->
@@ -46,6 +46,7 @@
 
 <!--=================================
 Header -->
+
 <header class="header bg-dark">
   <nav class="navbar navbar-static-top navbar-expand-lg header-sticky">
     <div class="container-fluid">
@@ -361,16 +362,58 @@ Javascript -->
 
     <!-- Activer le menu selectionné -->
 
+<script type="text/javascript">
+
+
+
+  // function filter_data(){
+    
+  //   $action = 'fetch_data'
+  //   let domaine = get_filter('domaine');
+  //   $.ajax({
+  //     url: "fetch_data.php",
+  //     method:"POST",
+  //     data: {domaine: domaine},
+  //     success:function(data){
+  //       $('.filter_data').html(data)
+  //     }
+  //   })
+
+  // }
+
+  // function get_filter(class_name){
+  //   let myfilter = []
+  //   $('.'+class_name+':checked').each(function()
+  //   {
+  //     myfilter.push($(this).val())
+  //   })
+  //  return myfilter
+  
+  // }
+
+  // $('.common_selector').click(function(){
+  //   console.log("hola")
+  //   filter_data()
+
+  // })
+
+  // $('#myvaleur').clic
+  // $('#myvaleur').click(function(){
+  //   console.log("hola1")
+  // })
+
+
+
+</script>
+
     <script type="text/javascript">
-
-
 
         const activateMenu = window.location.pathname
 
         if(activateMenu === '/'){
-          console.log('Merci')
+          //alert('Merci')
           const navlink = document.getElementById('one')
-          console.log(navlink)
+          //console.log(navlink)
           navlink.classList.add('active')
         }else{
 
@@ -379,7 +422,7 @@ Javascript -->
           navlinks.forEach(link =>{
           if(link.href.includes(`${activateMenu}`)){
             link.classList.add('active')
-            console.log(`${activateMenu}`)
+            //console.log(`${activateMenu}`)
           }
         })
         }
@@ -387,7 +430,10 @@ Javascript -->
 
 
     </script>
+
+    
    
+    
 
    <!-- Favorite like customize -->
    <script src="js/favoritelike.js"></script>
@@ -405,6 +451,67 @@ Javascript -->
     <!-- Template Scripts (Do not remove)-->
     <script src="js/custom.js"></script>
 
+    <script >
+
+      var redirectlink = document.getElementById('redirectlink')
+       //console alert(redirectlink)
+      if(redirectlink){
+        setInterval(redirectnow, 500)
+
+        function redirectnow(){
+          window.location.replace("http://www.w3schools.com");
+        }
+      }
+      $(document).ready(function(){
+
+      function filter_data(){
+      //alert('okay')
+      let action = 'fetch_data'
+      let domaine = get_filter('domaine');
+      //console.log(domaine)
+      $.ajax({
+        url: "/main/fetch_data",
+        method:"POST",
+        data: {action: action, domaine: domaine},
+        success:function(data){
+          
+          $('.filter_data').html(data)
+        }
+      })
+
+    }
+
+    function get_filter(class_name){
+      let myfilter = []
+
+      if(!myfilter.length){
+
+        console.log('value')
+        $('.'+class_name+':checked').each(function()
+        {
+          myfilter.push($(this).val())
+          
+        })
+        return myfilter
+      }else{
+        console.log('devalue')
+        alert('Okay')
+      }
+      
+      
+    }
+
+    $('.common_selector').click(function(){
+      //console.log("hola")
+      filter_data()
+
+    })
+
+    
+
+      })
+    </script>
+    
 </body>
 
 <!-- Mirrored from themes.potenzaglobalsolutions.com/html/jobber/index-03.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Dec 2021 14:35:27 GMT -->

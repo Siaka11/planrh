@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Model;
+use PDO;
 
 class OffreModel extends Model{
 
@@ -26,7 +27,21 @@ class OffreModel extends Model{
         $this->table = 'offre';
     }
 
-    
+    function getAlldataFilter($filterData){
+        $storage_filter = implode("','", $filterData);
+        //var_dump($storage_filter);
+       // return $this->requete("SELECT * FROM $this->table WHERE nom IN ('".$storage_filter."') ", [$storage_filter]);
+
+        $dsn = new PDO("mysql:host=localhost;dbname=planrh", "root", "root");
+        $dsn->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
+        $dsn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
+        $domaine = $dsn->prepare("SELECT * FROM $this->table WHERE secteur IN ('".$storage_filter."')");
+         $domaine->execute();
+         return $domaine->fetchAll();
+
+    }
+
     public function deleteoffre($offre){
         //DELETE FROM `offre` WHERE id = 2
         return $this->requete("DELETE FROM $this->table WHERE id = ?", [$offre]);

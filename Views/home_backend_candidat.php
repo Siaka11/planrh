@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="../css/apexcharts/apexcharts.css" />
 
     <!-- Template Style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
     <link rel="stylesheet" href="http://monsite.local:8888/css/style.css" />
 
 </head>
@@ -69,6 +71,8 @@ footer -->
 
 <!--=================================
 Javascript -->
+
+ 
 
     <!-- JS Global Compulsory (Do not remove)-->
     <script src="../js/jquery-3.6.0.min.js"></script>
@@ -120,6 +124,151 @@ Javascript -->
 
         chart.render();
     </script>
+
+     <!-- Add button -->
+
+     <script type="text/javascript">
+        // add row
+        $("#add_more_fields").click(function () {
+            var html = '';
+            html += '<form class="row align-items-center"id="formremove"  method="POST">';
+            html += '<div  class="form-group mb-3 col-md-6">';
+            html += '<label class="form-label">Titre</label>';
+            html += '<input type="text" name="titre" class="form-control" value="">';
+            html += '</div>';
+            html += '<div class="form-group mb-3 col-md-5">'
+            html +=  '<label class="form-label">Pourcentage</label>'
+            html +=  '<input type="text" name="pourcentage"  class="form-control" value="">'
+            html +=  '</div>'
+            html +=  '<div  class="form-group mb-3 col-md-1 text-center">'
+            html +=  '<a class="mt-3 d-block" id="remove_fields" ><i class="far fa-trash-alt text-danger" ></i></a>'
+            html +=  '</div>'
+            html +=  '<button class="btn btn-primary d-grid" style="width: 200px" name="send6">Ajouter</button>'
+            html +=  '</form>'
+
+            $('#newRow').append(html);
+        });
+
+        // remove row
+        $(document).on('click', '#remove_fields', function () {
+            $(this).closest('#formremove').remove();
+        });
+    </script>
+  <!-- <script>
+    var survey_options = document.getElementById('link');
+    let add_more_fields = document.getElementById('add_more_fields');
+    var remove_fields = document.getElementById('remove_fields');
+
+  
+      add_more_fields.addEventListener('click', myfunction)
+
+      function myfunction(){
+        console.log("Merci")
+      }
+      add_more_fields.onclick = function(){
+        console.log('Merci')
+
+        const d = document.createElement("div")
+        d.setAttribute('class', 'collapse show')
+
+        const e = document.createElement("div")
+        e.setAttribute('class', 'bg-light p-3 mt-4')
+        //e.setAttribute('class', 'bg-red')
+        const f = document.createElement("form");
+        f.setAttribute('method', "post");
+        // f.setAttribute('action', "submit.php");
+        f.setAttribute('class', "row align-items-center");
+
+        const v = document.createElement("div");
+        //Titre
+        v.setAttribute('class', 'form-group mb-3 col-md-6')
+        const label = document.createElement("Label");
+        label.setAttribute('class', 'form-label')
+        label.innerHTML = "Titre"
+
+        const i = document.createElement("input");
+        i.setAttribute('type', "text");
+        i.setAttribute('name', "titre");
+        i.setAttribute('class', "form-control");
+
+        //Pourcentage
+        const v1 = document.createElement("div")
+        v1.setAttribute('class', 'form-group mb-3 col-md-5')
+        const label1 = document.createElement("label")
+        label1.setAttribute('class', 'form-label')
+        label1.innerHTML = "Pourcentage"
+
+        const i1 = document.createElement("input");
+        i1.setAttribute('type', "text");
+        i1.setAttribute('name', "pourcentage");
+        i1.setAttribute('class', "form-control");
+
+        //delete
+        const v2 = document.createElement("div")
+        v2.setAttribute('class', 'form-group mb-3 col-md-1 text-center')
+        const a = document.createElement("a")
+        a.setAttribute('class', "mt-3 d-block")
+        a.setAttribute('href', "#")
+        a.setAttribute('id', "remove_fields")
+        //label1.innerHTML = "Pourcentage"
+
+        const i3 = document.createElement("i");
+        i3.setAttribute('class', "far fa-trash-alt text-danger");
+
+        // const s = document.createElement("input");
+        // s.setAttribute('type', "submit");
+        // s.setAttribute('value', "Submit");
+
+        //d.appendChild(e)
+        //e.appendChild(f)
+        f.appendChild(v);
+        f.appendChild(v1);
+        f.appendChild(v2)
+
+        v2.appendChild(a)
+        a.appendChild(i3)
+
+        v1.appendChild(label1);
+        v1.appendChild(i1);
+
+        v.appendChild(label);
+        v.appendChild(i);
+        
+
+        survey_options.appendChild(f);
+        // var newDiv = document.createElement('div');
+        // newDiv.setAttribute('type','text');
+        // newDiv.setAttribute('class','collapse show');
+        // newDiv1.createElement('class','collapse show')
+
+
+
+        
+        // var newField = document.createElement('input');
+        // newField.setAttribute('type','text');
+        // newField.setAttribute('name','survey_options[]');
+        // newField.setAttribute('class','survey_options');
+        // newField.setAttribute('siz',50);
+        // newField.setAttribute('placeholder','Another Field');
+        // survey_options.appendChild(newField);
+      }
+
+      remove_fields.addEventListener('click', mafunction)
+
+      function mafunction(){
+        console.log('merci bro')
+      }
+
+      remove_fields.onclick = function(){
+        console.log('Merci toi')
+      var input_tags = survey_options.getElementsByTagName('input');
+      if(input_tags.length > 2) {
+        survey_options.removeChild(input_tags[(input_tags.length) - 1]);
+      }
+    }
+  </script> -->
+
+ <!-- End button -->
 
 </body>
 

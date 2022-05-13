@@ -95,7 +95,7 @@ Browse listing -->
         </div>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="row mt-4">
+            <div class="row mt-4 filter_data">
               <div class="col-lg-6 col-sm-6">
                 <div class="job-list job-grid">
                   <div class="job-list-logo ">
@@ -132,8 +132,7 @@ Browse listing -->
             </div>
           </div>
           <div class="tab-pane fade active show" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-            <div class="row mt-4">
-              
+            <div class="row mt-4 filter_data"> 
               <?php if(isset($_SESSION["user"]["id"])): ?>
                 <?php foreach($emploiRecent  as $emploiRecentnew):?>
               
@@ -248,7 +247,7 @@ Browse listing -->
                     </div>
                   </div>
                   <?php endforeach; ?>
-                <?php endif; ?>
+              <?php endif; ?>
             </div>
             <div class="col-12 justify-content-center d-flex mb-4">
               <a class="btn btn-white btn-lg" href="#">Plus d'Emplois</a>
@@ -260,14 +259,14 @@ Browse listing -->
         <div class="sidebar mb-0">
           <div class="widget bg-white p-4">
             <div class="widget-title widget-collapse">
-              <h5>Domaine</h5>
+              <h5 class ="testeur">Domaine</h5>
             </div>
             <div class="collapse show" id="specialism">
               <div class="widget-content"> 
                 <?php foreach($domaine as $domaineone): ?>            
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="specialism1">
-                  <label class="form-check-label" for="specialism1"><?= $domaineone->nom?></label>
+                <div class="form-check ">
+                  <input class="form-check-input domaine common_selector" type="checkbox" value="<?= $domaineone->nom?>" id="specialism1<?= $domaineone->nom?>">
+                  <label class="form-check-label" for="specialism1<?= $domaineone->secteur?>"><?= $domaineone->nom?></label>
                 </div>
                 <?php endforeach; ?>
               </div>

@@ -186,6 +186,10 @@ class Backend_candidatController extends Controller{
         
         if(isset($_POST)){
            
+            if(isset($_POST['send6']))
+            {
+                echo "world";
+            }
            
            if(isset($_POST['send'])){
                 //echo "merci";

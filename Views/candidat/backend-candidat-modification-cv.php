@@ -48,11 +48,11 @@
         <div class="sticky-top secondary-menu-sticky-top">
           <div class="secondary-menu">
             <ul class="list-unstyled mb-0">
-              <li><a class="active" href="../backend_candidat/">Accueil</a></li>
+              <li><a href="../backend_candidat/">Accueil</a></li>
               <li><a href="../backend_candidat/profil">Mon Profil</a></li>
               <li><a href="../backend_candidat/modification_pass">Modifier Mon Pass</a></li>
               <li><a href="../backend_candidat/imprimer" target="_blank">Mon CV</a></li>
-              <li><a href="../backend_candidat/modification_cv">Modifier Mon CV</a></li>
+              <li><a href="../backend_candidat/modification_cv" class="active">Modifier Mon CV</a></li>
               <li><a href="../backend_candidat/liste_emplois">Emplois</a></li>
               <li><a href="../backend_candidat/emplois_enregistres">Emploi Enregistré</a></li>
               <li><a href="../backend_candidat/quitter">Quitter</a></li>
@@ -84,7 +84,7 @@
             <div class="section-title-02 mb-sm-0">
               <h4 class="mb-0">Formations</h4>
             </div>
-            <a class="btn btn-md ms-sm-auto btn-primary" data-bs-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter un Formation</a>
+            <!-- <a class="btn btn-md ms-sm-auto btn-primary" data-bs-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter un Formation</a> -->
           </div>
           <div class="collapse show" id="dateposted">
             <div class="bg-light p-3 mt-4">
@@ -217,7 +217,7 @@
             <div class="section-title-02 mb-sm-0">
               <h4 class="mb-0">Expériences Professionnelle</h4>
             </div>
-            <a class="btn btn-md ms-sm-auto btn-primary" data-bs-toggle="collapse" href="#dateposted-05" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une expérience</a>
+            <!-- <a class="btn btn-md ms-sm-auto btn-primary" data-bs-toggle="collapse" href="#dateposted-05" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une expérience</a> -->
           </div>
           <div class="collapse show" id="dateposted-05">
             <div class="bg-light p-3 mt-4">
@@ -337,62 +337,30 @@
             <div class="section-title-02 mb-sm-0">
               <h4 class="mb-0">Compétences Professionnelles</h4>
             </div>
-            <a class="btn btn-md ms-sm-auto btn-primary" href="#">Ajouter une compétence</a>
+            <a class="btn btn-md ms-sm-auto btn-primary" id="add_more_fields" data-bs-toggle="collapse" href="#dateposted-15" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une récompense</a>
+
+
           </div>
-          <div class="collapse show" id="dateposted-11">
-            <div class="bg-light p-3 mt-4">
-              <form class="row align-items-center">
-                <div class="form-group mb-3 col-md-6">
+          <div class="collapse show" id="dateposted-11" >
+            <div id="link" class="bg-light p-3 mt-4" >
+              <form class="row align-items-center" id="formremove" method="POST">
+                <div  class="form-group mb-3 col-md-6">
                   <label class="form-label">Titre</label>
-                  <input type="text" class="form-control" value="compétence">
+                  <input type="text" name="titre" class="form-control" value="compétence">
                 </div>
                 <div class="form-group mb-3 col-md-5">
                   <label class="form-label">Pourcentage</label>
-                  <input type="text" class="form-control" value="70%">
+                  <input type="text" name="pourcentage"  class="form-control" value="70%">
                 </div>
-                <div class="form-group mb-3 col-md-1 text-center">
-                  <a class="mt-3 d-block" href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                </div>
-              </form>
-              <form class="row align-items-center">
-                <div class="form-group mb-3 col-md-6">
-                  <label class="form-label">Titre</label>
-                  <input type="text" class="form-control" value="compétence 01">
-                </div>
-                <div class="form-group mb-3 col-md-5">
-                  <label class="form-label">Pourcentage</label>
-                  <input type="text" class="form-control" value="55%">
-                </div>
-                <div class="form-group mb-3 col-md-1 text-center">
-                  <a class="mt-3 d-block" href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                <div  class="form-group mb-3 col-md-1 text-center">
+                  <a class="mt-3 d-block" id="remove_fields" ><i class="far fa-trash-alt text-danger" ></i></a>
                 </div>
               </form>
-              <form class="row align-items-center">
-                <div class="form-group mb-3 col-md-6">
-                  <label class="form-label">Titre</label>
-                  <input type="text" class="form-control" value="compétence 02">
-                </div>
-                <div class="form-group mb-3 col-md-5">
-                  <label class="form-label">Pourcentage</label>
-                  <input type="text" class="form-control" value="80%">
-                </div>
-                <div class="form-group mb-3 col-md-1 text-center">
-                  <a class="mt-3 d-block" href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                </div>
-              </form>
-              <form class="row align-items-center">
-                <div class="form-group col-md-6">
-                  <label class="form-label">Titre</label>
-                  <input type="text" class="form-control" value="compétence 03">
-                </div>
-                <div class="form-group col-md-5">
-                  <label class="form-label">Pourcentage</label>
-                  <input type="text" class="form-control" value="60%">
-                </div>
-                <div class="form-group col-md-1 text-center">
-                  <a class="mt-3 d-block" href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                </div>
-              </form>
+              <div id="newRow">
+
+              
+              </div>
+
             </div>
           </div>
         </div>
@@ -405,7 +373,7 @@
             <div class="section-title-02 mb-sm-0">
               <h4 class="mb-0">Récompences</h4>
             </div>
-            <a class="btn btn-md ms-sm-auto btn-primary" data-bs-toggle="collapse" href="#dateposted-15" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une récompense</a>
+            <!-- <a class="btn btn-md ms-sm-auto btn-primary" data-bs-toggle="collapse" href="#dateposted-15" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une récompense</a> -->
           </div>
           <div class="collapse show" id="dateposted-15">
             <div class="bg-light p-3 mt-4">
