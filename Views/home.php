@@ -16,7 +16,7 @@
 
     <!-- CSS Global Compulsory (Do not remove)-->
     <link rel="stylesheet" href="css/font-awesome/all.min.css" />
-    <link rel="stylesheet" href="../../css/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="css/flaticon/flaticon.css" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
 
     <!-- Page CSS Implementing Plugins (Remove the plugin CSS here if site does not use that feature)-->
@@ -48,6 +48,14 @@
 Header -->
 
 <header class="header bg-dark">
+  <div class="actu">
+      <marquee class="defil">
+          <li style="text-decoration: none;">cabinet spécialisé en Ressource Humaine: tél. +1 5148846349</li>
+      </marquee>
+      <div class="nouvel">
+        <li>NEWS</li>
+      </div>
+  </div>
   <nav class="navbar navbar-static-top navbar-expand-lg header-sticky">
     <div class="container-fluid">
       <button id="nav-icon4" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
@@ -173,7 +181,7 @@ Footer -->
           <div class="footer-link">
             <h5 class="text-dark mb-4">Employeur</h5>
             <ul class="list-unstyled">
-              <li><a href="#">Publier un emploi</a></li>
+              <li><a href="/employeur/backend-employeur-poster-emplois.php">Publier un emploi</a></li>
               <li><a href="#">Gestion de la paie</a></li>
               <li><a href="#">Consultation RH</a></li>
               <li><a href="#">Chasse de Tête</a></li>
@@ -463,7 +471,18 @@ Javascript -->
         }
       }
       $(document).ready(function(){
-
+        filter_data()
+      //   let action = 'fetch_data'
+      //   let domaine = get_filter('domaine');
+      //   $.ajax({
+      //   url: "/main/fetch_data",
+      //   method:"POST",
+      //   data: {action: action, domaine: domaine},
+      //   success:function(data){
+          
+      //     $('.filter_data').html(data)
+      //   }
+      // })
       function filter_data(){
       //alert('okay')
       let action = 'fetch_data'

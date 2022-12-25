@@ -10,7 +10,9 @@ class FormationModel extends Model{
     protected $annee;
     protected $etablissement;
     protected $description;
-    protected $id_candidat1;
+    protected $id_candidat;
+    protected $date_creation;
+
 
     public function __construct()
     {
@@ -102,9 +104,9 @@ class FormationModel extends Model{
     /**
      * Get the value of id_candidat
      */ 
-    public function getId_candidat1()
+    public function getId_candidat()
     {
-        return $this->id_candidat1;
+        return $this->id_candidat;
     }
 
     /**
@@ -112,9 +114,9 @@ class FormationModel extends Model{
      *
      * @return  self
      */ 
-    public function setId_candidat1($id_candidat)
+    public function setId_candidat($id_candidat)
     {
-        $this->id_candidat1 = $id_candidat;
+        $this->id_candidat = $id_candidat;
 
         return $this;
     }
@@ -135,6 +137,26 @@ class FormationModel extends Model{
     public function setAnnee($annee)
     {
         $this->annee = $annee;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
 
         return $this;
     }

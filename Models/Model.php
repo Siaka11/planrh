@@ -118,6 +118,11 @@ class Model extends Db
     {
         return $this->requete("SELECT * FROM  $this->table WHERE id = $id ")->fetch();
     }
+
+    public function findAllById(int $id)
+    {
+        return $this->requete("SELECT * FROM  $this->table WHERE id_candidat = $id ")->fetchAll();
+    }
     
     public function findPassword(string $password)
     {

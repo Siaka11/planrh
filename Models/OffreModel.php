@@ -9,9 +9,9 @@ class OffreModel extends Model{
     protected $id;
     protected $titre;
     protected $description;
-    protected $date;
+    protected $date_creation;
     protected $typeemploi;
-    protected $secteur;
+    protected $domaine;
     protected $typedemande;
     protected $typesalaire;
     protected $salairemin;
@@ -20,6 +20,7 @@ class OffreModel extends Model{
     protected $adresse;
     protected $id_employeur;
     protected $id_cabinet;
+    protected $date_expiration;
    
 
     public function __construct()
@@ -28,6 +29,7 @@ class OffreModel extends Model{
     }
 
     function getAlldataFilter($filterData){
+        //var_dump($filterData);
         $storage_filter = implode("','", $filterData);
         //var_dump($storage_filter);
        // return $this->requete("SELECT * FROM $this->table WHERE nom IN ('".$storage_filter."') ", [$storage_filter]);
@@ -36,15 +38,37 @@ class OffreModel extends Model{
         $dsn->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
         $dsn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 
-        $domaine = $dsn->prepare("SELECT * FROM $this->table WHERE secteur IN ('".$storage_filter."')");
+        $domaine = $dsn->prepare("SELECT * FROM $this->table WHERE domaine IN ('".$storage_filter."')");
          $domaine->execute();
          return $domaine->fetchAll();
 
     }
 
+    public function find_offre_by_id_offre($id){
+
+        return $this->requete("
+        SELECT * , domaine.nom as domaine_nom FROM $this->table 
+        INNER JOIN  employeur ON offre.id_employeur = employeur.id
+        INNER JOIN  domaine ON offre.domaine = domaine.id
+        WHERE offre.id = ?"
+        , [$id])->fetch();
+    }
+
     public function deleteoffre($offre){
         //DELETE FROM `offre` WHERE id = 2
         return $this->requete("DELETE FROM $this->table WHERE id = ?", [$offre]);
+    }
+
+    public function offre_domaine($domaine){
+       // echo $domaine;
+        //DELETE FROM `offre` WHERE id = 2
+        $count = $this->requete("SELECT * FROM $this->table WHERE domaine = ?", [$domaine]);
+        return $count = count($count->fetchAll());
+    }
+
+    public function offre_domaine_employeur($domaine, $employeur){
+        //echo $domaine;
+        return $this->requete("SELECT * FROM  $this->table WHERE domaine = $domaine AND id_employeur = $employeur ")->fetch();
     }
 
     public function offreFromUser($user){
@@ -154,9 +178,9 @@ class OffreModel extends Model{
     /**
      * Get the value of secteur
      */ 
-    public function getSecteur()
+    public function getDomaine()
     {
-        return $this->secteur;
+        return $this->domaine;
     }
 
     /**
@@ -164,9 +188,9 @@ class OffreModel extends Model{
      *
      * @return  self
      */ 
-    public function setSecteur($secteur)
+    public function setDomaine($domaine)
     {
-        $this->secteur = $secteur;
+        $this->domaine = $domaine;
 
         return $this;
     }
@@ -348,6 +372,46 @@ class OffreModel extends Model{
     public function setId_cabinet($id_cabinet)
     {
         $this->id_cabinet = $id_cabinet;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_expiration
+     */ 
+    public function getDate_expiration()
+    {
+        return $this->date_expiration;
+    }
+
+    /**
+     * Set the value of date_expiration
+     *
+     * @return  self
+     */ 
+    public function setDate_expiration($date_expiration)
+    {
+        $this->date_expiration = $date_expiration;
 
         return $this;
     }

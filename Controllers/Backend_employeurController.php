@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Models\OffreModel;
 use App\Controllers\Controller;
-use App\Models\Domaine;
+use App\Models\DomaineModel;
 use App\Models\EmployeurModel;
 use App\Models\TypeEmploiModel;
 use TypeError;
@@ -36,11 +36,14 @@ class Backend_employeurController extends Controller{
 
     public function liste_offres(){
 
-        $offremodel = new OffreModel;
-        $offremodel = $offremodel->offreFromUser($_SESSION['user']['id']);
+        $offres = new OffreModel;
+        $domaineModel = new DomaineModel;
+        
+
+        $offremodel = $offres->offreFromUser($_SESSION["useremployeur"]["id"]);
         
         //var_dump($offremodel);
-        $this->render("employeur/backend-employeur-liste-offres.php", compact("offremodel"), 'home_backend_employeur.php');
+        $this->render("employeur/backend-employeur-liste-offres.php", compact("offremodel", 'offres', 'domaineModel'), 'home_backend_employeur.php');
 
     }
 
@@ -48,7 +51,7 @@ class Backend_employeurController extends Controller{
 
         
         $employeur = new EmployeurModel;
-        $employeur = $employeur->retrievedatafromprofil($_SESSION['user']['id']);
+        $employeur = $employeur->retrievedatafromprofil($_SESSION["useremployeur"]["id"]);
        // var_dump($employeur);
        // echo "Bonjour";
         //die;
@@ -73,7 +76,7 @@ class Backend_employeurController extends Controller{
             $youtube = strip_tags($_POST['youtube']);
             $siege = strip_tags($_POST['siege']);
 
-            $updateemployeur->setId($_SESSION['user']['id'])
+            $updateemployeur->setId($_SESSION["useremployeur"]["id"])
                             ->setNom($nom)
                             ->setPrenom($prenom)
                             ->setEmail($email)
@@ -106,7 +109,7 @@ class Backend_employeurController extends Controller{
 
     public function poster_emplois(){
 
-        $domaine = new Domaine;
+        $domaine = new DomaineModel;
         $domaine = $domaine->findAll();
 
         $typeemploi = new TypeEmploiModel;
@@ -141,7 +144,7 @@ class Backend_employeurController extends Controller{
                               ->setSalairemax($salairemax)
                               ->setCompetence($competence)
                               ->setAdresse($adresse)
-                              ->setId_employeur($_SESSION['user']['id'])
+                              ->setId_employeur($_SESSION["useremployeur"]["id"])
                               ->setId_cabinet(0)
                               
                               ;

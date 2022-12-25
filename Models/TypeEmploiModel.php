@@ -9,12 +9,17 @@ class TypeEmploiModel extends Model{
 
     protected $id;
     protected $nom;
+    protected $date_creation;
 
     public function __construct(){
         $this->table = "typeemploi";
     }
 
     
+    public function type_emploi($emploi){
+
+        return $this->requete("SELECT * FROM $this->table WHERE id = ?", [$emploi])->fetch();
+    }
 
     /**
      * Get the value of id
@@ -52,6 +57,26 @@ class TypeEmploiModel extends Model{
     public function setNom($nom)
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
 
         return $this;
     }

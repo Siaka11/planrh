@@ -7,10 +7,11 @@ class ExperienceModel extends Model{
 
     protected $id;
     protected $titre;
+    protected $date_creation;
     protected $description;
     protected $datedebut;
     protected $datefin;
-    protected $id_candidats;
+    protected $id_candidat;
     protected $entreprise;
     //etablissemnt
 
@@ -107,9 +108,9 @@ class ExperienceModel extends Model{
     /**
      * Get the value of id_candidats
      */ 
-    public function getId_candidats()
+    public function getId_candidat()
     {
-        return $this->id_candidats;
+        return $this->id_candidat;
     }
 
     /**
@@ -117,9 +118,9 @@ class ExperienceModel extends Model{
      *
      * @return  self
      */ 
-    public function setId_candidats($id_candidats)
+    public function setId_candidat($id_candidat)
     {
-        $this->id_candidats = $id_candidats;
+        $this->id_candidat = $id_candidat;
 
         return $this;
     }
@@ -200,6 +201,26 @@ class ExperienceModel extends Model{
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
 
         return $this;
     }

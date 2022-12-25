@@ -21,6 +21,8 @@ class CandidatModel extends Model{
     protected $facebook;
     protected $twitter;
     protected $linkedin;
+    protected $image;
+    protected $date_creation;
     
 
     public function __construct()
@@ -372,6 +374,48 @@ class CandidatModel extends Model{
     public function setSalaire($salaire)
     {
         $this->salaire = $salaire;
+
+        return $this;
+    }
+
+    
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
 
         return $this;
     }

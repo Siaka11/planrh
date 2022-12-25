@@ -9,6 +9,7 @@ class RecompenseModel extends Model{
     protected $titre;
     protected $Institution;
     protected $description;
+    protected $date_creation;
     protected $datedebut;
     protected $datefin;
     protected $id_candidat;
@@ -156,6 +157,26 @@ class RecompenseModel extends Model{
     public function setId_candidat($id_candidats)
     {
         $this->id_candidat = $id_candidats;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
 
         return $this;
     }

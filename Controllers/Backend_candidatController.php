@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use Dompdf\dompdf;
-use App\Models\Domaine;
+use App\Models\DomaineModel;
 use App\Models\JaimeModel;
 use App\Models\OffreModel;
 use App\Models\CandidatModel;
@@ -103,7 +103,7 @@ class Backend_candidatController extends Controller{
             exit;
         }
 
-        $domaine = new Domaine;
+        $domaine = new DomaineModel;
         $domaine = $domaine->findAll();
 
         $can = new CandidatModel;

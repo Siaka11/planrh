@@ -3,17 +3,18 @@
 namespace App\Models;
 use App\Models\Model;
 
-class JaimeModel extends Model{
+class Aimer_Candidat_Ofrre_Model extends Model{
 
     protected $id;
     protected $likeoffre;
     protected $dateheurejaime;
+    protected $date_creation;
     protected $id_candidat;
     protected $id_offre;
 
     public function __construct()
     {
-        $this->table = "jaimeoffre";
+        $this->table = "aimer_candidat_offre";
     }
 
     public static function valueentre(){
@@ -153,6 +154,26 @@ class JaimeModel extends Model{
     public function setLikeoffre($likeoffre)
     {
         $this->likeoffre = $likeoffre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
 
         return $this;
     }

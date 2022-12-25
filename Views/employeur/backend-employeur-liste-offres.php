@@ -25,8 +25,8 @@ Manage Jobs -->
               <thead class="bg-light">
                 <tr >
                   <th scope="col">Titre de l'offre</th>
-                  <th scope="col">Metier</th>
-                  <th scope="col">Catégorie</th>
+                  <th scope="col">Domaine de l'entreprise</th>
+                  <th scope="col">Emploi</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -35,11 +35,16 @@ Manage Jobs -->
                 <?php foreach( $offremodel as $offre):?>
                   <?php $i++ ?>
                 <tr>
-                  <th scope="row">offre <?= $i ?>
-                    <p class="mb-1 mt-2">Date d'expiration: <?= $offre->date ?></p>
+                  <th scope="row">offre <?= $i ?> : <?= $offre->titre ?>
+                    <p class="mb-1 mt-2">Date d'expiration: <?= $offre->date_expiration ?></p>
                     <p class="mb-0">Adresse: <?= $offre->adresse ?></p>
                   </th>
-                  <td><?= $offre->secteur ?></td>
+                  <?php  
+                      //var_dump($domaineModel);
+                      $domaine = $domaineModel->domaine_employeur($offre->domaine); 
+                      //var_dump($domaine->nom)
+                  ?>
+                  <td><?= $domaine->nom ?></td>
                   <td><?= $offre->titre ?></td>
                   
                   <td>

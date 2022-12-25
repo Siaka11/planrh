@@ -7,11 +7,11 @@ class EmployeurModel extends Model{
 
     protected $id;
     protected $nom;
-    protected $prenom;
+    // protected $prenom;
     protected $motdepasse;
     protected $email;
     protected $entreprise;
-    protected $datecreation;
+    protected $date_creation;
     protected $telephone;
     protected $secteur;
     protected $web;
@@ -21,6 +21,7 @@ class EmployeurModel extends Model{
     protected $linkedin;
     protected $youtube;
     protected $siege;
+    protected $image;
 
     public function __construct()
     {
@@ -399,6 +400,46 @@ class EmployeurModel extends Model{
     public function setSiege($siege)
     {
         $this->siege = $siege;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
 
         return $this;
     }

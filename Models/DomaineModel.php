@@ -6,16 +6,21 @@ use App\Models\Model;
 
 
 
-class Domaine extends Model{
+class DomaineModel extends Model{
 
     protected $id;
     protected $nom;
+    protected $date_creation;
 
     public function __construct(){
         $this->table = "domaine";
     }
 
-    
+    public function domaine_employeur($domaine){
+
+         return $this->requete("SELECT * FROM $this->table WHERE id = ?", [$domaine])->fetch();
+     }
+
 
 
     /**
@@ -74,4 +79,24 @@ class Domaine extends Model{
     //      return $domaine->fetchAll();
 
     // }
+
+    /**
+     * Get the value of date_creation
+     */ 
+    public function getDate_creation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set the value of date_creation
+     *
+     * @return  self
+     */ 
+    public function setDate_creation($date_creation)
+    {
+        $this->date_creation = $date_creation;
+
+        return $this;
+    }
 }

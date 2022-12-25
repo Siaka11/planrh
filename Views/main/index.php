@@ -96,35 +96,7 @@ Browse listing -->
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="row mt-4 filter_data">
-              <div class="col-lg-6 col-sm-6">
-                <div class="job-list job-grid">
-                  <div class="job-list-logo ">
-                    <img class="img-fluid" src="images/svg/10.svg" alt="">
-                  </div>
-                  <div class="job-list-details">
-                    <div class="job-list-info">
-                      <div class="job-list-title">
-                        <h6><a href="#">Responsable Marketing</a></h6>
-                      </div>
-                      <div class="job-list-option">
-                        <ul class="list-unstyled">
-                          <li>
-                            <span>via : </span>
-                            <a href="#">Entreprise</a>
-                          </li>
-                          <li><i class="fas fa-map-marker-alt pe-1"></i>Canada</li>
-                          <li><i class="fas fa-filter pe-1"></i>Technologie</li>
-                          <li><a class="temporary" href="#"><i class="fas fa-suitcase pe-1"></i>Temporaire</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="job-list-favourite-time">
-                  <!-- <a class="job-list-favourite order-2" ><i class="far fa-heart"></i></a> -->
-                  <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>2j</span>
-                  </div>
-                </div>
-              </div>
+              
               
             </div>
             <div class="col-12 justify-content-center d-flex mt-4">
@@ -133,121 +105,7 @@ Browse listing -->
           </div>
           <div class="tab-pane fade active show" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             <div class="row mt-4 filter_data"> 
-              <?php if(isset($_SESSION["user"]["id"])): ?>
-                <?php foreach($emploiRecent  as $emploiRecentnew):?>
               
-                  <div class="col-lg-6 col-sm-6">
-                    <div class="job-list job-grid">
-                      <div class="job-list-logo ">
-                        <img class="img-fluid" src="images/svg/13.svg" alt="">
-                      </div>
-                      <div class="job-list-details">
-                        <div class="job-list-info">
-                          <div class="job-list-title">
-                            <h6><a href="#"><?=$emploiRecentnew->titre?><?=$emploiRecentnew->id ?></a></h6>
-                          </div>
-                          <div class="job-list-option">
-                            <ul class="list-unstyled">
-                              <li>
-                              <?php
-                                $employeur = new EmployeurModel;
-                                $jaime = new JaimeModel;
-
-                                $new = $employeur->find($emploiRecentnew->id_employeur);
-                                $jaime = $jaime->findjaimeAll($emploiRecentnew->id, $_SESSION["user"]["id"]);
-
-
-                              ?>
-                                
-                                <span class="job-list-via"> via : <?=$new->entreprise ?></span>
-                                <a class="job-list-company-name" href="#">Compagnie</a>
-                              </li>
-                              <li><i class="fas fa-map-marker-alt pe-1"></i><?=$emploiRecentnew->adresse ?></li>
-                              <li><i class="fas fa-filter pe-1"></i><?php
-                                //$date = new DateTime;
-                                //var_dump(mydateago("2013-05-01 00:22:35"));
-                                $date = $util->mydateago("2022-02-10 00:22:35");
-                              
-                              $arr = $util->seperate($emploiRecentnew->secteur);
-                              echo $arr;
-                              ?></li>
-                              <li><a class="part-time" href="#"><i class="fas fa-suitcase pe-1"></i><?=$emploiRecentnew->typedemande  ?></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="job-list-favourite-time" > 
-                      <?php if($jaime): ?>
-                      <?php foreach($jaime as $jaimeone): ?>
-                                
-                                    
-                        <a class="job-list-favourite order-2 " > <i class="fas fa-heart favouritejaime"  data-id="<?=$emploiRecentnew->id ?>"></i></a>
-
-                                  
-                  
-                          <?php endforeach; ?>
-                      
-                        <?php else:?>
-                        <a class="job-list-favourite order-2" > <i class="far fa-heart" data-id="<?=$emploiRecentnew->id ?>"></i></a>
-                        <?php endif;?>
-                        <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>Durée : <?= $date;?></span>
-                      </div>
-                    </div>
-                  </div>
-                <?php endforeach; ?>
-                <?php else: ?>
-                  <?php foreach($emploiRecent  as $emploiRecentnew):?>
-                  <div class="col-lg-6 col-sm-6">
-                    <div class="job-list job-grid">
-                      <div class="job-list-logo ">
-                        <img class="img-fluid" src="images/svg/13.svg" alt="">
-                      </div>
-                      <div class="job-list-details">
-                        <div class="job-list-info">
-                          <div class="job-list-title">
-                            <h6><a href="#"><?=$emploiRecentnew->titre?><?=$emploiRecentnew->id ?></a></h6>
-                          </div>
-                          <div class="job-list-option">
-                            <ul class="list-unstyled">
-                              <li>
-                              <?php
-                                $employeur = new EmployeurModel;
-                                $jaime = new JaimeModel;
-
-                                $new = $employeur->find($emploiRecentnew->id_employeur);
-                                //$jaime = $jaime->findjaimeAll($emploiRecentnew->id, $_SESSION["user"]["id"]);
-
-
-                              ?>
-                                
-                                <span class="job-list-via"> via : <?=$new->entreprise ?></span>
-                                <a class="job-list-company-name" href="#">Compagnie</a>
-                              </li>
-                              <li><i class="fas fa-map-marker-alt pe-1"></i><?=$emploiRecentnew->adresse ?></li>
-                              <li><i class="fas fa-filter pe-1"></i><?php
-                                //$date = new DateTime;
-                                //var_dump(mydateago("2013-05-01 00:22:35"));
-                                $date = $util->mydateago("2022-02-10 00:22:35");
-                              
-                              $arr = $util->seperate($emploiRecentnew->secteur);
-                              echo $arr;
-                              ?></li>
-                              <li><a class="part-time" href="#"><i class="fas fa-suitcase pe-1"></i><?=$emploiRecentnew->typedemande  ?></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="job-list-favourite-time" > 
-                      <a class="job-list-favourite order-2" > <i class="far fa-heart" data-id="<?=$emploiRecentnew->id ?>"></i></a>
-
-
-
-                        <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>Durée : <?= $date;?></span>
-                      </div>
-                    </div>
-                  </div>
-                  <?php endforeach; ?>
-              <?php endif; ?>
             </div>
             <div class="col-12 justify-content-center d-flex mb-4">
               <a class="btn btn-white btn-lg" href="#">Plus d'Emplois</a>
@@ -265,7 +123,7 @@ Browse listing -->
               <div class="widget-content"> 
                 <?php foreach($domaine as $domaineone): ?>            
                 <div class="form-check ">
-                  <input class="form-check-input domaine common_selector" type="checkbox" value="<?= $domaineone->nom?>" id="specialism1<?= $domaineone->nom?>">
+                  <input class="form-check-input domaine common_selector" type="checkbox" value="<?= $domaineone->id?>" id="specialism1<?= $domaineone->nom?>">
                   <label class="form-check-label" for="specialism1<?= $domaineone->secteur?>"><?= $domaineone->nom?></label>
                 </div>
                 <?php endforeach; ?>
@@ -337,59 +195,147 @@ Category-style -->
         <div class="category-style text-center">
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
-              <i class="flaticon-account"></i>
+              <i class="flaticon-salary-1"></i>
             </div>
-            <h6>Gatégorie 01</h6>
-            <span class="mb-0">301 Poste Disponible </span>
-          </a>
-          <a href="#" class="category-item">
-            <div class="category-icon mb-4">
-              <i class="flaticon-conversation"></i>
-            </div>
-            <h6>Gatégorie 02</h6>
-            <span class="mb-0">287 Poste Disponible </span>
-          </a>
-          <a href="#" class="category-item">
-            <div class="category-icon mb-4">
-              <i class="flaticon-money"></i>
-            </div>
-            <h6>Gatégorie 03</h6>
-            <span class="mb-0">542 Poste Disponible </span>
-          </a>
-          <a href="#" class="category-item">
-            <div class="category-icon mb-4">
-              <i class="flaticon-mortarboard"></i>
-            </div>
-            <h6>Education</h6>
-            <span class="mb-0">785 Poste Disponible </span>
+            <?php 
+              $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+             // var_dump($nbre_offre_achat_appro);
+            ?>
+            <h6>Achats-Approvisionnements</h6>
+            <span class="mb-0">301 Postes Disponibles </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-worker"></i>
             </div>
-            <h6>Gatégorie 04</h6>
-            <span class="mb-0">862 Poste Disponible </span>
+            <h6>Gestion industrielle</h6>
+            <span class="mb-0">287 Postes Disponibles </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
-              <i class="flaticon-businessman"></i>
+              <i class="flaticon-conversation"></i>
             </div>
-            <h6>Estate Agency</h6>
-            <span class="mb-0">423 Poste Disponible </span>
+            <h6>Ressources humaines-recrutement</h6>
+            <span class="mb-0">542 Postes Disponibles </span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-selection-process"></i>
+            </div>
+            <h6>Assurances</h6>
+            <span class="mb-0">785 Poste Disponible </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-coding"></i>
             </div>
-            <h6>Gatégorie 05</h6>
-            <span class="mb-0">253 Poste Disponible</span>
+            <h6>Informatique</h6>
+            <span class="mb-0">862 Postes Disponibles </span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-chat"></i>
+            </div>
+            <h6>Service à la clientèle</h6>
+            <span class="mb-0">423 Postes Disponibles </span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-worker"></i>
+            </div>
+            <h6>Ingénierie-Technique</h6>
+            <span class="mb-0">253 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-doctor"></i>
+            </div>
+            <h6>Santé</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-taxi"></i>
+            </div>
+            <h6>Chauffeurs-Caristes</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-balance"></i>
             </div>
-            <h6>Gatégorie 06</h6>
-            <span class="mb-0">689 Poste Disponible</span>
+            <h6>Juridique</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-team"></i>
+            </div>
+            <h6>Soutien administratif</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-money"></i>
+            </div>
+            <h6>Comptabilité-Finances</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-salary"></i>
+            </div>
+            <h6>Marketing</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-shipped"></i>
+            </div>
+            <h6>Transport-Logistique</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-worker"></i>
+            </div>
+            <h6>Construction</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-job-2"></i>
+            </div>
+            <h6>Métiers spécialisés-Fabrication</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-job-1"></i>
+            </div>
+            <h6>Travail générale-Production</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-approved"></i>
+            </div>
+            <h6>Direction-Cadre</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-fast-food"></i>
+            </div>
+            <h6>Production alimentaire-Restauration</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
+          </a>
+          <a href="#" class="category-item">
+            <div class="category-icon mb-4">
+              <i class="flaticon-coin"></i>
+            </div>
+            <h6>Ventes-Représentations</h6>
+            <span class="mb-0">689 Postes Disponibles</span>
           </a>
         </div>
       </div>
@@ -413,9 +359,10 @@ Why You Choose -->
             <div class="col-xl-10 col-lg-12">
               <div class="section-title-02">
                 <h2>Tout Savoir sur nous </h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nost.</p>
               </div>
             </div>
+            <p style="text-align: justify;">Plan RH inc est une firme de recrutement. Elle est spécialisée dans le recrutement et le placement de travailleurs étrangers pour le Canada. Elle est dirigée par Ekpo N’drin Louis Stéphane, conseiller en ressources humaines agrée et conseiller règlementé en immigration canadienne (CRHA-CRIC) et regroupe des spécialistes en ressources humaines et en immigration canadienne. Cette double expertise lui permet de trouver les meilleurs candidats possibles pour ses clients depuis l’étranger, pour répondre efficacement à leurs besoins en main d’oeuvre.
+                Plan RH inc assure également les services de :</p>
           </div>
           <div class="align-self-center">
             <div class="row">
@@ -425,25 +372,25 @@ Why You Choose -->
                     <div class="category-icon mb-3">
                       <i class="flaticon-team"></i>
                     </div>
-                    <h6 class="mb-2">Une équipe qui travaille avec vous</h6>
+                    <h6 class="mb-2">Recrutements et Placements</h6>
                   </div>
                   <div class="col-md-6 col-sm-12 mb-3">
                     <div class="category-icon mb-3">
-                      <i class="flaticon-chat"></i>
+                      <i class="flaticon-conversation"></i>
                     </div>
-                    <h6 class="mb-2">Des services de recrutement et de ressources humaines flexibles</h6>
+                    <h6 class="mb-2">Formations & Coachings</h6>
                   </div>
                   <div class="col-md-6 col-sm-12 mb-3">
                     <div class="category-icon mb-3">
                       <i class="flaticon-job-3"></i>
                     </div>
-                    <h6 class="mb-2">Un partenariat d’affaires humain</h6>
+                    <h6 class="mb-2">Solutions RH</h6>
                   </div>
                   <div class="col-md-6 col-sm-12 mb-3">
                     <div class="category-icon mb-3">
-                      <i class="flaticon-job-2"></i>
+                      <i class="flaticon-team"></i>
                     </div>
-                    <h6 class="mb-2">10 succursales à travers le Canada</h6>
+                    <h6 class="mb-2">Une équipe qui travaille avec vous</h6>
                   </div>
                 </div>
                 <a class="btn btn-primary" href="#">Plus</a>
@@ -465,183 +412,37 @@ Top Companies -->
     <div class="row justify-content-center">
       <div class="col-12 text-center">
         <div class="section-title center">
-          <h2 class="title">ils nous font Confiance</h2>
+          <h2 class="title">Nos certifications</h2>
         </div>
         <div class="owl-carousel owl-nav-bottom-center" data-nav-arrow="false" data-nav-dots="true" data-items="4" data-md-items="3" data-sm-items="2" data-xs-items="1" data-xx-items="1" data-space="15" data-autoheight="true">
           <div class="item">
             <div class="employers-grid mb-4 mb-lg-0">
-              <div class="employers-list-logo">
-                <img class="img-fluid" src="images/svg/07.svg" alt="">
-              </div>
-              <div class="employers-list-details">
-                <div class="employers-list-info">
-                  <div class="employers-list-title">
-                    <h5 class="mb-0"><a href="#">Client 01</a></h5>
-                  </div>
-                  <div class="employers-list-option">
-                    <ul class="list-unstyled">
-                      <li><i class="fas fa-map-marker-alt pe-1"></i>Siège Social</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="employers-list-position">
-                <a class="btn btn-sm btn-dark" href="#">30 Postes Ouverts</a>
-              </div>
+              <img src="images/feature-1.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-md-0">
-              <div class="employers-list-logo">
-                <img class="img-fluid" src="images/svg/08.svg" alt="">
-              </div>
-              <div class="employers-list-details">
-                <div class="employers-list-info">
-                  <div class="employers-list-title">
-                    <h5 class="mb-0"><a href="#">Client 02</a></h5>
-                  </div>
-                  <div class="employers-list-option">
-                    <ul class="list-unstyled">
-                      <li><i class="fas fa-map-marker-alt pe-1"></i>Siège Social</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="employers-list-position">
-                <a class="btn btn-sm btn-dark" href="#">35 Postes Ouverts</a>
-              </div>
+              <img src="images/feature-2.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-lg-0">
-              <div class="employers-list-logo">
-                <img class="img-fluid" src="images/svg/09.svg" alt="">
-              </div>
-              <div class="employers-list-details">
-                <div class="employers-list-info">
-                  <div class="employers-list-title">
-                    <h5 class="mb-0"><a href="#">Client 03</a></h5>
-                  </div>
-                  <div class="employers-list-option">
-                    <ul class="list-unstyled">
-                      <li><i class="fas fa-map-marker-alt pe-1"></i>Siège Social</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="employers-list-position">
-                <a class="btn btn-sm btn-dark" href="#">30 Postes Ouverts</a>
-              </div>
+              <img src="images/feature-3.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-md-0">
-              <div class="employers-list-logo">
-                <img class="img-fluid" src="images/svg/10.svg" alt="">
-              </div>
-              <div class="employers-list-details">
-                <div class="employers-list-info">
-                  <div class="employers-list-title">
-                    <h5 class="mb-0"><a href="#">Client 04</a></h5>
-                  </div>
-                  <div class="employers-list-option">
-                    <ul class="list-unstyled">
-                      <li><i class="fas fa-map-marker-alt pe-1"></i>Siège Social</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="employers-list-position">
-                <a class="btn btn-sm btn-dark" href="#">35 Postes Ouverts</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="employers-grid mb-4 mb-lg-0">
-              <div class="employers-list-logo">
-                <img class="img-fluid" src="images/svg/11.svg" alt="">
-              </div>
-              <div class="employers-list-details">
-                <div class="employers-list-info">
-                  <div class="employers-list-title">
-                    <h5 class="mb-0"><a href="#">Client 05</a></h5>
-                  </div>
-                  <div class="employers-list-option">
-                    <ul class="list-unstyled">
-                      <li><i class="fas fa-map-marker-alt pe-1"></i>Siège Social</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="employers-list-position">
-                  <a class="btn btn-sm btn-dark" href="#">20 Postes Ouverts</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="employers-grid mb-4 mb-lg-0">
-              <div class="employers-list-logo">
-                <img class="img-fluid" src="images/svg/12.svg" alt="">
-              </div>
-              <div class="employers-list-details">
-                <div class="employers-list-info">
-                  <div class="employers-list-title">
-                    <h5 class="mb-0"><a href="#">Client 06</a></h5>
-                  </div>
-                  <div class="employers-list-option">
-                    <ul class="list-unstyled">
-                      <li><i class="fas fa-map-marker-alt pe-1"></i>Siège Social</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="employers-list-position">
-                  <a class="btn btn-sm btn-dark" href="#">25 Postes Ouverts</a>
-                </div>
-              </div>
+              <img src="images/feature-1.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-md-0">
-              <div class="employers-list-logo">
-                <img class="img-fluid" src="images/svg/13.svg" alt="">
-              </div>
-              <div class="employers-list-details">
-                <div class="employers-list-info">
-                  <div class="employers-list-title">
-                    <h5 class="mb-0"><a href="#">Client 07</a></h5>
-                  </div>
-                  <div class="employers-list-option">
-                    <ul class="list-unstyled">
-                      <li><i class="fas fa-map-marker-alt pe-1"></i>Siège Social</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="employers-list-position">
-                <a class="btn btn-sm btn-dark" href="#">35 Poste ouverts</a>
-              </div>
+              <img src="images/feature-2.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-lg-0">
-              <div class="employers-list-logo">
-                <img class="img-fluid" src="images/svg/14.svg" alt="">
-              </div>
-              <div class="employers-list-details">
-                <div class="employers-list-info">
-                  <div class="employers-list-title">
-                    <h5 class="mb-0"><a href="#">Rippin LLC</a></h5>
-                  </div>
-                  <div class="employers-list-option">
-                    <ul class="list-unstyled">
-                      <li><i class="fas fa-map-marker-alt pe-1"></i>Park Avenue, Mumbai</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="employers-list-position">
-                  <a class="btn btn-sm btn-dark" href="#">20 Open position</a>
-                </div>
-              </div>
+              <img src="images/feature-3.jpg">
             </div>
           </div>
         </div>
@@ -659,7 +460,9 @@ Easiest Way to Use -->
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-10">
         <div class="section-title-02 text-center text-white">
-          <h2 class="text-white">Comment utiliser nos services ?</h2>
+          <h2 class="text-white">Nos services ?</h2>
+          <p>Recrutements & Placements- Formations & Coachings-Consultations & Solutions RH
+Dans l’optique de mener a bien votre dotation, Plan RH inc vous assiste dès les premières heures jusqu’à compléter le processus.</p>
           <p>Suivez toutes les étape ci-dessous : </p>
         </div>
       </div>
