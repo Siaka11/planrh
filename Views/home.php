@@ -116,9 +116,9 @@ Header -->
       </div>
       <div class="add-listing">
           <div class="login d-inline-block me-4">
-            <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])): ?>
+            <?php if((isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) || isset($_SESSION['useremployeur'])): ?>
 
-              <a href="main/logout"><i class="far fa-user pe-2"></i>Deconnexion </a><?=$_SESSION['user']['nom'] ?>
+              <a href="main/logout"><i class="far fa-user pe-2"></i>Deconnexion </a><?=$_SESSION['user']['nom'] ?? "" ?><?=$_SESSION['useremployeur']['nom'] ?? "" ?>
              
 
             <?php else: ?>
@@ -126,6 +126,10 @@ Header -->
 
             
             <?php endif; ?>
+
+            
+
+           
           </div>
            <a class="btn btn-white btn-md" href="#">
             <img src="images/ca.png">

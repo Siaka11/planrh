@@ -3,29 +3,34 @@
 namespace App\Models;
 use App\Models\Model;
 
-class Aimer_Candidat_Ofrre_Model extends Model{
+class Postuler_Candidat_Offre_Model extends Model{
 
     protected $id;
-    protected $likeoffre;
-    protected $dateheurejaime;
     protected $date_creation;
     protected $id_candidat;
     protected $id_offre;
 
     public function __construct()
     {
-        $this->table = "aimer_candidat_offre";
+        $this->table = "postuler_candidat_offre";
     }
 
-    public static function valueentre(){
-        return 'merci';
-    }
-    public function findjaimechoix(){
+
+    public function postuler_by_offre_candidat($id_offre, $id_candidat){
+        
         return $this->requete(
-            "SELECT * FROM jaimeoffre
-            INNER JOIN offre ON offre.id = jaimeoffre.id_offre
-            INNER JOIN candidat ON candidat.id = jaimeoffre.id_candidat"
-        )->fetchAll();
+            "SELECT * FROM $this->table
+            INNER JOIN offre ON offre.id = $this->table.id_offre
+            INNER JOIN candidat ON candidat.id = $this->table.id_candidat
+            WHERE $this->table.id_offre = $id_offre AND $this->table.id_candidat = $id_candidat
+            "
+        )->fetch();
+    }
+
+    public function delete_postuler($id_offre, $id_candidat){
+
+        return $this->requete("DELETE FROM  $this->table  WHERE id_offre = $id_offre AND id_candidat = $id_candidat ");
+
     }
 
     public function findjaime(int $id_offre, int $id_user)

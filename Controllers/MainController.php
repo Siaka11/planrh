@@ -5,7 +5,8 @@ namespace App\Controllers;
 use DateTime;
 use App\Core\Util;
 use App\Models\Model;
-use App\Models\JaimeModel;
+use App\Models\Aimer_Candidat_Offre_Model;
+use App\Models\Postuler_Candidat_Offre_Model;
 use App\Models\OffreModel;
 use App\Models\OffresModel;
 use App\Models\DomaineModel;
@@ -145,7 +146,13 @@ class MainController extends Controller
 
     public function logout()
     {
-        unset($_SESSION['user']);
+        if($_SESSION['user']){
+            unset($_SESSION['user']);
+        }
+        if($_SESSION['useremployeur']){
+            unset($_SESSION['useremployeur']);
+        }
+
         header('Location: /' );
     }
 
@@ -187,8 +194,7 @@ class MainController extends Controller
 
     
 
-   public function fetch_data()
-   {      
+    public function fetch_data(){      
         if(isset($_POST['action'])){
             $emploiModel = new OffreModel();
             $emploiRecent = $emploiModel->findAll();
@@ -285,7 +291,7 @@ class MainController extends Controller
                                             <li>
                                             <?php
                                                 $employeur = new EmployeurModel;
-                                                $jaime = new JaimeModel;
+                                               // $jaime = new JaimeModel;
     
                                                 $new = $employeur->find($emploiRecentnew->id_employeur);
                                                 //$jaime = $jaime->findjaimeAll($emploiRecentnew->id, $_SESSION["user"]["id"]);
@@ -347,13 +353,96 @@ class MainController extends Controller
 
         $offremodel = new OffreModel;
         $offre = $offremodel->find_offre_by_id_offre($id);
-        //var_dump($offre);
 
-        $this->render('main/offres.php', compact('offre'), "home_second.php");
+        $aime_offre = new Aimer_Candidat_Offre_Model;
+        $aime_offres = $aime_offre->tous_les_offres_by_id($id);
+
+        $offre_by_id = $aime_offre->like_by_offre_candidat($id, $_SESSION['user']['id']);
+        $id = $id;
+
+        $postuler_offre = new Postuler_Candidat_Offre_Model;
+        $postuler_by_id = $postuler_offre->postuler_by_offre_candidat($id, $_SESSION['user']['id']);
+
+        $this->render('main/offres.php', compact('offre', 'aime_offres', 'offre_by_id', 'id', 'postuler_by_id'), "home_second.php");
     }
 
 
+    public function supprimer_like(){
+
+        if($_POST){
+
+            //die('okay');
+            $aime_offre = new Aimer_Candidat_Offre_Model;
+            $suppimer = $aime_offre->delete_aime($_POST['id_offre'], $_SESSION['user']['id']);
+
+            $data = array("valeur"=> 0);
+            //var_dump($data);
+            //if($suppimer) {return true;}
+            echo json_encode($data);
+
+        }
+
+    }
+
+    public function ajouter_like(){
+
+        if($_POST){
+
+            //die('okay');
+            $aime_offre = new Aimer_Candidat_Offre_Model;
+
+            $aime_offre
+                  ->setId_candidat($_SESSION["user"]['id'])
+                  ->setId_offre($_POST['id_offre'])
+                  ;
+                  //var_dump($aime_offre);die;
+                  $aime_offre->createOne();
+
+            $data = array("valeur"=> 1);
+            //var_dump($data);
+            //if($suppimer) {return true;}
+            echo json_encode($data);
+        }
+
+    }
 
 
+    public function postuler_offre(){
 
+        if($_POST){
+
+            //die('okay');
+            $postuler_offre = new Postuler_Candidat_Offre_Model;
+
+            $postuler_offre
+                  ->setId_candidat($_SESSION["user"]['id'])
+                  ->setId_offre($_POST['id_offre'])
+                  ;
+                  //var_dump($aime_offre);die;
+                  $postuler_offre->createOne();
+
+            $data = array("valeur"=> 1);
+            //var_dump($data);
+            //if($suppimer) {return true;}
+            //echo json_encode($data);
+        }
+
+    }
+
+    public function renoncer_offre(){
+
+        if($_POST){
+
+            //die('okay');
+            $aime_offre = new Postuler_Candidat_Offre_Model;
+            $suppimer = $aime_offre->delete_postuler($_POST['id_offre'], $_SESSION['user']['id']);
+
+            //$data = array("valeur"=> 0);
+            //var_dump($data);
+            //if($suppimer) {return true;}
+            //echo json_encode($data);
+
+        }
+
+    }
 }

@@ -16,9 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
 
     <!-- CSS Global Compulsory (Do not remove)-->
-    <link rel="stylesheet" href="http://monsite.local:8888/css/font-awesome/all.min.css" />
+    <link rel="stylesheet" href="../css/font-awesome/all.min.css" />
     <link rel="stylesheet" href="../css/flaticon/flaticon.css" />
-    <link rel="stylesheet" href="http://monsite.local:8888/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" />
 
     <!-- map -->
     <link rel="stylesheet" href="../css/apexcharts/apexcharts.css" />
@@ -26,7 +26,7 @@
     <!-- Template Style -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
-    <link rel="stylesheet" href="http://monsite.local:8888/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
 </head>
 

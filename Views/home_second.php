@@ -36,14 +36,35 @@
       padding-left: 60px;
     }
     @import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
-    .heart-btn{
+    .postuler-btn{
+      position: absolute;
+      top: 50%;
+      left: 40%;
+      /*transform: translate(-50%,-50%);*/
+    }
+
+    .heart-btn1{
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%,-50%);
+      /*transform: translate(-50%,-50%);*/
+    }
+
+    .heart-btn2{
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      /*transform: translate(-50%,-50%);*/
+    }
+    .postuler-content{
+      padding: 5px 6px;
+      display: flex;
+      border: 2px solid #eae2e1;
+      border-radius: 5px;
+      cursor: pointer;
     }
     .content{
-      padding: 13px 16px;
+      padding: 5px 6px;
       display: flex;
       border: 2px solid #eae2e1;
       border-radius: 5px;
@@ -53,25 +74,35 @@
       border-color: #f9b9c4;
       background: #fbd0d8;
     }
+
+    .postuler-content.heart-active{
+      border-color: #f9b9c4;
+      background: #fbd0d8;
+    }
+
+    .content.heart-no-active{
+      border-color: #eae2e1;
+      background: #eae2e1;
+    }
     .heart{
       position: absolute;
       background: url("../../images/img.png") no-repeat;
       background-position: left;
       background-size: 2900%;
-      height: 90px;
-      width: 90px;
+      height: 50px;
+      width: 50px;
       top: 50%;
       left: 21%;
       transform: translate(-50%,-50%);
     }
     .text{
-      font-size: 21px;
-      margin-left: 30px;
+      font-size: 18px;
+      margin-left: 20px;
       color: grey;
       font-family: 'Montserrat',sans-serif;
     }
     .numb:before{
-      font-size: 21px;
+      font-size: 18px;
       margin-left: 7px;
       font-weight: 600;
       color: #9C9496;
@@ -87,6 +118,12 @@
       animation: animate .8s steps(28) 1;
       background-position: right;
     }
+
+    .heart.heart-no-active{
+      animation: animate .8s steps(28) 1;
+      background-position: right;
+    }
+
     @keyframes animate {
       0%{
         background-position: left;
@@ -402,9 +439,9 @@ Javascript -->
                 navlinks.forEach(link => {
                 if(link.href.includes(`${activateMenu}`)){
                 link.classList.add('activepage')
-                console.log(` le lien en cours ${activateMenu}`)
+               // console.log(` le lien en cours ${activateMenu}`)
           }
-                console.log('Merci '+link)
+                //console.log('Merci '+link)
         })
 
 
@@ -419,14 +456,186 @@ Javascript -->
     <script src="../../js/custom.js"></script>
     <script>
       $(document).ready(function(){
-        //console.log('hello')
-        $('.content').click(function(){
-          
-          $('.content').toggleClass("heart-active")
-          $('.text').toggleClass("heart-active")
-          $('.numb').toggleClass("heart-active")
-          $('.heart').toggleClass("heart-active")
+        let nombre = $('.compteurLike').text()
+        let likeCandidat = $('.likeCandidat').text()
+
+        // Début Like offre avec son id
+        if(likeCandidat == 1){
+            $('.content').addClass("heart-active")
+            $('.text').addClass("heart-active")
+            $('.heart').addClass("heart-active")
+            
+            $('.content').click(function(){
+              let like = $('.likeCandidat').text()
+              id_offre = $('.offre_id').text()
+
+                if(like == 1){
+                  nombre--
+                  $.ajax({
+                    url: "/main/supprimer_like",
+                    method:"POST",
+                    dataType:'json',
+                    data: {id_offre: id_offre },
+                    success:function(data){
+                      $('.likeCandidat').text(data.valeur)
+                    }
+                  })
+                  $('.compteurLike').text(nombre)
+                
+                  $('.content').removeClass("heart-active")
+                  $('.text').removeClass("heart-active")
+                  $('.heart').removeClass("heart-active")
+
+                }else{
+                  nombre++
+                  $('.compteurLike').text(nombre)
+                  $('.content').addClass("heart-active")
+                  $('.text').addClass("heart-active")
+                  $('.heart').addClass("heart-active")
+
+                  $.ajax({
+                    url: "/main/ajouter_like",
+                    method:"POST",
+                    dataType:'json',
+                    data: {id_offre: id_offre },
+                    success:function(data){
+                    // alert(data.valeur)
+                      $('.likeCandidat').text(data.valeur)
+                    }
+                  })
+
+                }
+              
+            
+          });
+        }else{
+          $('.content').click(function(){
+              let like = $('.likeCandidat').text()
+              id_offre = $('.offre_id').text()
+
+                if(like == 1){
+                  nombre--
+                  $.ajax({
+                    url: "/main/supprimer_like",
+                    method:"POST",
+                    dataType:'json',
+                    data: {id_offre: id_offre },
+                    success:function(data){
+                      $('.likeCandidat').text(data.valeur)
+                    }
+                  })
+                  $('.compteurLike').text(nombre)
+                
+                  $('.content').removeClass("heart-active")
+                  $('.text').removeClass("heart-active")
+                  $('.heart').removeClass("heart-active")
+
+                }else{
+                  nombre++
+                  $('.compteurLike').text(nombre)
+                  $('.content').addClass("heart-active")
+                  $('.text').addClass("heart-active")
+                  $('.heart').addClass("heart-active")
+
+                  $.ajax({
+                    url: "/main/ajouter_like",
+                    method:"POST",
+                    dataType:'json',
+                    data: {id_offre: id_offre },
+                    success:function(data){
+                      $('.likeCandidat').text(data.valeur)
+                    }
+                  })
+
+                }
+              
+            
+          });
+        }
+        //fin
+
+        //Postuler à une offre
+        let postuler = $('.compteurPostuler').text()
+        //alert(postuler)
+        id_offre = $('.offre_id').text()
+
+        if(postuler == 1){
+          $('.postuler-content').addClass("heart-active")
+          // $('.text').addClass("heart-active")
+          // $('.heart').addClass("heart-active")
+
+          $('.postuler-content').click(function(){
+            
+              if(postuler % 2 === 0){
+                postuler--
+                  $('.postuler-content').removeClass("heart-active")
+                    $.ajax({
+                      url: "/main/renoncer_offre",
+                      method:"POST",
+                      dataType:'json',
+                      data: {id_offre: id_offre },
+                      success:function(data){
+                      // alert(data.valeur)
+                        $('.likeCandidat').text(data.valeur)
+                      }
+                    })
+                }else{
+                  postuler++
+                  $('.postuler-content').addClass("heart-active")
+                    $.ajax({
+                      url: "/main/postuler_offre",
+                      method:"POST",
+                      dataType:'json',
+                      data: {id_offre: id_offre },
+                      success:function(data){
+                      // alert(data.valeur)
+                        $('.likeCandidat').text(data.valeur)
+                      }
+                    })
+              }
+              
+
+          });
+
+        }else{
+         
+          $('.postuler-content').click(function(){
+            
+            if(postuler % 2 === 0){
+              postuler++
+              $('.postuler-content').addClass("heart-active")
+                  $.ajax({
+                    url: "/main/postuler_offre",
+                    method:"POST",
+                    dataType:'json',
+                    data: {id_offre: id_offre },
+                    success:function(data){
+                    // alert(data.valeur)
+                      $('.likeCandidat').text(data.valeur)
+                    }
+                  })
+              }else{
+                postuler--
+                $('.postuler-content').removeClass("heart-active")
+                  $.ajax({
+                    url: "/main/renoncer_offre",
+                    method:"POST",
+                    dataType:'json',
+                    data: {id_offre: id_offre },
+                    success:function(data){
+                    // alert(data.valeur)
+                      $('.likeCandidat').text(data.valeur)
+                    }
+                  })
+            }
+            
+
         });
+
+        }
+          
+
+        //Fin 
       });
     </script>
 
