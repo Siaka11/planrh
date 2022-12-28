@@ -170,13 +170,28 @@ Candidates Dashboard -->
           <div class="row">
             <div class="col-12 text-center mt-4 mt-md-5">
               <ul class="pagination justify-content-center mb-md-4 mb-0">
-                <li class="page-item disabled"> <span class="page-link b-radius-none">Prec</span> </li>
-                <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">25</a></li>
-                <li class="page-item"> <a class="page-link" href="#">Suiv</a> </li>
+
+                  <?php if($page_courante == 1): ?>
+                        <li class="page-item disabled"> <span class="page-link b-radius-none">Précédent</span> </li>
+                  <?php else: ?>
+                    <li class="page-item "> <a class="page-link" href="/backend_candidat/page/<?= $page_courante - 1 ?>">Précédent</a> </li>
+                  <?php endif ?>
+
+                  <?php for($i = 1; $i <= $page_totale; $i++): ?> 
+
+                  <?php if($i == $page_courante): ?>
+                    <li class="page-item active" aria-current="page"><span class="page-link"><?= $i ?> </span> <span class="sr-only">(current)</span></li>
+                  <?php else: ?>
+                    <li class="page-item"><a class="page-link" href="/backend_candidat/page/<?= $i ?>"><?= $i ?></a></li>
+                  <?php endif ?>
+   
+                  <?php endfor; ?>
+
+                  <?php if($page_courante == $page_totale): ?>
+                        <li class="page-item disabled"> <span class="page-link b-radius-none">Suivant</span> </li>
+                  <?php else: ?>
+                    <li class="page-item "> <a class="page-link" href="/backend_candidat/page/<?= $page_courante + 1 ?>">Suivant</a> </li>
+                  <?php endif ?>
               </ul>
             </div>
           </div>

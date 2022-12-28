@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+    <base href="/planrh/">
     <meta charset="utf-8">
     <meta name="keywords" content="Plan Rh" />
     <meta name="description" content="Site de recrutement et de placement" />

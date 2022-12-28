@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Core\Util;
 use Dompdf\dompdf;
-use App\Models\DomaineModel;
 use App\Models\JaimeModel;
 use App\Models\OffreModel;
+use App\Models\DomaineModel;
 use App\Models\CandidatModel;
 use App\Models\EmployeurModel;
 use App\Models\FormationModel;
@@ -21,6 +22,16 @@ class Backend_candidatController extends Controller{
             header("Location: /");
             exit;
         }
+
+        $offre = new OffreModel;
+        $toutes_offres = $offre->findAll();
+        $offre_par_page = 2;
+        $offres_totales = count($toutes_offres);
+        $recupere_tous_offres = $offre->recupere_tous_offres();
+
+        $util = new Util();
+
+
 
        
         if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
@@ -54,7 +65,71 @@ class Backend_candidatController extends Controller{
         }
        
 
-        return $this->render('candidat/index.php', [], 'home_backend_candidat.php');
+        return $this->render('candidat/index.php', compact('recupere_tous_offres', 'util'), 'home_backend_candidat.php');
+    }
+
+
+    public function page($id){
+
+        if(!$_SESSION["user"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /");
+            exit;
+        }
+
+        $get = explode("/",$_GET['p']);
+        //var_dump($get);
+
+        $offre = new OffreModel;
+        $toutes_offres = $offre->findAll();
+        $offre_par_page = 1;
+        $offres_totales = count($toutes_offres);
+        $page_totale = ceil($offres_totales / $offre_par_page);
+        //var_dump($page_totale);
+        $page_courante = $id;
+        
+        $depart = ($id - 1) * $offre_par_page;
+        $recupere_tous_offres = $offre->recupere_tous_offres_avec_limit($depart,$offre_par_page);
+
+
+
+        $util = new Util();
+
+
+
+       
+        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+           $tailleMax = 2097152;
+           $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+           if($_FILES['avatar']['size'] <= $tailleMax) {
+              $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+              if(in_array($extensionUpload, $extensionsValides)) {
+                 $chemin = "../public_html/images/".$_SESSION["user"]["id"].".".$extensionUpload;
+                 //var_dump($_FILES['avatar']['tmp_name']);
+                 //die;
+                 $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+                 if($resultat) {
+                    var_dump($resultat);
+                    die;
+                   // $updateavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
+                   // $updateavatar->execute(array(
+                      // 'avatar' => $_SESSION['id'].".".$extensionUpload,
+                    //   'id' => $_SESSION['id']
+                    //   ));
+                   // header('Location: profil.php?id='.$_SESSION['id']);
+                 } else {
+                    $msg = "Erreur durant l'importation de votre photo de profil";
+                 }
+              } else {
+                 $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+              }
+           } else {
+              $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+           }
+        }
+       
+
+        return $this->render('candidat/page.php', compact('recupere_tous_offres', 'util', 'page_totale', 'page_courante'), 'home_backend_candidat.php');
     }
 
     public function imprimer(){

@@ -44,6 +44,34 @@ class OffreModel extends Model{
 
     }
 
+
+    public function recupere_tous_offres(){
+
+        return $this->requete("
+        SELECT * , domaine.nom as domaine_nom, employeur.entreprise as employeur_entreprise, 
+        typeemploi.nom as typeemploi_nom, employeur.image as employeur_image, offre.id as offre_id,
+        offre.date_creation as offre_date_creation
+        FROM $this->table 
+        INNER JOIN  employeur ON offre.id_employeur = employeur.id
+        INNER JOIN  domaine ON offre.domaine = domaine.id 
+        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id ORDER BY offre.id DESC
+        ")->fetchAll();
+    }
+
+    public function recupere_tous_offres_avec_limit($depart, $offre_par_page){
+
+        return $this->requete("
+        SELECT * , domaine.nom as domaine_nom, employeur.entreprise as employeur_entreprise, 
+        typeemploi.nom as typeemploi_nom, employeur.image as employeur_image, offre.id as offre_id,
+        offre.date_creation as offre_date_creation
+        FROM $this->table 
+        INNER JOIN  employeur ON offre.id_employeur = employeur.id
+        INNER JOIN  domaine ON offre.domaine = domaine.id 
+        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
+        ORDER BY offre.id DESC LIMIT $depart, $offre_par_page
+        ")->fetchAll();
+    }
+
     public function find_offre_by_id_offre($id){
 
         return $this->requete("
