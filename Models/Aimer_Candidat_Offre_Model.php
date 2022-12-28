@@ -38,6 +38,25 @@ class Aimer_Candidat_Offre_Model extends Model{
         )->fetch();
     }
 
+
+    public function tous_like_by_offre_candidat($id_candidat){
+        
+        return $this->requete(
+            "SELECT * ,offre.titre as offre_titre, domaine.nom as domaine_nom, employeur.entreprise as employeur_entreprise, 
+            employeur.image as employeur_image, offre.id as offre_id, typeemploi.nom as typeemploi_nom,
+            offre.date_creation as offre_date_creation, offre.date_expiration as offre_date_expiration, 
+            $this->table.date_creation as date_creat
+            FROM $this->table
+            INNER JOIN offre ON offre.id = $this->table.id_offre
+            INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
+            INNER JOIN  domaine ON offre.domaine = domaine.id 
+            INNER JOIN  employeur ON offre.id_employeur = employeur.id
+            INNER JOIN candidat ON candidat.id = $this->table.id_candidat
+            WHERE $this->table.id_candidat = $id_candidat ORDER BY offre.id DESC
+            "
+        )->fetchAll();
+    }
+
     public function delete_aime($id_offre, $id_candidat){
 
         return $this->requete("DELETE FROM  $this->table  WHERE id_offre = $id_offre AND id_candidat = $id_candidat ");

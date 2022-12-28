@@ -8,13 +8,30 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="candidates-user-info">
-          <div class="jobber-user-info">
+        <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid " src="../../images/avatar/06.jpg" alt="">
-              <i class="fas fa-pencil-alt"></i>
+              <img class="img-fluid "  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
+                <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="profile-avatar-info ms-4">
-              <h3>Ange Brou1</h3>
+              <h3><?= $candidat->nom ?></h3>
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Prendre une image</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form method='post' action='' enctype="multipart/form-data">
+                      Selectionnez une image : 
+                      <input type='file' name='avatar'id='file' class='form-control' ><br>
+                      <input type='submit' class='btn btn-info' value='Charger' name="charger" id='btn_upload'>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                </div>
             </div>
           </div>
         </div>
@@ -30,7 +47,7 @@
             <h3 class="text-primary">85%</h3>
           </div>
           <div class="candidates-required-skills ms-auto mt-sm-0 mt-3">
-            <a class="btn btn-dark" href="#">Ajoutez une compétence</a>
+            <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Ajoutez une compétence</a>
           </div>
         </div>
       </div>
@@ -72,11 +89,11 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="section-title-02">
-          <h3>My Resume</h3>
+          <h3>A propos de moi</h3>
         </div>
       </div>
       <div class="col-lg-4 text-lg-end">
-        <a class="btn btn-primary btn-md mb-4 mb-lg-0" href="backend-candidat-cv.php" target="_blank">Aperçu de mon CV</a>
+        <a class="btn btn-primary btn-md mb-4 mb-lg-0" href="/backend_candidat/imprimer" target="_blank">Aperçu de mon CV</a>
       </div>
       <div class="col-12">
         <div class="user-dashboard-info-box">
@@ -212,8 +229,8 @@
         </div>
         <!--=================================
         Work & Experience -->
-        <div class="user-dashboard-info-box">
-          <div class="dashboard-resume-title d-flex align-items-center">
+        <div class="user-dashboard-info-box" >
+          <div class="dashboard-resume-title d-flex align-items-center" >
             <div class="section-title-02 mb-sm-0">
               <h4 class="mb-0">Expériences Professionnelle</h4>
             </div>
@@ -231,21 +248,21 @@
                   <input type="text" name="entreprise" class="form-control" value="">
                 </div>
                 <div class="mb-3 col-md-6 datetimepickers">
-                  <label class="form-label">De</label>
+                  <label class="form-label">Du</label>
                   <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
-                    <input type="text" name="datedebut" class="form-control datetimepicker-input" value="08/11/2010" data-target="#datetimepicker-01">
-                    <div class="input-group-append d-flex" data-target="#datetimepicker-01" data-toggle="datetimepicker">
+                    <input type="date" name="datedebut" class="form-control datetimepicker-input" value="08/11/2010" data-target="#datetimepicker-01">
+                    <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-01" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                   <label class="form-label">au</label>
                   <div class="input-group date" id="datetimepicker-02" data-target-input="nearest">
-                    <input type="text" name="datefin" class="form-control datetimepicker-input" value="08/10/2012" data-target="#datetimepicker-02">
-                    <div class="input-group-append d-flex" data-target="#datetimepicker-02" data-toggle="datetimepicker">
+                    <input type="date" name="datefin" class="form-control datetimepicker-input" value="08/10/2012" data-target="#datetimepicker-02">
+                    <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-02" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="form-group mb-3 col-md-12">
@@ -295,21 +312,21 @@
                       <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                         <label class="form-label">Du</label>
                         <div class="input-group date" id="datetimepicker-05" data-target-input="nearest">
-                          <input type="text" name="datedebut" class="form-control datetimepicker-input" value="<?=$findExperienceOne->datedebut ?>" data-target="#datetimepicker-05">
-                          <div class="input-group-append d-flex" data-target="#datetimepicker-05" data-toggle="datetimepicker">
+                          <input type="date" name="datedebut" class="form-control datetimepicker-input" value="<?=$findExperienceOne->datedebut ?>" data-target="#datetimepicker-05">
+                          <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-05" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                         <label class="form-label">Au</label>
                         <div class="input-group date" id="datetimepicker-06" data-target-input="nearest">
-                          <input type="text" name="datefin" class="form-control datetimepicker-input" value="<?=$findExperienceOne->datefin ?>" data-target="#datetimepicker-06">
+                          <input type="date" name="datefin" class="form-control datetimepicker-input" value="<?=$findExperienceOne->datefin ?>" data-target="#datetimepicker-06">
                           <input type="hidden" name="myidexp" value="<?=$findExperienceOne->id ?>">
 
-                          <div class="input-group-append d-flex" data-target="#datetimepicker-06" data-toggle="datetimepicker">
+                          <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-06" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <div class="form-group mb-3 col-md-12">
@@ -332,35 +349,64 @@
         Work & Experience -->
         <!--=================================
         Professional Skill -->
-        <div class="user-dashboard-info-box">
+        <div class="user-dashboard-info-box" id="competence">
           <div class="dashboard-resume-title d-flex align-items-center">
             <div class="section-title-02 mb-sm-0">
               <h4 class="mb-0">Compétences Professionnelles</h4>
             </div>
-            <a class="btn btn-md ms-sm-auto btn-primary" id="add_more_fields" data-bs-toggle="collapse" href="#dateposted-15" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une récompense</a>
+            <a class="btn btn-md ms-sm-auto btn-primary" id="add_more_fields" data-bs-toggle="modal" data-bs-target="#staticBackdrop" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une compétence</a>
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <div id="link" class="bg-light p-3 mt-4" >
+                      <form class="row align-items-center" id="formremove" method="POST">
+                        <div  class="form-group mb-3 col-md-6">
+                          <label class="form-label">Titre</label>
+                          <input type="text" name="titre" class="form-control" value="compétence">
+                        </div>
+                        <div class="form-group mb-3 col-md-5">
+                          <label class="form-label">Pourcentage</label>
+                          <input type="number" name="pourcentage"  class="form-control" value="70">
+                        </div>
+
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="envoyer_competence" class="btn btn-primary">Enregistrer</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
 
 
           </div>
           <div class="collapse show" id="dateposted-11" >
             <div id="link" class="bg-light p-3 mt-4" >
-              <form class="row align-items-center" id="formremove" method="POST">
-                <div  class="form-group mb-3 col-md-6">
-                  <label class="form-label">Titre</label>
-                  <input type="text" name="titre" class="form-control" value="compétence">
-                </div>
-                <div class="form-group mb-3 col-md-5">
-                  <label class="form-label">Pourcentage</label>
-                  <input type="text" name="pourcentage"  class="form-control" value="70%">
-                </div>
-                <div  class="form-group mb-3 col-md-1 text-center">
-                  <a class="mt-3 d-block" id="remove_fields" ><i class="far fa-trash-alt text-danger" ></i></a>
-                </div>
-              </form>
-              <div id="newRow">
-
-              
-              </div>
-
+              <?php foreach($comptencemodels as $comptencemodel): ?>
+                <form class="row align-items-center mt-2" id="formremove" method="POST">
+                  <div  class="form-group mb-3 col-md-6">
+                    <label class="form-label">Titre</label>
+                    <input type="text" name="titre" class="form-control" value="<?= $comptencemodel->titre ?>">
+                  </div>
+                  <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">Pourcentage</label>
+                    <input type="number" name="pourcentage"  class="form-control" value="<?= $comptencemodel->pourcentage ?>">
+                  </div>
+                  <div class="form-group col-md-12 mb-0">
+                    <input type="hidden" name="id_competence"  class="form-control" value="<?= $comptencemodel->id ?>">
+                    <button class="btn btn-primary d-grid" type="submit" name="modifier_competence">Modifier</button>
+                  </div>
+                </form>
+              <?php endforeach; ?>
             </div>
           </div>
         </div>
@@ -368,7 +414,7 @@
         Professional Skill -->
         <!--=================================
         Awards -->
-        <div class="user-dashboard-info-box">
+        <div class="user-dashboard-info-box" >
           <div class="dashboard-resume-title d-flex align-items-center">
             <div class="section-title-02 mb-sm-0">
               <h4 class="mb-0">Récompences</h4>
@@ -389,19 +435,19 @@
                 <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                   <label class="form-label">Du</label>
                   <div class="input-group date" id="datetimepicker-09" data-target-input="nearest">
-                    <input type="text" name="datedebut" class="form-control datetimepicker-input" value="07/03/2010" data-target="#datetimepicker-09">
-                    <div class="input-group-append d-flex" data-target="#datetimepicker-09" data-toggle="datetimepicker">
+                    <input type="date" name="datedebut" class="form-control datetimepicker-input" value="07/03/2010" data-target="#datetimepicker-09">
+                    <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-09" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                   <label class="form-label">Au</label>
                   <div class="input-group date" id="datetimepicker-10" data-target-input="nearest">
-                    <input type="text" name="datefin" class="form-control datetimepicker-input" value="08/10/2011" data-target="#datetimepicker-10">
-                    <div class="input-group-append d-flex" data-target="#datetimepicker-10" data-toggle="datetimepicker">
+                    <input type="date" name="datefin" class="form-control datetimepicker-input" value="08/10/2011" data-target="#datetimepicker-10">
+                    <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-10" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="form-group mb-3 col-md-12">
@@ -451,19 +497,19 @@
                         <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                           <label class="form-label">Du</label>
                           <div class="input-group date" id="datetimepicker-11" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" name="datedebut" value="<?=$findRecompenseOne->datedebut?> " data-target="#datetimepicker-11">
-                            <div class="input-group-append d-flex" data-target="#datetimepicker-11" data-toggle="datetimepicker">
+                            <input type="date" class="form-control datetimepicker-input" name="datedebut" value="<?=$findRecompenseOne->datedebut?> " data-target="#datetimepicker-11">
+                            <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-11" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                         <div class="form-group mb-3 col-md-6 select-border datetimepickers">
                           <label class="form-label">Au</label>
                           <div class="input-group date" id="datetimepicker-12" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" name="datefin" value="<?=$findRecompenseOne->datefin?> " data-target="#datetimepicker-12">
-                            <div class="input-group-append d-flex" data-target="#datetimepicker-12" data-toggle="datetimepicker">
+                            <input type="date" class="form-control datetimepicker-input" name="datefin" value="<?=$findRecompenseOne->datefin?> " data-target="#datetimepicker-12">
+                            <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-12" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                         <div class="form-group mb-3 col-md-12">

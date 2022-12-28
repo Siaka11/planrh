@@ -100,31 +100,15 @@
                 <div class="mt-4">
                   <h5>Compétences Professionnelles:</h5>
 
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-                      <div class="progress-bar-title">Compétense 01</div>
-                      <span class="progress-bar-number">70%</span>
-                    </div>
-                  </div>
-                  <div class="progress mb-md-0">
-                    <div class="progress-bar" role="progressbar" style="width:80%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-                      <div class="progress-bar-title">Compétense 02</div>
-                      <span class="progress-bar-number">80%</span>
-                    </div>
-                  </div>
-
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-                      <div class="progress-bar-title">Compétense 03</div>
-                      <span class="progress-bar-number">55%</span>
-                    </div>
-                  </div>
-                  <div class="progress mb-md-0">
-                    <div class="progress-bar" role="progressbar" style="width:60%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                      <div class="progress-bar-title">Compétense 04</div>
-                      <span class="progress-bar-number">60%</span>
+                  <?php foreach($comptences as $competance): ?>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width:55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar-title"><?= $competance->titre ?></div>
+                        <span class="progress-bar-number"><?= $competance->pourcentage ?></span>
+                      </div>
                     </div>
 
+                  <?php endforeach ; ?>
                   </div>
                 </div>
             </div>

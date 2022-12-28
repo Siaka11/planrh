@@ -25,11 +25,11 @@ class Model extends Db
             $champs[] = " $champ = ? ";
             $valeurs[] = $valeur;
         }
-        var_dump($champs);
+        //var_dump($champs);
         $liste_champs = implode(' AND ', $champs);
-        var_dump($liste_champs);
+        //var_dump($liste_champs);
 
-        $query = $this->requete("SELECT * FROM $this->table WHERE $liste_champs", $valeurs);
+        $query = $this->requete("SELECT * FROM $this->table WHERE $liste_champs ORDER BY id DESC", $valeurs);
         return $query->fetchAll();
     }
 

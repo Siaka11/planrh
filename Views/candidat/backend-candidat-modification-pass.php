@@ -5,13 +5,30 @@ inner banner -->
     <div class="row">
       <div class="col-lg-6">
         <div class="candidates-user-info">
-          <div class="jobber-user-info">
+        <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid " src="../images/avatar/06.jpg" alt="">
-              <i class="fas fa-pencil-alt"></i>
+              <img class="img-fluid "  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
+                <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="profile-avatar-info ms-4">
-              <h3>Ange Brou</h3>
+              <h3><?= $candidat->nom ?></h3>
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Prendre une image</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form method='post' action='' enctype="multipart/form-data">
+                      Selectionnez une image : 
+                      <input type='file' name='avatar'id='file' class='form-control' ><br>
+                      <input type='submit' class='btn btn-info' value='Charger' name="charger" id='btn_upload'>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                </div>
             </div>
           </div>
         </div>
@@ -27,7 +44,7 @@ inner banner -->
             <h3 class="text-primary">85%</h3>
           </div>
           <div class="candidates-required-skills ms-auto mt-sm-0 mt-3">
-            <a class="btn btn-dark" href="#">Ajoutez une compétence</a>
+            <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Ajoutez une compétence</a>
           </div>
         </div>
       </div>

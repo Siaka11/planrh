@@ -5,13 +5,30 @@ inner banner -->
     <div class="row">
       <div class="col-lg-6">
         <div class="candidates-user-info">
-          <div class="jobber-user-info">
+        <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid " src="../images/avatar/06.jpg" alt="">
-              <i class="fas fa-pencil-alt"></i>
+              <img class="img-fluid "  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
+                <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="profile-avatar-info ms-4">
-              <h3>Ange Brou</h3>
+              <h3><?= $candidat->nom ?></h3>
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Prendre une image</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form method='post' action='' enctype="multipart/form-data">
+                      Selectionnez une image : 
+                      <input type='file' name='avatar'id='file' class='form-control' ><br>
+                      <input type='submit' class='btn btn-info' value='Charger' name="charger" id='btn_upload'>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                </div>
             </div>
           </div>
         </div>
@@ -27,7 +44,7 @@ inner banner -->
             <h3 class="text-primary">85%</h3>
           </div>
           <div class="candidates-required-skills ms-auto mt-sm-0 mt-3">
-            <a class="btn btn-dark" href="#">Ajoutez une compétence</a>
+            <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Ajoutez une compétence</a>
           </div>
         </div>
       </div>
@@ -79,51 +96,52 @@ Manage Jobs -->
             </div>
             <div class="col-md-5 col-sm-7 mt-3 mt-sm-0">
               <div class="search">
-                <i class="fas fa-search"></i>
-                <input type="text" class="form-control" placeholder="Recherche....">
+                <!-- <i class="fas fa-search"></i> -->
+                <input type="text" class="form-control"  id="myInput" onkeyup="myFunction()" placeholder="Recherche....">
               </div>
             </div>
           </div>
           <div class="user-dashboard-table table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="myTable">
               <thead class="bg-light">
                 <tr >
                   <th scope="col">Titre de l'emploi</th>
                   <th scope="col">Statut</th>
-                  <th scope="col">Appreciation</th>
-                  <th scope="col">Action</th>
+                  <!-- <th scope="col">Appreciation</th> -->
+                  <!-- <th scope="col">Action</th> -->
                 </tr>
               </thead>
               <tbody>
-              
-                <?php foreach($infojob as $info) : ?>
-                  <?php 
-                    $off = $offre->find($info->id_offre);
-                    $emp = $off->id_employeur;
-                                   // echo "la valeur $emp";
-                   $company = $findcompany->find($emp);
-                                    //var_dump($company->entreprise);
-                                   // die;
-              ?>
+                <?php $i = 0 ?>
+                <?php foreach($candidat_offres as $candidat_offre) : ?>
+                  <?php $i++ ?>
                 <tr>
-                  <th scope="row"><?= $info->secteur ?>  
-                    <p class="mb-1 mt-2">Expire le : <?= $info->secteur ?></p>
-                    <p class="mb-0">Adresse : <?= $company->entreprise ?></p>
-                  </th>
-                  <td>Slectionné</td>
-                  <td><i class="far fa-star"></i></td>
+                  <td scope="row"> <b class="text-dark"><?=  $candidat_offre->offre_titre ?>  </b> 
+                    <p class="mb-1 mt-2">Expire le : <?= $candidat_offre->date_expiration ?></p>
+                    <p class="mb-0">Entreprise : <?= $candidat_offre->employeur_entreprise ?></p>
+                  </td>
                   <td>
+                      <?php if($candidat_offre->acceptation == 1): ?>
+                        <b class="text-danger">Candidature refusée</b>
+                      <?php elseif($candidat_offre->acceptation == 2): ?>
+                        <b class="text-success">Candidature acceptée</b>
+                      <?php else: ?>
+                        <b class="text-primary">En attente</b>
+                      <?php endif ?>
+                  </td>
+                  <!-- <td><i class="far fa-star"></i></td> -->
+                  <!-- <td>
                     <ul class="list-unstyled mb-0 d-flex">
                       <li><a href="#" class="text-primary" data-bs-toggle="tooltip" title="Afficher"><i class="far fa-eye"></i></a></li>
                       <li><a href="#" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
                     </ul>
-                  </td>
+                  </td> -->
                 </tr>
                 <?php endforeach; ?>
                </tbody>
             </table>
           </div>
-          <div class="row justify-content-center">
+          <!-- <div class="row justify-content-center">
             <div class="col-12 text-center">
               <ul class="pagination mt-3">
                 <li class="page-item disabled me-auto">
@@ -137,7 +155,7 @@ Manage Jobs -->
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

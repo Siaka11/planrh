@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="../css/style.css" />
 
 </head>
+<style>
+  
+</style>
 
 <body>
   <?php if(!empty($_SESSION['message'])): ?>
@@ -154,6 +157,52 @@ Javascript -->
         $(document).on('click', '#remove_fields', function () {
             $(this).closest('#formremove').remove();
         });
+    </script>
+    <script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      console.log(table);
+
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+
+    function myFunction_custom() {
+      console.log('hello')
+      var input, filter, table, recherche_tr, recherche_td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+
+      table = document.getElementById("myTable");
+      console.log(table);
+
+      recherche_tr = table.getElementsByTagName("recherche_tr");
+      console.log(recherche_tr.length);
+      for (i = 0; i < recherche_tr.length; i++) {
+        recherche_td = recherche_tr[i].getElementsByTagName("recherche_td")[0];
+        if (recherche_td) {
+          txtValue = recherche_td.textContent || recherche_td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            recherche_tr[i].style.display = "";
+          } else {
+            recherche_tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
     </script>
   <!-- <script>
     var survey_options = document.getElementById('link');

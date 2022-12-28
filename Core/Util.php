@@ -55,4 +55,88 @@ class Util {
     return $string ? implode(' ', $string) . '' : 'maintenant';
     }
 
+    public static function uploader($info){
+
+      if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+          $tailleMax = 5097152;
+          $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+          if($_FILES['avatar']['size'] <= $tailleMax) {
+             $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+             if(in_array($extensionUpload, $extensionsValides)) {
+                $ectensionrecommended = "png";
+                $chemin = "../public_html/images/".$info.".".$ectensionrecommended;
+                //var_dump($_FILES['avatar']['tmp_name']);
+                //die;
+                $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+                if($resultat) {
+                  echo "Image mise à hour avec succès";
+                  //  $candidatmodel = new CandidatModel;
+                  //              $candidatmodel->setId($_SESSION['user']['id'])
+                  //                            ->setImage($info.".".$extensionUpload);
+                  //              $candidatmodel->update();
+                                            
+
+               //     var_dump($resultat);
+               //     die;
+               //    $updateavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
+               //    $updateavatar->execute(array(
+               //       'avatar' => $_SESSION['id'].".".$extensionUpload,
+               //       'id' => $_SESSION['id']
+               //       ));
+                 // header('Location: /backend_candidat');
+                } else {
+                   $msg = "Erreur durant l'importation de votre photo de profil";
+                }
+             } else {
+                $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+             }
+          } else {
+             $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+          }
+       }
+    }
+
+    public static function uploadervideo($info){
+        //die('enter');
+        //var_dump($_FILES['avatar']);die;
+        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+            $tailleMax = 50000000;
+            //video/mp4
+            $extensionsValides = array('mp4');
+            if($_FILES['avatar']['size'] <= $tailleMax) {
+                $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+                if(in_array($extensionUpload, $extensionsValides)) {
+                $ectensionrecommended = "mp4";
+                $chemin = "../public_html/videos/".$info.".".$ectensionrecommended;
+                //var_dump($_FILES['avatar']['tmp_name']);
+                //die;
+                $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+                if($resultat) {
+                    echo "image uplaoder with succes";
+                    //  $candidatmodel = new CandidatModel;
+                    //              $candidatmodel->setId($_SESSION['user']['id'])
+                    //                            ->setImage($info.".".$extensionUpload);
+                    //              $candidatmodel->update();
+                                                
+
+                //     var_dump($resultat);
+                //     die;
+                //    $updateavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
+                //    $updateavatar->execute(array(
+                //       'avatar' => $_SESSION['id'].".".$extensionUpload,
+                //       'id' => $_SESSION['id']
+                //       ));
+                    // header('Location: /backend_candidat');
+                } else {
+                    $msg = "Erreur durant l'importation de votre photo de profil";
+                }
+                } else {
+                $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+                }
+            } else {
+                $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+            }
+        }
+    }
+
 }

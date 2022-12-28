@@ -1,16 +1,3 @@
-<?php
-
-//var_dump($jaime);
-
-  foreach($jaime as $jaomeone){
-   // var_dump($jaomeone->adresse);
-    //var_dump($jaimeone['adresse']);
-  }
-
- 
-
-?>
-
 <!--=================================
 inner banner -->
 <div class="header-inner bg-light">
@@ -18,13 +5,30 @@ inner banner -->
     <div class="row">
       <div class="col-lg-6">
         <div class="candidates-user-info">
-          <div class="jobber-user-info">
+        <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid " src="../images/avatar/06.jpg" alt="">
-              <i class="fas fa-pencil-alt"></i>
+              <img class="img-fluid "  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
+                <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="profile-avatar-info ms-4">
-              <h3>Ange Brou</h3>
+              <h3><?= $candidat->nom ?></h3>
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Prendre une image</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form method='post' action='' enctype="multipart/form-data">
+                      Selectionnez une image : 
+                      <input type='file' name='avatar'id='file' class='form-control' ><br>
+                      <input type='submit' class='btn btn-info' value='Charger' name="charger" id='btn_upload'>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                </div>
             </div>
           </div>
         </div>
@@ -40,7 +44,7 @@ inner banner -->
             <h3 class="text-primary">85%</h3>
           </div>
           <div class="candidates-required-skills ms-auto mt-sm-0 mt-3">
-            <a class="btn btn-dark" href="#">Ajoutez une compétence</a>
+            <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Ajoutez une compétence</a>
           </div>
         </div>
       </div>
@@ -82,58 +86,70 @@ Dashboard Nav -->
     <div class="row">
       <div class="col-md-12">
         <div class="user-dashboard-info-box mb-0 pb-4">
-          <div class="section-title-02 mb-4">
-            <h4>Emplois Enregistrés</h4>
-          </div>
+          <div class="row mb-4">
+              <div class="col-md-7 col-sm-5 d-flex align-items-center">
+                <div class="section-title-02 mb-0 ">
+                  <h4 class="mb-0">Emplois Enregistrés</h4>
+                </div>
+              </div>
+              <div class="col-md-5 col-sm-7 mt-3 mt-sm-0">
+                <div class="search">
+                  <!-- <i class="fas fa-search"></i> -->
+                  <input type="text" class="form-control"  id="myInput" onkeyup="myFunction()" placeholder="Recherche....">
+                </div>
+              </div>
+            </div>
           <div class="row">
-          <?php foreach($jaime as $jaimeone): ?>
-                      <div class="col-12">
-                        <div class="job-list ">
-                          <div class="job-list-logo">
-                            <img class="img-fluid" src="../images/svg/01.svg" alt="">
-                          </div>
-                          <div class="job-list-details">
-                            <div class="job-list-info">
-                              <div class="job-list-title">
-                                <h5 class="mb-0"><a href="#"><?=$jaimeone->secteur?></a></h5>
-                                <?php 
-                                    $off = $offre->find($jaimeone->id_offre);
-                                    $emp = $off->id_employeur;
-                                   // echo "la valeur $emp";
-                                    $company = $findcompany->find($emp);
-                                    //var_dump($company->entreprise);
-                                   // die;
-                                ?>
-                              </div>
-                              <div class="job-list-option">
-                                <ul class="list-unstyled">
-                                  <li> <span>via</span> <a href="#"> <?= $company->entreprise ?></a> </li>
-                                  <li><i class="fas fa-map-marker-alt pe-1"><?=$jaimeone->adresse?></i></li>
-                                  <li><i class="fas fa-filter pe-1"></i><?=$jaimeone->typedemande?></li>
-                                  <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i><?=$jaimeone->typeemploi?></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="job-list-favourite-time"> <a class="job-list-favourite order-2" href="#"><i class="fas fa-heart text-danger"></i></a> <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i><?=$jaimeone->date?></span> </div>
-                        </div>
-                      </div>
-                      
-                    </div>
-          <?php endforeach ;?>
-        <div class="row">
-          <div class="col-12 text-center mt-4 mt-sm-5">
-            <ul class="pagination justify-content-center mb-0 mb-sm-4">
-              <li class="page-item disabled"> <span class="page-link b-radius-none">Prec</span> </li>
-              <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">...</a></li>
-              <li class="page-item"><a class="page-link" href="#">25</a></li>
-              <li class="page-item"> <a class="page-link" href="#">Suiv</a> </li>
-            </ul>
-          </div>
-        </div>
+          <!-- <table id="myTable" class="col-12">
+            <div class="job-list ">
+              <div class="job-list-logo">
+                <img class="img-fluid" src="../images/svg/01.svg" alt="">
+              </div>
+              <div class="job-list-details">
+                <div class="job-list-info recherche_tr">
+                  <div class="job-list-title">
+                    <h5 class="recherche_td" class="mb-0"><a href="#"><?=$candidat_aime->offre_titre?></a></h5>
+                  </div>
+                  <div class="job-list-option">
+                    <ul class="list-unstyled">
+                      <li class="recherche_td"> <span>via</span> <a href="#"> <?= $candidat_aime->entreprise ?></a> </li>
+                      <li class="recherche_td"><i class="fas fa-map-marker-alt pe-1"><?=$candidat_aime->adresse?></i></li>
+                      <li class="recherche_td"><i class="fas fa-filter pe-1"></i><?=$candidat_aime->typeemploi_nom?></li>
+                      <li class="recherche_td"><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i><?=$candidat_aime->domaine_nom ?></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="job-list-favourite-time"> <a class="job-list-favourite order-2" href="/main/offre/<?= $candidat_aime->offre_id?>"><i class="fas fa-heart text-danger"></i></a> <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i><?=$candidat_aime->date_creat?></span> </div>
+            </div>
+          </div>          
+          </table> -->
+          <table class="table table-bordered" id="myTable">
+              <thead class="bg-light">
+                <tr >
+                  <th scope="col">Titre de l'emploi</th>
+                  <th scope="col">Emplois aimés</th>
+                  <!-- <th scope="col">Appreciation</th> -->
+                  <!-- <th scope="col">Action</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($candidat_aimes as $candidat_aime): ?>
+                <tr>
+                  <td scope="row"> <b class="text-dark"><?=  $candidat_aime->offre_titre ?>  </b> 
+                    <p class="mb-1 mt-2 text-muted "><i class="far fa-clock pe-1"></i>Expire le : <?= $candidat_aime->date_expiration ?></p>
+                    <p class="mb-1 mt-2 text-muted " ><?=$candidat_aime->adresse?></p>
+                    <p class="mb-1 mt-2 text-muted "><i class="fas fa-filter pe-1"></i><?=$candidat_aime->typeemploi_nom?></li></p>
+                    <p class="mb-0 text-muted "><i class="fas fa-suitcase pe-1"></i>Entreprise : <?= $candidat_aime->employeur_entreprise ?></p>
+                  </td>
+                  <td>
+                    <div class="job-list-favourite-time"> <a class="job-list-favourite order-2" href="/main/offre/<?= $candidat_aime->offre_id?>"><i class="fas fa-heart text-danger"></i></a> <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i><?=$candidat_aime->date_creat?></span> </div>
+
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+               </tbody>
+            </table>
         </div>
       </div>
     </div>

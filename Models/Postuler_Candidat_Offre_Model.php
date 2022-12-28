@@ -27,6 +27,53 @@ class Postuler_Candidat_Offre_Model extends Model{
         )->fetch();
     }
 
+    public function tous_les_offres_by_candidat($id_candidat){
+        
+        return $this->requete(
+            "SELECT * ,offre.titre as offre_titre, domaine.nom as domaine_nom, employeur.entreprise as employeur_entreprise, 
+            employeur.image as employeur_image, offre.id as offre_id,
+            offre.date_creation as offre_date_creation, offre.date_expiration as offre_date_expiration
+            FROM $this->table
+            INNER JOIN offre ON offre.id = $this->table.id_offre
+            INNER JOIN  domaine ON offre.domaine = domaine.id 
+            INNER JOIN  employeur ON offre.id_employeur = employeur.id
+            INNER JOIN candidat ON candidat.id = $this->table.id_candidat
+
+            WHERE id_candidat = $id_candidat ORDER BY offre.id DESC
+            "
+        )->fetchAll();
+    }
+
+    // Candidature accéptée = 2
+    // Valeur par défaut dans la base de donnée
+
+    public function tous_les_candidatures_acceptees($id_candidat){
+        
+        return $this->requete(
+            "SELECT * FROM $this->table
+            INNER JOIN offre ON offre.id = $this->table.id_offre
+            INNER JOIN candidat ON candidat.id = $this->table.id_candidat
+
+            WHERE acceptation = 2
+            "
+        )->fetchAll();
+    }
+
+    // Candidature refisée = 1
+    // Valeur par défaut dans la base de donnée
+    public function tous_les_candidatures_refusees($id_candidat){
+        
+        return $this->requete(
+            "SELECT * FROM $this->table
+            INNER JOIN offre ON offre.id = $this->table.id_offre
+            INNER JOIN candidat ON candidat.id = $this->table.id_candidat
+
+            WHERE acceptation = 1
+            "
+        )->fetchAll();
+    }
+
+
     public function delete_postuler($id_offre, $id_candidat){
 
         return $this->requete("DELETE FROM  $this->table  WHERE id_offre = $id_offre AND id_candidat = $id_candidat ");

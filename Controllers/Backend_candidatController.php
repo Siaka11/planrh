@@ -2,16 +2,20 @@
 
 namespace App\Controllers;
 
+use DateTime;
 use App\Core\Util;
 use Dompdf\dompdf;
-use App\Models\JaimeModel;
+use App\Models\Model;
 use App\Models\OffreModel;
 use App\Models\DomaineModel;
 use App\Models\CandidatModel;
 use App\Models\EmployeurModel;
 use App\Models\FormationModel;
+use App\Models\CompetenceModel;
 use App\Models\ExperienceModel;
 use App\Models\RecompenseModel;
+use App\Models\Aimer_Candidat_Offre_Model;
+use App\Models\Postuler_Candidat_Offre_Model;
 
 class Backend_candidatController extends Controller{
 
@@ -23,49 +27,58 @@ class Backend_candidatController extends Controller{
             exit;
         }
 
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($_SESSION['user']['id']);
+
         $offre = new OffreModel;
         $toutes_offres = $offre->findAll();
-        $offre_par_page = 2;
+        $offre_par_page = 1;
         $offres_totales = count($toutes_offres);
-        $recupere_tous_offres = $offre->recupere_tous_offres();
+        $page_totale = ceil($offres_totales / $offre_par_page);
+        $page_courante = 1;
+        
+        $depart = ($page_courante - 1) * $offre_par_page;
+        $recupere_tous_offres = $offre->recupere_tous_offres_avec_limit($depart,$offre_par_page);
+
+
+        $postuler = new Postuler_Candidat_Offre_Model;
+        $postuler_Candidat_Offre_Model = $postuler->tous_les_offres_by_candidat($_SESSION['user']['id']);
+        $toutes_offres_postulees = count($postuler_Candidat_Offre_Model);
+        //var_dump($toutes_offres_postulees);
+        $tous_les_candidatures_acceptees = $postuler->tous_les_candidatures_acceptees($_SESSION['user']['id']);
+        $tous_les_candidatures_acceptees = count($tous_les_candidatures_acceptees);
+
+        $tous_les_candidatures_refusees = $postuler->tous_les_candidatures_refusees($_SESSION['user']['id']);
+        $tous_les_candidatures_refusees = count($tous_les_candidatures_refusees);
 
         $util = new Util();
 
+        if(isset($_POST['charger'])){
 
+            $namedate = new DateTime();
+            $name = $namedate->getTimestamp();
 
-       
-        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
-           $tailleMax = 2097152;
-           $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
-           if($_FILES['avatar']['size'] <= $tailleMax) {
-              $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
-              if(in_array($extensionUpload, $extensionsValides)) {
-                 $chemin = "../public_html/images/".$_SESSION["user"]["id"].".".$extensionUpload;
-                 //var_dump($_FILES['avatar']['tmp_name']);
-                 //die;
-                 $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
-                 if($resultat) {
-                    var_dump($resultat);
-                    die;
-                   // $updateavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
-                   // $updateavatar->execute(array(
-                      // 'avatar' => $_SESSION['id'].".".$extensionUpload,
-                    //   'id' => $_SESSION['id']
-                    //   ));
-                   // header('Location: profil.php?id='.$_SESSION['id']);
-                 } else {
-                    $msg = "Erreur durant l'importation de votre photo de profil";
-                 }
-              } else {
-                 $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
-              }
-           } else {
-              $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
-           }
+            //create file's name
+            Util::uploader($name);
+
+            $image = $name.'.png';
+
+            $candidat = new CandidatModel;
+            $candidat ->setId($_SESSION['user']['id'])
+                          ->setImage($image)
+                          ;
+                         
+              
+             $candidat->update();
+
+            $_SESSION["message"] = "Votre photo a été changé avec succès!";
+            header("Location: /backend_candidat");
+
         }
+        
        
 
-        return $this->render('candidat/index.php', compact('recupere_tous_offres', 'util'), 'home_backend_candidat.php');
+        return $this->render('candidat/index.php', compact('recupere_tous_offres', 'util', 'page_totale', 'page_courante', 'toutes_offres_postulees', 'candidat', 'tous_les_candidatures_acceptees', 'tous_les_candidatures_refusees'), 'home_backend_candidat.php');
     }
 
 
@@ -77,59 +90,57 @@ class Backend_candidatController extends Controller{
             exit;
         }
 
-        $get = explode("/",$_GET['p']);
-        //var_dump($get);
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($_SESSION['user']['id']);
 
         $offre = new OffreModel;
         $toutes_offres = $offre->findAll();
         $offre_par_page = 1;
         $offres_totales = count($toutes_offres);
         $page_totale = ceil($offres_totales / $offre_par_page);
-        //var_dump($page_totale);
         $page_courante = $id;
         
         $depart = ($id - 1) * $offre_par_page;
         $recupere_tous_offres = $offre->recupere_tous_offres_avec_limit($depart,$offre_par_page);
 
+        $postuler = new Postuler_Candidat_Offre_Model;
+        $postuler_Candidat_Offre_Model = $postuler->tous_les_offres_by_candidat($_SESSION['user']['id']);
+        $toutes_offres_postulees = count($postuler_Candidat_Offre_Model);
+        //var_dump($toutes_offres_postulees);
+        $tous_les_candidatures_acceptees = $postuler->tous_les_candidatures_acceptees($_SESSION['user']['id']);
+        $tous_les_candidatures_acceptees = count($tous_les_candidatures_acceptees);
+
+        $tous_les_candidatures_refusees = $postuler->tous_les_candidatures_refusees($_SESSION['user']['id']);
+        $tous_les_candidatures_refusees = count($tous_les_candidatures_refusees);
 
 
         $util = new Util();
 
+        if(isset($_POST['charger'])){
 
+            $namedate = new DateTime();
+            $name = $namedate->getTimestamp();
 
-       
-        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
-           $tailleMax = 2097152;
-           $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
-           if($_FILES['avatar']['size'] <= $tailleMax) {
-              $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
-              if(in_array($extensionUpload, $extensionsValides)) {
-                 $chemin = "../public_html/images/".$_SESSION["user"]["id"].".".$extensionUpload;
-                 //var_dump($_FILES['avatar']['tmp_name']);
-                 //die;
-                 $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
-                 if($resultat) {
-                    var_dump($resultat);
-                    die;
-                   // $updateavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
-                   // $updateavatar->execute(array(
-                      // 'avatar' => $_SESSION['id'].".".$extensionUpload,
-                    //   'id' => $_SESSION['id']
-                    //   ));
-                   // header('Location: profil.php?id='.$_SESSION['id']);
-                 } else {
-                    $msg = "Erreur durant l'importation de votre photo de profil";
-                 }
-              } else {
-                 $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
-              }
-           } else {
-              $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
-           }
+            //create file's name
+            Util::uploader($name);
+
+            $image = $name.'.png';
+
+            $candidat = new CandidatModel;
+            $candidat ->setId($_SESSION['user']['id'])
+                          ->setImage($image)
+                          ;
+                         
+              
+             $candidat->update();
+
+            $_SESSION["message"] = "Votre photo a été changé avec succès!";
+            header("Location: /backend_candidat");
+
         }
        
 
-        return $this->render('candidat/page.php', compact('recupere_tous_offres', 'util', 'page_totale', 'page_courante'), 'home_backend_candidat.php');
+        return $this->render('candidat/page.php', compact('recupere_tous_offres', 'util', 'page_totale', 'page_courante', 'toutes_offres_postulees', 'candidat', 'tous_les_candidatures_acceptees', 'tous_les_candidatures_refusees'), 'home_backend_candidat.php');
     }
 
     public function imprimer(){
@@ -154,15 +165,19 @@ class Backend_candidatController extends Controller{
         
 
         $findFormation = new FormationModel;
-        $findFormation = $findFormation->findAll();
+        $findFormation = $findFormation->findBy(["id_candidat" =>$_SESSION['user']['id']]);
 
         $findExperience = new ExperienceModel;
-        $findExperience = $findExperience->findAll();
+        $findExperience = $findExperience->findBy(["id_candidat" =>$_SESSION['user']['id']]);
 
         $findReccompense = new RecompenseModel;
-        $findReccompense = $findReccompense->findAll();
+        $findReccompense = $findReccompense->findBy(["id_candidat" =>$_SESSION['user']['id']]);
 
-        return $this->render('candidat/backend-candidat-cv.php', compact('findFormation', 'findExperience', 'findReccompense', 'users'), 'generatepdf.php');
+        $comptences = new CompetenceModel;
+        $comptences = $comptences->findBy(["id_candidat" =>$_SESSION['user']['id']]);
+        
+
+        return $this->render('candidat/backend-candidat-cv.php', compact('findFormation', 'findExperience', 'findReccompense', 'users', 'comptences'), 'generatepdf.php');
 
 
     }
@@ -185,7 +200,34 @@ class Backend_candidatController extends Controller{
             $can = $can->find($_SESSION['user']['id']);
           //  var_dump($can);
 
-          $candidat = new CandidatModel;
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($_SESSION['user']['id']);
+
+
+        if(isset($_POST['charger'])){
+
+            $namedate = new DateTime();
+            $name = $namedate->getTimestamp();
+
+            //create file's name
+            Util::uploader($name);
+
+            $image = $name.'.png';
+
+            $candidat = new CandidatModel;
+            $candidat ->setId($_SESSION['user']['id'])
+                          ->setImage($image)
+                          ;
+                         
+              
+             $candidat->update();
+
+            $_SESSION["message"] = "Votre photo a été changé avec succès!";
+            header("Location: /backend_candidat");
+
+        }
+
+        //$candidat = new CandidatModel;
         if(isset($_POST)){
 
             
@@ -210,7 +252,8 @@ class Backend_candidatController extends Controller{
             $linkedin = strip_tags($_POST['linkedin']);
             
             
-            $candidat->setId($_SESSION['user']['id'])
+            //var_dump($_SESSION['user']['id']);
+            $candidatmodel->setId($_SESSION['user']['id'])
                             ->setNom($nom)
                             ->setEmail($email)
                             ->setDatenaissance($datenaissance)
@@ -224,8 +267,10 @@ class Backend_candidatController extends Controller{
                             ->setLinkedin($linkedin)
                             ->setSalaire($salaire)
                           ;
-            $candidat->update();
-
+            $candidatmodel->update();
+            
+            header("Location: /backend_candidat/profil");
+            exit;
             }
 
             
@@ -272,33 +317,97 @@ class Backend_candidatController extends Controller{
             exit;
         }
     
-        $jaime = new JaimeModel;
-        $jaime = $jaime->findjaimechoix();
-        $ar = JaimeModel::valueentre();
+
+        if(isset($_POST['charger'])){
+
+            $namedate = new DateTime();
+            $name = $namedate->getTimestamp();
+
+            //create file's name
+            Util::uploader($name);
+
+            $image = $name.'.png';
+
+            $candidat = new CandidatModel;
+            $candidat ->setId($_SESSION['user']['id'])
+                          ->setImage($image)
+                          ;
+                         
+              
+             $candidat->update();
+
+            $_SESSION["message"] = "Votre photo a été changé avec succès!";
+            header("Location: /backend_candidat");
+
+        }
+
 
         $offre = new OffreModel;
         $findcompany = new EmployeurModel;
         //var_dump($findcompany->findBy());
         //die;
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($_SESSION['user']['id']);
+
+        $candidat_aime_model = new Aimer_Candidat_Offre_Model;
+        $candidat_aimes = $candidat_aime_model->tous_like_by_offre_candidat($_SESSION["user"]["id"]);
 
 
-        return $this->render('candidat/backend-candidat-emplois-enregistres.php', compact('jaime', 'offre', 'findcompany'), 'home_backend_candidat.php');
+
+        return $this->render('candidat/backend-candidat-emplois-enregistres.php', compact( 'offre', 'candidat_aimes', 'candidat'), 'home_backend_candidat.php');
 
     }
 
     public function modification_cv(){
         if(!$_SESSION["user"]["id"]){
-            echo "nok";
             $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
             header("Location: /");
             exit;
         }
+
+        if(isset($_POST['charger'])){
+
+            $namedate = new DateTime();
+            $name = $namedate->getTimestamp();
+
+            //create file's name
+            Util::uploader($name);
+
+            $image = $name.'.png';
+
+            $candidat = new CandidatModel;
+            $candidat ->setId($_SESSION['user']['id'])
+                          ->setImage($image)
+                          ;
+                         
+              
+             $candidat->update();
+
+            $_SESSION["message"] = "Votre photo a été changé avec succès!";
+            header("Location: /backend_candidat");
+
+        }
         
         if(isset($_POST)){
            
-            if(isset($_POST['send6']))
+            if(isset($_POST['envoyer_competence']))
             {
-                echo "world";
+                $titre = strip_tags($_POST['titre']);
+                $pourcentage = strip_tags($_POST['pourcentage']);
+
+                $comptencemodel = new CompetenceModel;
+                $comptencemodel ->setTitre($titre)
+                              ->setPourcentage($pourcentage)
+                              ->setId_candidat($_SESSION["user"]["id"])
+                              ;
+                  
+                $comptencemodel->createOne();  
+
+               $_SESSION["message"] = "Vous avez saisi une compétence";
+               //$_SESSION["information"] = "Vous avez saisi une formation";
+                header("Location: /backend_candidat/modification_cv");
+                exit;
+
             }
            
            if(isset($_POST['send'])){
@@ -315,7 +424,7 @@ class Backend_candidatController extends Controller{
                               ->setDescription($description)
                               ->setAnnee($annee)
                               ->setEtablissement($etablissement)
-                              ->setId_candidat1($_SESSION["user"]["id"])
+                              ->setId_candidat($_SESSION["user"]["id"])
 
                               ;
                   
@@ -346,7 +455,7 @@ class Backend_candidatController extends Controller{
                           ->setDatefin($datefin)
                           ->setDatedebut($datedebut)
                           ->setEntreprise($entreprise)
-                          ->setId_candidats($_SESSION["user"]["id"])
+                          ->setId_candidat($_SESSION["user"]["id"])
 
                           ;
               
@@ -438,7 +547,7 @@ class Backend_candidatController extends Controller{
                           ->setDatefin($datefin)
                           ->setDatedebut($datedebut)
                           ->setEntreprise($entreprise)
-                          ->setId_candidats($_SESSION["user"]["id"])
+                          ->setId_candidat($_SESSION["user"]["id"])
                           ;
                          
               
@@ -453,23 +562,78 @@ class Backend_candidatController extends Controller{
        
 
          $findFormation = new FormationModel;
-         $findFormation = $findFormation->findAll();
+         $findFormation = $findFormation->findBy(["id_candidat" =>$_SESSION['user']['id']]);
 
          $findExperience = new ExperienceModel;
-         $findExperience = $findExperience->findAll();
+         $findExperience = $findExperience->findBy(["id_candidat" =>$_SESSION['user']['id']]);
 
          $findReccompense = new RecompenseModel;
-         $findReccompense = $findReccompense->findAll();
+         $findReccompense = $findReccompense->findBy(["id_candidat" =>$_SESSION['user']['id']]);
 
-        //  var_dump($findExperience);
+         $comptencemodel = new CompetenceModel;
+         $comptencemodels = $comptencemodel->findBy(["id_candidat" =>$_SESSION['user']['id']]);
+         // var_dump($comptencemodel);
         //  die;
-       
 
-        return $this->render('candidat/backend-candidat-modification-cv.php', compact('findFormation', 'findExperience', 'findReccompense'), 'home_backend_candidat.php');
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($_SESSION['user']['id']);
+
+       
+        if(isset($_POST['modifier_competence'])){
+
+            
+            $id = strip_tags($_POST['id_competence']);
+            $titre = strip_tags($_POST['titre']);
+            $pourcentage = strip_tags($_POST['pourcentage']);
+
+            var_dump($id);
+            var_dump($titre);
+            var_dump($pourcentage);
+            //die;
+
+            $comptencemodel ->setId($id)
+                          ->setTitre($titre)
+                          ->setPourcentage($pourcentage)
+                          ->setId_candidat($_SESSION["user"]["id"])
+                          ;
+                         
+              
+             $comptencemodel->update();
+
+             $_SESSION["message"] = "Cette compétence a été modifiée ";
+              //$_SESSION["information"] = "Vous avez saisi une formation";
+                header("Location: /backend_candidat/modification_cv");
+                exit;
+        }
+
+        return $this->render('candidat/backend-candidat-modification-cv.php', compact('findFormation', 'findExperience', 'findReccompense', 'candidat', 'comptencemodels'), 'home_backend_candidat.php');
 
     }
 
     public function modification($id){
+
+        if(isset($_POST['charger'])){
+
+            $namedate = new DateTime();
+            $name = $namedate->getTimestamp();
+
+            //create file's name
+            Util::uploader($name);
+
+            $image = $name.'.png';
+
+            $candidat = new CandidatModel;
+            $candidat ->setId($_SESSION['user']['id'])
+                          ->setImage($image)
+                          ;
+                         
+              
+             $candidat->update();
+
+            $_SESSION["message"] = "Votre photo a été changé avec succès!";
+            header("Location: /backend_candidat");
+
+        }
         if(isset($_POST['send1'])){
             //echo "merci";
 
@@ -542,8 +706,11 @@ class Backend_candidatController extends Controller{
             exit;
         }
 
-        $candidat = new CandidatModel;
-        $candidatpass = $candidat->find($_SESSION['user']['motdepasse']);
+        // $candidat = new CandidatModel;
+        // $candidatpass = $candidat->find($_SESSION['user']['motdepasse']);
+
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($_SESSION['user']['id']);
 
         $can = new CandidatModel;
 
@@ -583,7 +750,7 @@ class Backend_candidatController extends Controller{
 
         }
 
-        return $this->render('candidat/backend-candidat-modification-pass.php', [], 'home_backend_candidat.php');
+        return $this->render('candidat/backend-candidat-modification-pass.php', compact('candidat'), 'home_backend_candidat.php');
 
     }
 
@@ -593,17 +760,41 @@ class Backend_candidatController extends Controller{
             header("Location: /");
             exit;
         }
-        $info = new JaimeModel;
-        $infojob = $info->findjaimechoix();
 
-        //$jaime = new JaimeModel;
-        //$jaime = $jaime->findjaimechoix();
-      //  $ar = JaimeModel::valueentre();
+        if(isset($_POST['charger'])){
+
+            $namedate = new DateTime();
+            $name = $namedate->getTimestamp();
+
+            //create file's name
+            Util::uploader($name);
+
+            $image = $name.'.png';
+
+            $candidat = new CandidatModel;
+            $candidat ->setId($_SESSION['user']['id'])
+                          ->setImage($image)
+                          ;
+                         
+              
+             $candidat->update();
+
+            $_SESSION["message"] = "Votre photo a été changé avec succès!";
+            header("Location: /backend_candidat");
+
+        }
+        
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($_SESSION['user']['id']);
+
+        $postuler = new Postuler_Candidat_Offre_Model;
+        $candidat_offres = $postuler->tous_les_offres_by_candidat($_SESSION['user']['id']);
+
 
         $offre = new OffreModel;
         $findcompany = new EmployeurModel;
 
-        return $this->render('candidat/backend-liste-emplois.php', compact('infojob', 'offre', 'findcompany'), 'home_backend_candidat.php');
+        return $this->render('candidat/backend-liste-emplois.php', compact('offre', 'findcompany', 'candidat', 'candidat_offres'), 'home_backend_candidat.php');
 
     }
 

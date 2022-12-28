@@ -8,11 +8,11 @@ inner banner -->
         <div class="candidates-user-info">
           <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid " src="../images/avatar/06.jpg" alt="" data-bs-target="#staticBackdrop">
+              <img class="img-fluid "  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
                 <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="profile-avatar-info ms-4">
-              <h3>Ange Brou</h3>
+              <h3><?= $candidat->nom ?></h3>
               <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -24,7 +24,7 @@ inner banner -->
                     <form method='post' action='' enctype="multipart/form-data">
                       Selectionnez une image : 
                       <input type='file' name='avatar'id='file' class='form-control' ><br>
-                      <input type='submit' class='btn btn-info' value='Charger' name="submit" id='btn_upload'>
+                      <input type='submit' class='btn btn-info' value='Charger' name="charger" id='btn_upload'>
                     </form>
                     </div>
                   </div>
@@ -98,7 +98,7 @@ Candidates Dashboard -->
                  <h6 class="candidates-info-title text-white">Total Candidature</h6>
                 </div>
                 <div class="candidates-info-count">
-                  <h3 class="mb-0 text-white">01</h3>
+                  <h3 class="mb-0 text-white"><?= $toutes_offres_postulees ?></h3>
                 </div>
               </div>
             </div>
@@ -111,7 +111,7 @@ Candidates Dashboard -->
                  <h6 class="candidates-info-title text-white">Candidature Acceptées</h6>
                 </div>
                 <div class="candidates-info-count">
-                  <h3 class="mb-0 text-white">00</h3>
+                  <h3 class="mb-0 text-white"><?= $tous_les_candidatures_acceptees ?></h3>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@ Candidates Dashboard -->
                  <h6 class="candidates-info-title text-white">Candidature rejetées</h6>
                 </div>
                 <div class="candidates-info-count">
-                  <h3 class="mb-0 text-white">00</h3>
+                  <h3 class="mb-0 text-white"><?= $tous_les_candidatures_refusees ?></h3>
                 </div>
               </div>
             </div>
@@ -168,15 +168,30 @@ Candidates Dashboard -->
             <?php endforeach; ?>
           </div>
           <div class="row">
-            <div class="col-12 text-center mt-4 mt-md-5">
+          <div class="col-12 text-center mt-4 mt-md-5">
               <ul class="pagination justify-content-center mb-md-4 mb-0">
-                <li class="page-item disabled"> <span class="page-link b-radius-none">Prec</span> </li>
-                <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">25</a></li>
-                <li class="page-item"> <a class="page-link" href="#">Suiv</a> </li>
+
+                  <?php if($page_courante == 1): ?>
+                        <li class="page-item disabled"> <span class="page-link b-radius-none">Précédent</span> </li>
+                  <?php else: ?>
+                    <li class="page-item "> <a class="page-link" href="/backend_candidat/page/<?= $page_courante - 1 ?>">Précédent</a> </li>
+                  <?php endif ?>
+
+                  <?php for($i = 1; $i <= $page_totale; $i++): ?> 
+
+                  <?php if($i == $page_courante): ?>
+                    <li class="page-item active" aria-current="page"><span class="page-link"><?= $i ?> </span> <span class="sr-only">(current)</span></li>
+                  <?php else: ?>
+                    <li class="page-item"><a class="page-link" href="/backend_candidat/page/<?= $i ?>"><?= $i ?></a></li>
+                  <?php endif ?>
+   
+                  <?php endfor; ?>
+
+                  <?php if($page_courante == $page_totale): ?>
+                        <li class="page-item disabled"> <span class="page-link b-radius-none">Suivant</span> </li>
+                  <?php else: ?>
+                    <li class="page-item "> <a class="page-link" href="/backend_candidat/page/<?= $page_courante + 1 ?>">Suivant</a> </li>
+                  <?php endif ?>
               </ul>
             </div>
           </div>
