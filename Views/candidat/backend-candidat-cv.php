@@ -16,7 +16,7 @@
               <div class="profile">
                 <div class="jobber-user-info">
                   <div class="profile-avatar">
-                    <img class="img-fluid " src="../images/avatar/06.jpg" alt="">
+                    <img class="img-fluid " src="../images/<?= $users->image ?>" alt="">
                   </div>
                   <div class="profile-avatar-info mt-3">
                     <h5><?=$users->nom?> <?php echo "<br/> Option: Travailleur" ?></h5>

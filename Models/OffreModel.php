@@ -44,6 +44,19 @@ class OffreModel extends Model{
 
     }
 
+    public function tous_candidats_postules_by_offre($id_employeur, $acceptation){
+
+        return $this->requete(
+            "SELECT *, candidat.nom as candidat_nom, candidat.poste as candidat_poste, 
+            candidat.contact as candidat_contact, candidat.image as candidat_image, 
+            postuler_candidat_offre.acceptation as acceptation 
+            FROM $this->table
+            INNER JOIN postuler_candidat_offre ON postuler_candidat_offre.id_offre = offre.id
+            INNER JOIN candidat ON candidat.id = postuler_candidat_offre.id_candidat
+            WHERE offre.id_employeur = $id_employeur AND acceptation = $acceptation
+            "
+        )->fetchAll();
+    }
 
     public function recupere_tous_offres(){
 
@@ -56,6 +69,21 @@ class OffreModel extends Model{
         INNER JOIN  domaine ON offre.domaine = domaine.id 
         INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id ORDER BY offre.id DESC
         ")->fetchAll();
+    }
+
+    public function recupere_toutes_offres_by_2_date($date1, $date2){
+
+        return $this->requete('
+        SELECT * , domaine.nom as domaine_nom, employeur.entreprise as employeur_entreprise, 
+        typeemploi.nom as typeemploi_nom, employeur.image as employeur_image, offre.id as offre_id,
+        offre.date_creation as offre_date_creation
+        FROM '.$this->table.'
+        INNER JOIN  employeur ON offre.id_employeur = employeur.id
+        INNER JOIN  domaine ON offre.domaine = domaine.id 
+        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
+        WHERE offre.date_creation BETWEEN  "'.$date1.'" AND  "'.$date2.'"
+        ORDER BY offre.id DESC
+        ')->fetchAll();
     }
 
     public function recupere_tous_offres_avec_limit($depart, $offre_par_page){
@@ -100,7 +128,7 @@ class OffreModel extends Model{
     }
 
     public function offreFromUser($user){
-        return $this->requete("SELECT * FROM $this->table WHERE id_employeur = ?", [$user])->fetchAll();
+        return $this->requete("SELECT * FROM $this->table WHERE id_employeur = ? ORDER BY id DESC", [$user])->fetchAll();
     }
 
     /**

@@ -321,7 +321,7 @@ Signin Modal Popup -->
                 <div class="row">
                   <div class="col-md-6">
                     
-                    <button class="btn btn-primary d-grid" name="send" >Connexion</button>
+                    <button class="btn btn-primary d-grid" name="connexion_candidat" >Connexion</button>
                   </div>
                   <div class="col-md-6">
                     <div class="ms-md-3 mt-3 mt-md-0 forgot-pass">
@@ -346,7 +346,7 @@ Signin Modal Popup -->
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <button class="btn btn-primary d-grid" name="sendemployeur">Connexion</button>
+                    <button class="btn btn-primary d-grid" name="connexion_employeur">Connexion</button>
                   </div>
                   <div class="col-md-6">
                     <div class="ms-md-3 mt-3 mt-md-0">

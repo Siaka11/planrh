@@ -198,58 +198,78 @@ Category-style -->
               <i class="flaticon-salary-1"></i>
             </div>
             <?php 
-              $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
-             // var_dump($nbre_offre_achat_appro);
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
             ?>
             <h6>Achats-Approvisionnements</h6>
-            <span class="mb-0">301 Postes Disponibles </span>
+            <span class="mb-0"><?= $nbre_offre_achat_appro ?> Postes Disponibles </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-worker"></i>
             </div>
+            <?php 
+                $nbre_offre_gestion_ind = $emploiModel->offre_domaine(2);
+            ?>
             <h6>Gestion industrielle</h6>
-            <span class="mb-0">287 Postes Disponibles </span>
+            <span class="mb-0"><?= $nbre_offre_gestion_ind ?> Postes Disponibles </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-conversation"></i>
             </div>
+            <?php 
+                $nbre_offre_ress_hum = $emploiModel->offre_domaine(3);
+            ?>
             <h6>Ressources humaines-recrutement</h6>
-            <span class="mb-0">542 Postes Disponibles </span>
+            <span class="mb-0"><?= $nbre_offre_ress_hum ?> Postes Disponibles </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-selection-process"></i>
             </div>
+            <?php 
+                $nbre_offre_assurances = $emploiModel->offre_domaine(4);
+            ?>
             <h6>Assurances</h6>
-            <span class="mb-0">785 Poste Disponible </span>
+            <span class="mb-0"><?= $nbre_offre_assurances ?> Poste Disponible </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-coding"></i>
             </div>
+            <?php 
+                $nbre_offre_informatique = $emploiModel->offre_domaine(5);
+            ?>
             <h6>Informatique</h6>
-            <span class="mb-0">862 Postes Disponibles </span>
+            <span class="mb-0"><?= $nbre_offre_informatique ?> Postes Disponibles </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-chat"></i>
             </div>
+            <?php 
+                $nbre_offre_client = $emploiModel->offre_domaine(6);
+            ?>
             <h6>Service à la clientèle</h6>
-            <span class="mb-0">423 Postes Disponibles </span>
+            <span class="mb-0"><?= $nbre_offre_client ?> Postes Disponibles </span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-worker"></i>
             </div>
+            <?php 
+                $nbre_offre_inge_tech = $emploiModel->offre_domaine(7);
+            ?>
             <h6>Ingénierie-Technique</h6>
-            <span class="mb-0">253 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_inge_tech ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-doctor"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Santé</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -257,6 +277,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-taxi"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Chauffeurs-Caristes</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -264,6 +287,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-balance"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Juridique</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -271,6 +297,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-team"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Soutien administratif</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -278,6 +307,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-money"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Comptabilité-Finances</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -285,6 +317,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-salary"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Marketing</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -292,6 +327,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-shipped"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Transport-Logistique</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -299,6 +337,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-worker"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Construction</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -306,6 +347,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-job-2"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Métiers spécialisés-Fabrication</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -313,6 +357,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-job-1"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Travail générale-Production</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -320,6 +367,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-approved"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Direction-Cadre</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -327,6 +377,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-fast-food"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Production alimentaire-Restauration</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>
@@ -334,6 +387,9 @@ Category-style -->
             <div class="category-icon mb-4">
               <i class="flaticon-coin"></i>
             </div>
+            <?php 
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+            ?>
             <h6>Ventes-Représentations</h6>
             <span class="mb-0">689 Postes Disponibles</span>
           </a>

@@ -16,6 +16,7 @@ class Postuler_Candidat_Offre_Model extends Model{
     }
 
 
+
     public function postuler_by_offre_candidat($id_offre, $id_candidat){
         
         return $this->requete(
@@ -54,7 +55,7 @@ class Postuler_Candidat_Offre_Model extends Model{
             INNER JOIN offre ON offre.id = $this->table.id_offre
             INNER JOIN candidat ON candidat.id = $this->table.id_candidat
 
-            WHERE acceptation = 2
+            WHERE id_candidat = $id_candidat AND acceptation = 2
             "
         )->fetchAll();
     }
@@ -68,7 +69,7 @@ class Postuler_Candidat_Offre_Model extends Model{
             INNER JOIN offre ON offre.id = $this->table.id_offre
             INNER JOIN candidat ON candidat.id = $this->table.id_candidat
 
-            WHERE acceptation = 1
+            WHERE id_candidat = $id_candidat AND acceptation = 1
             "
         )->fetchAll();
     }

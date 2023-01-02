@@ -22,6 +22,7 @@ class EmployeurModel extends Model{
     protected $youtube;
     protected $siege;
     protected $image;
+    protected $couverture;
 
     public function __construct()
     {
@@ -440,6 +441,26 @@ class EmployeurModel extends Model{
     public function setDate_creation($date_creation)
     {
         $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of couverture
+     */ 
+    public function getCouverture()
+    {
+        return $this->couverture;
+    }
+
+    /**
+     * Set the value of couverture
+     *
+     * @return  self
+     */ 
+    public function setCouverture($couverture)
+    {
+        $this->couverture = $couverture;
 
         return $this;
     }

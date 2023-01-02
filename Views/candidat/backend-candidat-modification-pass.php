@@ -96,18 +96,18 @@ Change Password -->
               <form method="POST" class="row">
                 <div class="form-group col-md-12 mb-3">
                   <label class="form-label">Mot de passe actuel</label>
-                  <input type="password" name="pass" class="form-control" value="" >
+                  <input type="password" name="password_old" class="form-control" value="" >
                 </div>
                 <div class="form-group col-md-12 mb-3">
                   <label class="form-label">Nouveau mot de passe</label>
-                  <input type="password" name="password1" class="form-control" value="">
+                  <input type="password" name="password_new1" class="form-control" value="">
                 </div>
                 <div class="form-group col-md-12 mb-0">
                   <label class="form-label">Confirmez le nouveau mot de passe</label>
-                  <input type="password" name="password2" class="form-control" value="">
+                  <input type="password" name="password_new2" class="form-control" value="">
                 </div>
                 <div class="col-md-6"> 
-                    <button class="btn btn-primary d-grid" name="send" >Modifier</button>
+                    <button class="btn btn-primary d-grid" name="modifierpassword" >Modifier</button>
                   </div>
               </form>
             </div>

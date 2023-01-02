@@ -1,5 +1,3 @@
-
-
 <!--=================================
 Post New Job -->
 <section>
@@ -25,17 +23,17 @@ Post New Job -->
                 <div class="form-group mt-0 mb-3 col-md-6 datetimepickers">
                 <label class="form-label">Date d'expiration de l'emploi</label>
                 <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
-                  <input type="text" name="date" class="form-control datetimepicker-input" placeholder="Date" data-target="#datetimepicker-01">
-                  <div class="input-group-append d-flex" data-target="#datetimepicker-01" data-toggle="datetimepicker">
+                  <input type="date" name="date" class="form-control datetimepicker-input" placeholder="Date" data-target="#datetimepicker-01">
+                  <!-- <div class="input-group-append d-flex" data-target="#datetimepicker-01" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                  </div>
+                  </div> -->
                 </div>
                 </div>
                 <div class="form-group mt-0 mb-3 col-md-6 select-border">
                   <label class="form-label">Type d'emploi</label>
                   <select name="typeemploi" class="form-control basic-select">
                   <?php foreach($typeemploi as $typeemploione): ?>   
-                    <option value="<?=$typeemploione->nom ?>" selected="selected"><?=$typeemploione->nom ?></option>
+                    <option value="<?=$typeemploione->id ?>" selected="selected"><?=$typeemploione->nom ?></option>
 
                     <?php endforeach?>
                   </select>
@@ -45,7 +43,7 @@ Post New Job -->
                   
                   <select name="secteur" class="form-control basic-select">
                   <?php foreach($domaine as $domaineone): ?>   
-                    <option value="<?=$domaineone->nom ?>" ><?=$domaineone->nom ?></option>
+                    <option value="<?=$domaineone->id ?>" ><?=$domaineone->nom ?></option>
                     
                     <?php endforeach?>
                   </select>
@@ -54,17 +52,17 @@ Post New Job -->
                 <div class="form-group mt-0 mb-3 col-md-6 select-border">
                   <label class="form-label">Type de demande</label>
                   <select name="typedemande" class="form-control basic-select">
-                    <option value="Externe" selected="selected">Externe</option>
-                    <option value="Ressources humaines">Ressources humaines</option>
-                    <option value="Informatique">Informatique</option>
+                    <option value="1" selected="selected">Externe</option>
+                    <option value="2">Ressources humaines</option>
+                    <option value="3">Informatique</option>
                   </select>
                 </div>
                 <div class="form-group mt-0 mb-3 col-md-6 select-border">
-                  <label class="form-label">Type de salire</label>
+                  <label class="form-label">Type de salaire</label>
                   <select name="typesalaire" class="form-control basic-select">
-                    <option value="Annuel">Annuel</option>
-                    <option value="Mensuel">Mensuel</option>
-                    <option value="Horraire">Horraire</option>
+                    <option value="1">Annuel</option>
+                    <option value="2">Mensuel</option>
+                    <option value="3">Quizaine</option>
                   </select>
                 </div>
                 <div class="form-group mt-0 mb-3 col-md-6">
@@ -77,10 +75,10 @@ Post New Job -->
                 </div>
                 <div class="form-group mt-0 col-md-6 mb-0">
                   <label class="form-label">Compétence Professionnelle</label>
-                  <input type="text" name="competence" class="form-control" value="">
+                  <textarea class="form-control" name="competence" rows="4"></textarea>
                 </div>
 
-                <div class="user-dashboard-info-box">
+                <!-- <div class="user-dashboard-info-box">
                 <div class="row">
                   <div class="col-12">
                     <h4 class="mb-3">Pièce Jointe</h4>
@@ -89,7 +87,7 @@ Post New Job -->
                       <input class="form-control" name="mafiche" type="file" id="formFile">
                     </div>
                   </div>
-                </div>
+                </div> -->
             </div>
               <div class="user-dashboard-info-box">
                 <div class="form-group mb-0">

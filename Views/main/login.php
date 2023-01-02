@@ -46,7 +46,7 @@ Signin -->
               <form method="POST" class="mt-4">
                 <div class="row">
                   <div class="mb-3 col-12">
-                    <label class="form-label" for="Email2">Nom d'utilisateur *</label>
+                    <label class="form-label" for="Email2">Email *</label>
                     <input type="text" name="email" class="form-control" id="Email22">
                   </div>
                   <div class="mb-3 col-12">
@@ -56,12 +56,12 @@ Signin -->
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                  <button class="btn btn-primary d-grid" name="send" >Connexion</button>
+                  <button class="btn btn-primary d-grid" name="connexion_candidat" >Connexion</button>
                   </div>
                   <div class="col-md-6">
                     <div class="mt-3 mt-md-0 forgot-pass">
                       <a href="#">Mot de passe oublié?</a>
-                      <p class="mt-1">Vous n'avez pas de compte ?<a href="register.html">Inscrivez-vous ici</a></p>
+                      <p class="mt-1">Vous n'avez pas de compte ?<a href="/main/creer_un_compte">Inscrivez-vous ici</a></p>
                     </div>
                   </div>
                 </div>
@@ -71,7 +71,7 @@ Signin -->
               <form method="POST" class="mt-4">
                 <div class="row">
                   <div class="mb-3 col-12">
-                    <label class="form-label" for="Email2">Nom d'utilisateur *</label>
+                    <label class="form-label" for="Email2">Email *</label>
                     <input type="text" name="email" class="form-control" id="Email2">
                   </div>
                   <div class="mb-3 col-12">
@@ -81,7 +81,7 @@ Signin -->
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                  <button class="btn btn-primary d-grid" name="sendemployeur">Connexion</button>
+                  <button class="btn btn-primary d-grid" name="connexion_employeur">Connexion</button>
                   </div>
                   <div class="col-md-6">
                     <div class="ms-md-3 mt-3 mt-md-0">

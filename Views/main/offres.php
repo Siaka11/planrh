@@ -19,7 +19,7 @@ inner banner -->
 inner banner -->
 
 
-<section class="space-ptb">
+<section class="space-ptb m-5">
   <div class="row justify-content-center text-center">
     
   
@@ -59,7 +59,7 @@ inner banner -->
       </div>
     </div> -->
     
-  <div class="container">
+  <div class="container mt-5">
     <div class="row" style="text-align:center;">
       <div class="col-12 section-title-02">
         <h5 class="text-center">Description : <span style="font-size: 12px"> <?= $offre->description ?></span></h5>

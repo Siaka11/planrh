@@ -144,7 +144,7 @@ Candidates Dashboard -->
               <div class="col-12">
                 <div class="job-list ">
                   <div class="job-list-logo">
-                    <img class="img-fluid" src="../images/svg/01.svg" alt="">
+                    <img class="img-fluid" src="../images/<?= $recupere_tous_offre->employeur_image ?>" alt="">
                   </div>
                   <div class="job-list-details">
                     <div class="job-list-info">
@@ -168,7 +168,7 @@ Candidates Dashboard -->
             <?php endforeach; ?>
           </div>
           <div class="row">
-          <div class="col-12 text-center mt-4 mt-md-5">
+            <div class="col-12 text-center mt-4 mt-md-5">
               <ul class="pagination justify-content-center mb-md-4 mb-0">
 
                   <?php if($page_courante == 1): ?>

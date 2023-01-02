@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+    <base href="/planrh/">
     <meta charset="utf-8">
     <meta name="keywords" content="Plan Rh" />
     <meta name="description" content="Site de recrutement et de placement" />
@@ -33,17 +34,36 @@
 
 <!--=================================
 inner banner -->
+
+
 <div class="header-inner bg-light">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid " src="../images/employeur/logo.jpg" alt="">
-              <i class="fas fa-pencil-alt"></i>
+            <img class="img-fluid "  src="../images/<?= $employeur->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
+              <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+            </div>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Prendre une image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <form method='post' action='' enctype="multipart/form-data">
+                    Selectionnez une image : 
+                    <input type='file' name='avatar'id='file' class='form-control' ><br>
+                    <input type='submit' class='btn btn-info' value='Charger' name="charger" id='btn_upload'>
+                  </form>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="profile-avatar-info ms-4">
-               <h3>Orientation Canada Multi-visas</h3>
+              <h3><?= $employeur->entreprise ?></h3>
             </div>
           </div>
       </div>
@@ -79,6 +99,17 @@ Dashboard Nav -->
 </section>
 <!--=================================
 Dashboard Nav -->
+
+<?php if(!empty($_SESSION['message'])): ?>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  
+  <?=$_SESSION['message'];
+    unset($_SESSION['message']); 
+  ?>
+
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<?php endif; ?>
 
 <?= $contenu ?>
 
@@ -167,7 +198,31 @@ Javascript -->
         );
 
         chart.render();
+
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            console.log(table);
+
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[0];
+              if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }       
+            }
+          }
     </script>
+
+
+
 
 </body>
 

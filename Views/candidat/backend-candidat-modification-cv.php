@@ -354,11 +354,11 @@
             <div class="section-title-02 mb-sm-0">
               <h4 class="mb-0">Compétences Professionnelles</h4>
             </div>
-            <a class="btn btn-md ms-sm-auto btn-primary" id="add_more_fields" data-bs-toggle="modal" data-bs-target="#staticBackdrop" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une compétence</a>
+            <a class="btn btn-md ms-sm-auto btn-primary" id="add_more_fields" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" role="button" aria-expanded="false" aria-controls="dateposted">Ajouter une compétence</a>
             <!-- Button trigger modal -->
 
             <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">

@@ -6,7 +6,7 @@ inner banner -->
     <div class="row">
       <div class="col-lg-6">
         <div class="candidates-user-info">
-        <div class="jobber-user-info">
+          <div class="jobber-user-info">
             <div class="profile-avatar">
               <img class="img-fluid "  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
                 <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
@@ -144,7 +144,7 @@ Candidates Dashboard -->
               <div class="col-12">
                 <div class="job-list ">
                   <div class="job-list-logo">
-                    <img class="img-fluid" src="../images/svg/01.svg" alt="">
+                    <img class="img-fluid" src="../images/<?= $recupere_tous_offre->employeur_image ?>" alt="">
                   </div>
                   <div class="job-list-details">
                     <div class="job-list-info">

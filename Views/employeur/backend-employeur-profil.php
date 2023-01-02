@@ -12,17 +12,28 @@ My Profile -->
           </div>
           <div class="cover-photo-contact">
             <div class="cover-photo">
-              <img class="img-fluid " src="../../images/bg/cover-bg.png" alt="">
-              <i class="fas fa-times-circle"></i>
+              <img class="img-fluid " src="../../images/<?=$employeur->couverture ?>" style="width: 1800px; height:200px" alt="">
             </div>
-            <div class="upload-file">
-              <label for="formFile" class="form-label">Modifiez Couverture</label>
-              <input class="form-control" type="file" id="formFile">
+            <button class="btn m-3 btn-primary" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" >Modifier la couverture</button>
+            <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Prendre une image de couverture</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <form method='post' action='' enctype="multipart/form-data">
+                    Selectionnez une image : 
+                    <input type='file' name='avatar'id='file' class='form-control' ><br>
+                    <input type='submit' class='btn btn-info' value='Charger' name="couverture" id='btn_upload'>
+                  </form>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
-         
-          
-            
           <form method="POST">
             <div class="row">
               <div class="form-group col-md-6 mb-3">
@@ -34,14 +45,10 @@ My Profile -->
                 <input type="email" name="email" class="form-control" value="<?=$employeur->email ?>" >
               </div>
               <div class="form-group col-md-6 mb-3">
-                <label class="form-label">Prénoms </label>
-                <input type="text" class="form-control" name="prenom" value="<?=$employeur->nom ?>" >
-              </div>
-              <div class="form-group col-md-6 mb-3">
                 <label class="form-label">Nom </label>
-                <input type="text" class="form-control" name="nom" value="<?=$employeur->prenom ?>" >
+                <input type="text" class="form-control" name="nom" value="<?=$employeur->nom ?>" >
               </div>
-              <div class="form-group col-md-6 mb-3 datetimepickers">
+              <!-- <div class="form-group col-md-6 mb-3 datetimepickers">
                 <label class="form-label">Date de création</label>
                 <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
                   <input type="text" name="datecreation" class="form-control datetimepicker-input" value="<?=$employeur->datecreation ?>"  data-target="#datetimepicker-01">
@@ -49,7 +56,7 @@ My Profile -->
                     <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="form-group col-md-6 mb-3">
                 <label class="form-label">Téléphone</label>
                 <input type="text" name="telephone" class="form-control" value="<?=$employeur->telephone ?>" >

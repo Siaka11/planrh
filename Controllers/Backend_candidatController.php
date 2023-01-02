@@ -32,7 +32,7 @@ class Backend_candidatController extends Controller{
 
         $offre = new OffreModel;
         $toutes_offres = $offre->findAll();
-        $offre_par_page = 1;
+        $offre_par_page = 2;
         $offres_totales = count($toutes_offres);
         $page_totale = ceil($offres_totales / $offre_par_page);
         $page_courante = 1;
@@ -95,7 +95,7 @@ class Backend_candidatController extends Controller{
 
         $offre = new OffreModel;
         $toutes_offres = $offre->findAll();
-        $offre_par_page = 1;
+        $offre_par_page = 2;
         $offres_totales = count($toutes_offres);
         $page_totale = ceil($offres_totales / $offre_par_page);
         $page_courante = $id;
@@ -714,41 +714,54 @@ class Backend_candidatController extends Controller{
 
         $can = new CandidatModel;
 
-        
-        if(isset($_POST['send'])){
+        if(isset($_POST['modifierpassword'])){
 
-            if(!empty($_POST['password1']) && !empty($_POST['password2'])){
+            $passold = $_POST['password_old'];
+            $passnew1 = $_POST['password_new1'];
+            $passnew2 = $_POST['password_new2'];
 
-                $pass1 = $_POST['password1'];
-                $pass2 = $_POST['password2'];
-                $pass = $_POST['pass'];
-
-                if($candidatpass != $pass){
-                    $_SESSION["message"] = "Vous avez saisir un mot de passe incorrect!";
-                    header("Location: /Backend_candidat/modification_pass");
-                    exit;
-                }
-
-                //var_dump($pass1);
-                //var_dump($pass2);
-                if($pass1 == $pass2){
-
-                    $can->setId($_SESSION['user']['id'])
-                            ->setMotdepasse($pass1)
-                            ;
-                    $can->update();
-                    $_SESSION["message"] = "Votre mot de passe a été modifié!";
-
-
-                }else
-                {
-                    
-                    $_SESSION["message"] = "Les mots de passe ne correspondent pas!";
-                    //header("Location: /Backend_candidat/modification_pass");
-                }
+            if( $passnew1 != $passnew2 ){
+                $_SESSION['message'] = "les mots de passe ne correspondent pas.";
+                header("Location: /backend_candidat/modification_pass");
+                exit;
             }
 
+
+            $candidatmodel = new  CandidatModel;
+            $candidat = $candidatmodel->find($_SESSION['user']['id']);
+
+            if(password_verify($passold, $candidat->motdepasse)){
+
+
+                $pass  = password_hash($passnew1, PASSWORD_DEFAULT);
+
+                $candidat = new CandidatModel;
+                $candidat ->setId($_SESSION['user']['id'])
+                            ->setMotdepasse($pass)
+                            ;
+                            
+                
+                $candidat->update();
+                
+                
+                $_SESSION['message'] = "Vous avez modifié votre mot de passe .";
+                header("Location: /backend_candidat/modification_pass");
+                exit;
+
+            }else{
+                $_SESSION['message'] = "Vous avez saisir un mot de passe incorrect";
+                header("Location: /backend_candidat/modification_pass");
+                exit;
+            }
+
+
+          
+            $_SESSION['message'] = "Vous avez modifier votre mot de passe";
+            header("Location: /backend_candidat/modification_pass");
+            exit;
         }
+
+
 
         return $this->render('candidat/backend-candidat-modification-pass.php', compact('candidat'), 'home_backend_candidat.php');
 

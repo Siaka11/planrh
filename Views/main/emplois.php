@@ -10,18 +10,19 @@ banner -->
           <div class="job-search-item">
             <form class="form row">
               <div class="col-lg-5">
-                <div class="form-group left-icon mb-3">
+                <div class="form-group left-icon mb-3 invisible">
                   <input type="text" class="form-control" name="job_title" placeholder="Mots Clés">
-                <i class="fas fa-search"></i> </div>
+                <i class="fas fa-search"></i> 
+              </div>
               </div>
               <div class="col-lg-5">
-                <div class="form-group left-icon mb-3">
+                <div class="form-group left-icon mb-3 invisible">
                   <input type="text" class="form-control" name="job_title" placeholder="Ville..">
                 <i class="fas fa-search"></i> </div>
               </div>
               <div class="col-lg-2 col-sm-12">
-                <div class="form-group form-action">
-                  <button type="submit" class="btn btn-primary mt-0"><i class="fas fa-search-location"></i>Recherche</button>
+                <div class="form-group form-action invisible">
+                  <button type="submit" class="btn btn-primary mt-0"><i class="fas fa-search-location"></i></button>
                 </div>
               </div>
             </form>
@@ -47,30 +48,37 @@ job-list -->
           <div class="widget-title widget-collapse">
             <h6>Date</h6>
             <a class="ms-auto" data-bs-toggle="collapse" href="#dateposted" role="button" aria-expanded="false" aria-controls="dateposted"> <i class="fas fa-chevron-down"></i> </a></div>
-            <div class="collapse show" id="dateposted">
-              <div class="widget-content">
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="dateposted1">
-                  <label class="form-check-label" for="dateposted1">Plus Rescent</label>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="dateposted2">
-                  <label class="form-check-label" for="dateposted2">Depuis 24h</label>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="dateposted3">
-                  <label class="form-check-label" for="dateposted3">Depuis 7jrs </label>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="dateposted4">
-                  <label class="form-check-label" for="dateposted4">Depuis 14jrs</label>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="dateposted5">
-                  <label class="form-check-label" for="dateposted5">Depuis 30jrs</label>
+            <form method="POST">
+              <div class="collapse show" id="dateposted">
+                <div class="widget-content">
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" name="temps" value="0" id="dateposted1">
+                    <label class="form-check-label"  for="dateposted1">Plus Rescent</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" name="temps" value="1" id="dateposted2">
+                    <label class="form-check-label" for="dateposted2">Depuis 24h</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" name="temps" value="7" id="dateposted3">
+                    <label class="form-check-label" for="dateposted3">Depuis 7jrs </label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" name="temps" value="14" id="dateposted4">
+                    <label class="form-check-label" for="dateposted4">Depuis 14jrs</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" name="temps" value="30" id="dateposted5">
+                    <label class="form-check-label" for="dateposted5">Depuis 30jrs</label>
+                  </div>
+                  <div class="job-filter-tag">
+                          <button type="submit" class="btn-primary filter-clear" name="filtre_date">Recherche<i class="fas fa-redo-alt"></i> </button>
+
+                          <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
           <hr>
           <div class="widget">
@@ -202,7 +210,7 @@ job-list -->
                       <div class="col-md-6">
                         <div class="job-filter-tag">
                         <ul class="list-unstyled">
-                          <li><a href="#">depuis 24h<i class="fas fa-times-circle"></i> </a></li>
+                          <li><a href="#">depuis <?php  $filtre == 0 ? "Ce jour" : $filtre ; ?><i class="fas fa-times-circle"></i> </a></li>
                           <li><a class="filter-clear" href="#">Recherche<i class="fas fa-redo-alt"></i> </a></li>
                         </ul>
                       </div>
@@ -214,121 +222,42 @@ job-list -->
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-12">
-                        <div class="job-list ">
-                          <div class="job-list-logo">
-                            <img class="img-fluid" src="images/svg/01.svg" alt="">
-                          </div>
-                          <div class="job-list-details">
-                            <div class="job-list-info">
-                              <div class="job-list-title">
-                                <h5 class="mb-0"><a href="#">Emplois 01</a></h5>
-                              </div>
-                              <div class="job-list-option">
-                                <ul class="list-unstyled">
-                                  <li> <span>via</span> <a href="#">Entreprise</a> </li>
-                                  <li><i class="fas fa-map-marker-alt pe-1"></i>Ville</li>
-                                  <li><i class="fas fa-filter pe-1"></i>Domaine d'activite</li>
-                                  <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i>Type de contrat</a></li>
-                                </ul>
+                      <?php foreach($offres as $offre): ?>
+                        <div class="col-12">
+                          <div class="job-list ">
+                            <div class="job-list-logo">
+                              <img class="img-fluid" src="../images/<?= $offre->employeur_image ?>" alt="">
+                            </div>
+                            <div class="job-list-details">
+                              <div class="job-list-info">
+                                <div class="job-list-title">
+                                  <h5 class="mb-0"><a href="#"><?= $offre->titre ?></a></h5>
+                                </div>
+                                <div class="job-list-option">
+                                  <ul class="list-unstyled">
+                                    <li> <span>via</span> <a href="#"><?= $offre->entreprise ?></a> </li>
+                                    <li><i class="fas fa-map-marker-alt pe-1"></i><?= $offre->adresse ?></li>
+                                    <li><i class="fas fa-filter pe-1"></i><?= $offre->domaine_nom ?></li>
+                                    <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i><?= $offre->typeemploi_nom ?></a></li>
+                                  </ul>
+                                </div>
                               </div>
                             </div>
+                            <?php
+
+                              $date = $util->mydateago($offre->offre_date_creation);
+                              
+                              
+                            ?>
+                            <div class="job-list-favourite-time"> 
+                            <a class="job-list-favourite order-2" href="/main/offre/<?= $offre->offre_id ?>"><span style="font-size: 12px">Postuler</span></a> 
+                            <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i><?= $date ?></span> 
                           </div>
-                          <div class="job-list-favourite-time"> <a class="job-list-favourite order-2" href="#"><i class="far fa-heart"></i></a> <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>24h</span> </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="job-list">
-                          <div class="job-list-logo">
-                            <img class="img-fluid" src="images/svg/02.svg" alt="">
-                          </div>
-                          <div class="job-list-details">
-                            <div class="job-list-info">
-                              <div class="job-list-title">
-                                <h5 class="mb-0"><a href="#">Emplois 02</a></h5>
-                              </div>
-                              <div class="job-list-option">
-                                <ul class="list-unstyled">
-                                  <li> <span>via</span> <a href="#">Entreprise</a> </li>
-                                  <li><i class="fas fa-map-marker-alt pe-1"></i>Ville</li>
-                                  <li><i class="fas fa-filter pe-1"></i>Domaine d'activite</li>
-                                  <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i>Type de contrat</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="job-list-favourite-time"> <a class="job-list-favourite order-2" href="#"><i class="far fa-heart"></i></a> <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>3jrs</span> </div>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="job-list">
-                          <div class=" job-list-logo">
-                            <img class="img-fluid" src="images/svg/03.svg" alt="">
-                          </div>
-                          <div class="job-list-details">
-                            <div class="job-list-info">
-                              <div class="job-list-title">
-                                <h5 class="mb-0"><a href="#">Emplois 03</a></h5>
-                              </div>
-                              <div class="job-list-option">
-                                <ul class="list-unstyled">
-                                  <li> <span>via</span> <a href="#">Entreprise</a> </li>
-                                  <li><i class="fas fa-map-marker-alt pe-1"></i>Ville</li>
-                                  <li><i class="fas fa-filter pe-1"></i>Domaine d'activite</li>
-                                  <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i>Type de contrat</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="job-list-favourite-time"> <a class="job-list-favourite order-2" href="#"><i class="far fa-heart"></i></a> <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>2 ans</span> </div>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="job-list">
-                          <div class="job-list-logo">
-                            <img class="img-fluid" src="images/svg/04.svg" alt="">
-                          </div>
-                          <div class="job-list-details">
-                            <div class="job-list-info">
-                              <div class="job-list-title">
-                                <h5 class="mb-0"><a href="#">Emplois 04</a></h5>
-                              </div>
-                              <div class="job-list-option">
-                                <ul class="list-unstyled">
-                                  <li> <span>via</span> <a href="#">Entreprise</a> </li>
-                                  <li><i class="fas fa-map-marker-alt pe-1"></i>Ville</li>
-                                  <li><i class="fas fa-filter pe-1"></i>Domaine d'activite</li>
-                                  <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i>Type de contrat</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="job-list-favourite-time"> <a class="job-list-favourite order-2" href="#"><i class="far fa-heart"></i></a> <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>3 Mois</span> </div>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="job-list">
-                          <div class="job-list-logo">
-                            <img class="img-fluid" src="images/svg/05.svg" alt="">
-                          </div>
-                          <div class="job-list-details">
-                            <div class="job-list-info">
-                              <div class="job-list-title">
-                                <h5 class="mb-0"><a href="#">Emplois 05</a></h5>
-                              </div>
-                              <div class="job-list-option">
-                                <ul class="list-unstyled">
-                                  <li> <span>via</span> <a href="#">Entreprise</a> </li>
-                                  <li><i class="fas fa-map-marker-alt pe-1"></i>Ville</li>
-                                  <li><i class="fas fa-filter pe-1"></i>Domaine d'activite</li>
-                                  <li><a class="freelance" href="#"><i class="fas fa-suitcase pe-1"></i>Type de contrat</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="job-list-favourite-time"> <a class="job-list-favourite order-2" href="#"><i class="far fa-heart"></i></a> <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>6 jrs</span> </div>
-                        </div>
-                      </div>
+                      <?php endforeach; ?>
+
+
                     </div>
                     <div class="row">
                       <div class="col-12 text-center mt-4 mt-md-5">

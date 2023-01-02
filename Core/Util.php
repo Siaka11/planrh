@@ -32,10 +32,10 @@ class Util {
     $diff['d']  -= $diff['w'] * 7;
 
     $string = array(
-        'y' => 'year',
-        'm' => 'month',
+        'y' => 'annee',
+        'm' => 'mois',
         'w' => 'sem',
-        'd' => 'j',
+        'd' => 'jr',
         //'h' => 'hour',
         //'i' => 'minute',
         //'s' => 'second',
@@ -52,7 +52,7 @@ class Util {
     //var_dump($string);
     $full = false;
     if (!$full) $string = array_slice($string, 0, 1);
-    return $string ? implode(' ', $string) . '' : 'maintenant';
+    return $string ? implode(' ', $string) . '' : 'Aujourd\'hui';
     }
 
     public static function uploader($info){
