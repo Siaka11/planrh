@@ -1,5 +1,30 @@
 
+<style>
 
+
+    .playlist {
+      width: 100%;
+      float: left;
+    }
+
+    .playlist ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .playlist li {
+      list-style: none;
+      cursor: pointer;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .playlist li:hover {
+      background-color: #26aeef;
+      color: white
+    }
+</style>
 <!--=================================
 inner banner -->
 <div class="header-inner bg-light text-center">
@@ -24,109 +49,43 @@ blog -->
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <div class="blog-post text-center">
-          <div class="blog-post-image">
-            <img class="img-fluid" src="images/blog/01.jpg" alt="">
-          </div>
-          <div class="blog-post-content">
-            <div class="blog-post-details">
-              <div class="blog-post-title">
-                <h4><a href="#">7 Choses incontournable pour décrocher un poste</a></h4>
-              </div>
-              <div class="blog-post-description">
-                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and standard dummy text ever since the 1500s.</p>
-              </div>
+          <div class="blog-post text-center">
+            <div class="blog-post-image">
+              <img class="img-fluid video-player" id="video" src="images/actualites/<?= $actualites_der->image ?>" alt="">
             </div>
-            <div class="blog-post-footer">
-              <div class="blog-post-time">
-                <a href="#"><i class="far fa-clock"></i>25 Mars 2021</a>
+            <div class="blog-post-content">
+              <div class="blog-post-details">
+                <div class="blog-post-title">
+                  <h4 id="titre"><?= $actualites_der->titre ?></h4>
+                </div>
+                <div class="blog-post-description">
+                  <p class="mb-0" id="description"><?= $actualites_der->description ?></p>
+                </div>
               </div>
-              <div class="blog-post-time">
-                <a href="#"><i class="far fa-comment"></i>(4)</a>
-              </div>
-              <div class="blog-post-share">
-                <div class="share-box">
-                  <a href="#"> <i class="fas fa-share-alt"></i><span class="ps-2">Partagez</span></a>
-                  <ul class="list-unstyled share-box-social">
-                    <li> <a href="#"><i class="fab fa-facebook-f"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-twitter"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-linkedin"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-instagram"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-pinterest"></i></a> </li>
-                  </ul>
+              <div class="blog-post-footer">
+                <div class="blog-post-time">
+                  <a href="#"><i class="far fa-clock"></i><?= $actualites_der->date_creation ?></a>
+                </div>
+                <!-- <div class="blog-post-time">
+                  <a href="#"><i class="far fa-comment"></i>(4)</a>
+                </div> -->
+                <div class="blog-post-share">
+                  <div class="share-box">
+                    <a href="#"> <i class="fas fa-share-alt"></i><span class="ps-2">Partagez</span></a>
+                    <ul class="list-unstyled share-box-social">
+                      <li> <a href="#"><i class="fab fa-facebook-f"></i></a> </li>
+                      <li> <a href="#"><i class="fab fa-twitter"></i></a> </li>
+                      <li> <a href="#"><i class="fab fa-linkedin"></i></a> </li>
+                      <li> <a href="#"><i class="fab fa-instagram"></i></a> </li>
+                      <li> <a href="#"><i class="fab fa-pinterest"></i></a> </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="blog-post text-center mt-4">
-          <div class="blog-post-image">
-            <img class="img-fluid" src="images/blog/02.jpg" alt="">
-          </div>
-          <div class="blog-post-content">
-            <div class="blog-post-details">
-              <div class="blog-post-title">
-                <h4><a href="#">Titre 01</a></h4>
-              </div>
-              <div class="blog-post-description">
-                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and standard dummy text ever since the 1500s.</p>
-              </div>
-            </div>
-            <div class="blog-post-footer">
-              <div class="blog-post-time">
-                <a href="#"><i class="far fa-clock"></i>25 Mars 2021</a>
-              </div>
-              <div class="blog-post-time">
-                <a href="#"><i class="far fa-comment"></i>(2)</a>
-              </div>
-              <div class="blog-post-share">
-                <div class="share-box">
-                  <a href="#"> <i class="fas fa-share-alt"></i><span class="ps-2">Partagez</span></a>
-                  <ul class="list-unstyled share-box-social">
-                    <li> <a href="#"><i class="fab fa-facebook-f"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-twitter"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-linkedin"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-instagram"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-pinterest"></i></a> </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="blog-post blog-post-quote mt-4 bg-primary">
-          <div class="blog-post-content">
-            <div class="blockquote text-center">
-              <blockquote class="text-white mb-0">
-                <i class="fas fa-quote-right"></i>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and standard dummy text ever since the 1500s.</p>
-                <cite>– Auteur -</cite>
-              </blockquote>
-            </div>
-            <div class="blog-post-footer text-center">
-              <div class="blog-post-time">
-                <a href="#"><i class="far fa-clock"></i>20 Fevrier 2021</a>
-              </div>
-              <div class="blog-post-time">
-                <a href="#"><i class="far fa-comment"></i>(1)</a>
-              </div>
-              <div class="blog-post-share">
-                <div class="share-box share-dark-bg">
-                  <a href="#"> <i class="fas fa-share-alt"></i><span class="ps-2">Partagez</span></a>
-                  <ul class="list-unstyled share-box-social">
-                    <li> <a href="#"><i class="fab fa-facebook-f"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-twitter"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-linkedin"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-instagram"></i></a> </li>
-                    <li> <a href="#"><i class="fab fa-pinterest"></i></a> </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         
-        <div class="blog-post blog-post-you-tube text-center mt-5">
+        <!-- <div class="blog-post blog-post-you-tube text-center mt-5">
           <div class="js-video [youtube, widescreen]">
             <iframe src="https://www.youtube.com/embed/nrJtHemSPW4?rel=0" allowfullscreen></iframe>
           </div>
@@ -140,62 +99,45 @@ blog -->
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="col-lg-4 mt-4 mt-lg-0">
         <div class="blog-sidebar">
           <div class="widget">
             <div class="widget-title">
-              <h5>Trouver un Poste</h5>
-            </div>
-            <div class="search">
-              <i class="fas fa-search"></i>
-              <input type="text" class="form-control" placeholder="Recherche...">
-            </div>
-          </div>
-          <div class="widget">
-            <div class="widget-title">
               <h5>Autres Actualités</h5>
             </div>
-            <div class="d-flex mb-3 align-items-start">
-              <div class="avatar avatar-xl">
-                <img class="img-fluid" src="images/blog/06.jpg" alt="">
+            <div class="playlist">
+              <?php foreach($actualites as $actualite): ?>
+              <div class="d-flex align-items-start">
+                <div class="avatar avatar-xl">
+                  <img data-image="images/actualites/<?= $actualite->image ?>" data-titre ="<?= $actualite->titre ?>" data-description="<?= $actualite->description ?>" class="img-fluid" src="images/actualites/<?= $actualite->image ?>" alt="">
+                </div>
+                <div class="ms-3 recent-posts">
+                  <li data-image="images/actualites/<?= $actualite->image ?>" data-titre ="<?= $actualite->titre ?>" data-description="<?= $actualite->description ?>"><?= $util->texte_cinquante($actualite->titre)  ?></li>
+                  <p class="d-none" ><?= $actualite->titre ?></p>
+                  <p class="d-block font-sm mt-1 text-light" href="#"><?= $actualite->date_creation ?></p>
+                </div>
               </div>
-              <div class="ms-3 recent-posts">
-                <a href="#"><b>Actu 01</b></a>
-                <a class="d-block font-sm mt-1 text-light" href="#">25 Jan 2021</a>
-              </div>
-            </div>
-            <div class="d-flex mb-3 align-items-start">
-              <div class="avatar avatar-xl">
-                <img class="img-fluid" src="images/blog/07.jpg" alt="">
-              </div>
-              <div class="ms-3 recent-posts">
-                <a href="#"><b>Actu 02</b></a>
-                <a class="d-block font-sm mt-1 text-light" href="#">25 Jan 2021</a>
-              </div>
-            </div>
-            <div class="d-flex mb-3 align-items-start">
-              <div class="avatar avatar-xl">
-                <img class="img-fluid" src="images/blog/08.jpg" alt="">
-              </div>
-              <div class="ms-3 recent-posts">
-                <a href="#"><b>Actu 03</b></a>
-                <a class="d-block font-sm mt-1 text-light" href="#">25 Jan 2021</a>
-              </div>
+              <?php endforeach; ?>
             </div>
           </div>
+          
           <div class="widget">
             <div class="widget-title">
               <h5>Categories</h5>
             </div>
             <ul class="list-unstyled list-style mb-0">
-              <li><a href="#">Categorie 01<span class="ms-auto">(3)</span></a></li>
-              <li><a href="#">Categorie 02<span class="ms-auto">(15)</span></a></li>
-              <li><a href="#">Categorie 03<span class="ms-auto">(10)</span></a></li>
-              <li><a href="#">Categorie 04<span class="ms-auto">(6)</span></a></li>
-              <li><a href="#">Categorie 05<span class="ms-auto">(5)</span></a></li>
-              <li><a href="#">Categorie 06<span class="ms-auto">(6)</span></a></li>
+              <?php foreach($tous_domaines as $tous_domaine): ?>
+                <li><a href="#"><?= $tous_domaine->nom ?>
+                <span class="ms-auto">
+                  <?php
+                     $nbre_offre = $offremodel->offre_domaine( $tous_domaine->id );              
+                  ?>
+                  <?= $nbre_offre ?>
+                </span></a>
+                </li>
+              <?php endforeach; ?>
             </ul>
           </div>
           <div class="widget">
@@ -271,6 +213,39 @@ blog -->
     </div>
   </div>
 </section>
+
+<script>
+    // Get a reference to the video player and the playlist
+    const video = document.querySelector('#video');
+    const playlist = document.querySelector('.playlist');
+    const titre = document.querySelector('#titre');
+    const description = document.querySelector('#description');
+
+    // Add an event listener to the playlist items
+    playlist.addEventListener('click', e => {
+      // Get the clicked item
+      const clickedItem = e.target;
+      //console.log(clickedItem)
+
+      // Get the video source from the data attribute
+      const videoSource = clickedItem.getAttribute('data-image');
+      const imageTitre = clickedItem.getAttribute('data-titre')
+      const imageDescription = clickedItem.getAttribute('data-description')
+
+      console.log(video.src)
+      console.log("et")
+      console.log(videoSource)
+      var imgLinkArray = video.src.split('/');
+      var imgName = imgLinkArray.pop();
+      console.log("et")
+      console.log(imgName)
+      // Update the video source and play the video
+      video.src = videoSource;
+      titre.innerHTML = imageTitre
+      description.innerHTML = imageDescription
+
+    });
+  </script>
 <!--=================================
 blog -->
 

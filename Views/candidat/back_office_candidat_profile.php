@@ -9,7 +9,7 @@ inner banner -->
         <div class="candidates-user-info">
         <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid "  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
+            <img class="img-fluid"  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
                 <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="profile-avatar-info ms-4">
@@ -36,17 +36,13 @@ inner banner -->
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width:85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-            <span class="progress-bar-number">85%</span>
-          </div>
-        </div>
         <div class="candidates-skills">
           <div class="candidates-skills-info">
-            <h3 class="text-primary">85%</h3>
+            <!-- <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Retour sur le site planrh</a> -->
           </div>
-          <div class="candidates-required-skills ms-auto mt-sm-0 mt-3">
-            <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Ajoutez une compétence</a>
+          <div class="candidates-required-skills ms-auto mt-sm-0 mt-3 end-0">
+            <a class="btn btn-dark" href="/">Retour au site planrh</a>
+            <!-- <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Ajoutez une compétence</a> -->
           </div>
         </div>
       </div>

@@ -4,6 +4,27 @@ namespace App\Core;
 
 class Util {
 
+
+    public function texte_cinquante($texte){
+        //create function to limit the text
+          $texte = substr($texte, 0, 50);
+          $texte = substr($texte, 0, strrpos($texte, ' '));
+          $texte = $texte."...";
+          //var_dump($texte);
+          //die;
+        return $texte;
+    } 
+
+    public function texte_cent($texte){
+        //create function to limit the text
+          $texte = substr($texte, 0, 100);
+          $texte = substr($texte, 0, strrpos($texte, ' '));
+          $texte = $texte."...";
+          //var_dump($texte);
+          //die;
+        return $texte;
+    }  
+
     public static function red(){
         
         header('Location: /');
@@ -70,20 +91,7 @@ class Util {
                 $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
                 if($resultat) {
                   echo "Image mise à hour avec succès";
-                  //  $candidatmodel = new CandidatModel;
-                  //              $candidatmodel->setId($_SESSION['user']['id'])
-                  //                            ->setImage($info.".".$extensionUpload);
-                  //              $candidatmodel->update();
-                                            
 
-               //     var_dump($resultat);
-               //     die;
-               //    $updateavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
-               //    $updateavatar->execute(array(
-               //       'avatar' => $_SESSION['id'].".".$extensionUpload,
-               //       'id' => $_SESSION['id']
-               //       ));
-                 // header('Location: /backend_candidat');
                 } else {
                    $msg = "Erreur durant l'importation de votre photo de profil";
                 }
@@ -95,6 +103,34 @@ class Util {
           }
        }
     }
+
+    public static function uploaderactualite($info){
+
+        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+            $tailleMax = 5097152;
+            $extensionsValides = array('jpg', 'jpeg', 'gif', 'png', 'webp');
+            if($_FILES['avatar']['size'] <= $tailleMax) {
+               $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+               if(in_array($extensionUpload, $extensionsValides)) {
+             
+                  $chemin = "../public_html/images/actualites/".$info.".".$extensionUpload;
+                  //var_dump($_FILES['avatar']['tmp_name']);
+                  //die;
+                  $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+                  if($resultat) {
+                    echo "Image mise à hour avec succès";
+  
+                  } else {
+                     $msg = "Erreur durant l'importation de votre photo de profil";
+                  }
+               } else {
+                  $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+               }
+            } else {
+               $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+            }
+         }
+      }
 
     public static function uploadervideo($info){
         //die('enter');

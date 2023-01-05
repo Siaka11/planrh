@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+    <base href="/planrh/">
     <meta charset="utf-8">
     <meta name="keywords" content="Plan Rh" />
     <meta name="description" content="Site de recrutement et de placement" />
@@ -16,17 +17,17 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
 
     <!-- CSS Global Compulsory (Do not remove)-->
-    <link rel="stylesheet" href="css/font-awesome/all.min.css" />
-    <link rel="stylesheet" href="css/flaticon/flaticon.css" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/font-awesome/all.min.css" />
+    <link rel="stylesheet" href="../css/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" />
 
     <!-- Page CSS Implementing Plugins (Remove the plugin CSS here if site does not use that feature)-->
-    <link rel="stylesheet" href="css/range-slider/ion.rangeSlider.css" />
-    <link rel="stylesheet" href="css/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/subtle-slideshow.css" />
+    <link rel="stylesheet" href="../css/range-slider/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="../css/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../css/subtle-slideshow.css" />
 
     <!-- Template Style -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
   </head>
 <body>
@@ -175,12 +176,12 @@ Back To Top-->
 Javascript -->
 
     <!-- JS Global Compulsory (Do not remove)-->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/popper/popper.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/popper/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
 
     <!-- Template Scripts (Do not remove)-->
-    <script src="js/custom.js"></script>
+    <script src="../js/custom.js"></script>
 
 </body>
 

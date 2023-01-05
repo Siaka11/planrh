@@ -35,20 +35,15 @@ inner banner -->
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width:85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-            <span class="progress-bar-number">85%</span>
-          </div>
-        </div>
         <div class="candidates-skills">
           <div class="candidates-skills-info">
-            <h3 class="text-primary">85%</h3>
+            <!-- <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Retour sur le site planrh</a> -->
           </div>
-          <div class="candidates-required-skills ms-auto mt-sm-0 mt-3">
-            <a class="btn btn-dark" href="#">Ajoutez une compétence</a>
+          <div class="candidates-required-skills ms-auto mt-sm-0 mt-3 end-0">
+            <a class="btn btn-dark" href="/">Retour au site planrh</a>
+            <!-- <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Ajoutez une compétence</a> -->
           </div>
         </div>
-      </div>
     </div>
   </div>
 </div>

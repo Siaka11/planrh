@@ -31,15 +31,15 @@ class Backend_candidatController extends Controller{
         $candidat = $candidatmodel->find($_SESSION['user']['id']);
 
         $offre = new OffreModel;
-        $toutes_offres = $offre->findAll();
-        $offre_par_page = 2;
+        $toutes_offres = $offre->findAllEtat();
+        $offre_par_page = 5;
         $offres_totales = count($toutes_offres);
         $page_totale = ceil($offres_totales / $offre_par_page);
         $page_courante = 1;
         
         $depart = ($page_courante - 1) * $offre_par_page;
-        $recupere_tous_offres = $offre->recupere_tous_offres_avec_limit($depart,$offre_par_page);
 
+        $recupere_tous_offres = $offre->recupere_tous_offres_avec_limit($depart,$offre_par_page);
 
         $postuler = new Postuler_Candidat_Offre_Model;
         $postuler_Candidat_Offre_Model = $postuler->tous_les_offres_by_candidat($_SESSION['user']['id']);
@@ -94,8 +94,8 @@ class Backend_candidatController extends Controller{
         $candidat = $candidatmodel->find($_SESSION['user']['id']);
 
         $offre = new OffreModel;
-        $toutes_offres = $offre->findAll();
-        $offre_par_page = 2;
+        $toutes_offres = $offre->findAllEtat();
+        $offre_par_page = 5;
         $offres_totales = count($toutes_offres);
         $page_totale = ceil($offres_totales / $offre_par_page);
         $page_courante = $id;
@@ -405,7 +405,7 @@ class Backend_candidatController extends Controller{
 
                $_SESSION["message"] = "Vous avez saisi une compétence";
                //$_SESSION["information"] = "Vous avez saisi une formation";
-                header("Location: /backend_candidat/modification_cv");
+                header("Location: /backend_candidat/modification_cv/#competence");
                 exit;
 
             }
@@ -803,6 +803,7 @@ class Backend_candidatController extends Controller{
         $postuler = new Postuler_Candidat_Offre_Model;
         $candidat_offres = $postuler->tous_les_offres_by_candidat($_SESSION['user']['id']);
 
+        
 
         $offre = new OffreModel;
         $findcompany = new EmployeurModel;

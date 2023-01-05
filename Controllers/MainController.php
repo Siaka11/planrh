@@ -9,14 +9,15 @@ use App\Models\OffreModel;
 use App\Models\OffresModel;
 use App\Models\DomaineModel;
 use App\Models\CandidatModel;
+use PHPMailer\PHPMailer\SMTP;
 use App\Models\EmployeurModel;
+use App\Models\PubliciteModel;
 use App\Controllers\Controller;
 use App\Models\TypeEmploiModel;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 use App\Models\Aimer_Candidat_Offre_Model;
 use App\Models\Postuler_Candidat_Offre_Model;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
 class MainController extends Controller
 {
@@ -25,7 +26,7 @@ class MainController extends Controller
     {
         $i = 0;
         $emploiModel = new OffreModel();
-        $emploiRecent = $emploiModel->findAll();
+        $emploiRecent = $emploiModel->findAllEtat();
 
         $domaine = new DomaineModel;
         $domaine = $domaine->findAll();
@@ -70,23 +71,7 @@ class MainController extends Controller
                 exit;
             }
 
-            //$user = $candidatmodel->hydrate($emailExist);
-            // var_dump($user);
 
-
-
-            // if ($pass == $motdepasse) {
-            //     $user->setSession();
-            //     var_dump($user);
-            //     header('Location:  /backend_candidat');
-            //     exit;
-            // } else {
-            //     //var_dump($pass);
-                
-            //     $_SESSION['message'] = 'Le mot de passe est incorrect';
-            //     //header('Location: /');
-            //     //exit;
-            // }
 
         }
 
@@ -149,8 +134,11 @@ class MainController extends Controller
 
         }
 
-      
-        $this->render('main/index.php', compact('emploiRecent', 'domaine', 'emploiModel'));
+        $publicitemodel = new PubliciteModel();
+        $publicites = $publicitemodel->findAll();
+
+        
+        $this->render('main/index.php', compact('emploiRecent', 'domaine', 'emploiModel', 'publicites'));
     }
 
     public function creer_un_compte(){
@@ -247,16 +235,15 @@ class MainController extends Controller
                 //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             
                 $mail->send();
-                $_SESSION['message'] = "Votre compte a été crée.<br/> Merci de vous rendre sur votre boîte mail pour récupérer le mot de passe.";
+                $_SESSION['message'] = "Votre compte a été crée.<br/>
+                Votre mot de passe : $createdefaultpass <br/>
+                Merci de vous rendre également sur votre boîte mail pour récupérer le mot de passe.";
+                
                 header("Location: /main");
                 exit;
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
-
-
-
-
 
 
         }
@@ -348,8 +335,9 @@ class MainController extends Controller
                 //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             
                 $mail->send();
-                $_SESSION['message'] = "Votre compte a été crée.<br/> Merci de vous rendre sur votre boîte mail pour récupérer le mot de passe.";
-                header("Location: /main");
+                $_SESSION['message'] = "Votre compte a été crée.<br/>
+                Votre mot de passe : $createdefaultpass <br/>
+                Merci de vous rendre également sur votre boîte mail pour récupérer le mot de passe.";                header("Location: /main");
                 exit;
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -362,6 +350,7 @@ class MainController extends Controller
 
         }
 
+        
         $domainemodel = new DomaineModel;
         $domaines = $domainemodel->findAll();
         $this->render('main/creer_un_compte.php', compact('domaines'), 'home_second.php');
@@ -383,7 +372,7 @@ class MainController extends Controller
     public function fetch_data(){      
         if(isset($_POST['action'])){
             $emploiModel = new OffreModel();
-            $emploiRecent = $emploiModel->findAll();
+            $emploiRecent = $emploiModel->findAllEtat();
 
             $type_emploi = new TypeEmploiModel;
             $domaineModel = new DomaineModel;
@@ -540,7 +529,7 @@ class MainController extends Controller
     public function offre($id){
 
         if(!$_SESSION["user"]["id"]){
-            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter à un compte candidat!";
             header("Location: /");
             exit;
         }

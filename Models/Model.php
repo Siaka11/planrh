@@ -95,8 +95,13 @@ class Model extends Db
 
     public function findAll()
     {
-        //  $this->db = Db::getInstance();
-        $query = $this->requete('SELECT * FROM ' . $this->table);
+        $query = $this->requete('SELECT * FROM ' . $this->table.' ORDER BY id DESC');
+        return $query->fetchAll();
+    }
+
+    public function findAllEtat()
+    {
+        $query = $this->requete('SELECT * FROM ' . $this->table.' WHERE etat = 1 ORDER BY id DESC');
         return $query->fetchAll();
     }
 

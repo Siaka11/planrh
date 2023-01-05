@@ -72,8 +72,9 @@ job-list -->
                     <label class="form-check-label" for="dateposted5">Depuis 30jrs</label>
                   </div>
                   <div class="job-filter-tag">
-                          <button type="submit" class="btn-primary filter-clear" name="filtre_date">Recherche<i class="fas fa-redo-alt"></i> </button>
-
+                          <button type="submit" class="btn-primary filter-clear" name="filtre_date">
+                            Recherche<i class="fas fa-redo-alt"></i> 
+                          </button>
                           <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>
                   </div>
                 </div>
@@ -83,30 +84,25 @@ job-list -->
           <hr>
           <div class="widget">
             <div class="widget-title widget-collapse">
-              <h6>Catégorie d'emplois</h6>
-              <a class="ms-auto" data-bs-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism"> <i class="fas fa-chevron-down"></i> </a> </div>
+              <h6>Domaines d'activités</h6>
+              <a class="ms-auto" data-bs-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism"> <i class="fas fa-chevron-down"></i> </a> 
+            </div>
               <div class="collapse show" id="specialism">
-                <div class="widget-content">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="specialism1">
-                    <label class="form-check-label" for="specialism1">Informatique</label>
+                <form method="POST">
+                  <div class="widget-content">
+                  <?php foreach($tous_domaines as $tous_domaine): ?>
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" name="domaine" value="<?= $tous_domaine->id ?>" id="specialism1">
+                      <label class="form-check-label" for="specialism1"><?= $tous_domaine->nom ?></label>
+                    </div>
+                  <?php endforeach; ?>
+                  <div class="job-filter-tag">
+                    <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>
+                    <button type="submit" class="btn-primary filter-clear" name="filtre_domaine">
+                        Recherche<i class="fas fa-redo-alt"></i> 
+                    </button>
                   </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="specialism2">
-                    <label class="form-check-label" for="specialism2">Juriste</label>
-                  </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="specialism3">
-                    <label class="form-check-label" for="specialism3">Medcine</label>
-                  </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="specialism4">
-                    <label class="form-check-label" for="specialism4">Construction</label>
-                  </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="specialism5">
-                    <label class="form-check-label" for="specialism5">Autres</label>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -116,85 +112,31 @@ job-list -->
                 <h6>Type de Contrat</h6>
                 <a class="ms-auto" data-bs-toggle="collapse" href="#jobtype" role="button" aria-expanded="false" aria-controls="jobtype"> <i class="fas fa-chevron-down"></i> </a> </div>
                 <div class="collapse show" id="jobtype">
+                  <form method="POST">
                   <div class="widget-content">
-                    <div class="form-check fulltime-job">
-                      <input type="checkbox" class="form-check-input" id="jobtype1">
-                      <label class="form-check-label" for="jobtype1">Plein Temps</label>
+                    <?php foreach($typeemplois as $typeemploi): ?>
+                    <div class="form-check ">
+                      <input type="radio" class="form-check-input" name="typeemploi" value="<?= $typeemploi->id ?>" id="jobtype1">
+                      <label class="form-check-label" for="jobtype1"><?= $typeemploi->nom ?></label>
                     </div>
-                    <div class="form-check parttime-job">
-                      <input type="checkbox" class="form-check-input" id="jobtype2">
-                      <label class="form-check-label" for="jobtype2">Temps Partial</label>
-                    </div>
-                    <div class="form-check freelance-job">
-                      <input type="checkbox" class="form-check-input" id="jobtype3">
-                      <label class="form-check-label" for="jobtype3">Freelance</label>
-                    </div>
-                    <div class="form-check temporary-job">
-                      <input type="checkbox" class="form-check-input" id="jobtype4">
-                      <label class="form-check-label" for="jobtype4">Intérimaire</label>
-                    </div>
+                    <?php endforeach; ?>
+                    <div class="job-filter-tag">
+                    <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>
+                    <button type="submit" class="btn-primary filter-clear" name="filtre_typeemploi">
+                        Recherche<i class="fas fa-redo-alt"></i> 
+                    </button>
                   </div>
+                  </div>
+                  </form>
                 </div>
               </div>
-              <hr>
               <div class="widget">
-                <div class="widget-title widget-collapse">
-                  <h6>Expériences</h6>
-                  <a class="ms-auto" data-bs-toggle="collapse" href="#experience" role="button" aria-expanded="false" aria-controls="experience"> <i class="fas fa-chevron-down"></i> </a> </div>
-                  <div class="collapse show" id="experience">
-                    <div class="widget-content">
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="experience1">
-                        <label class="form-check-label" for="experience1">Débutant</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="experience2">
-                        <label class="form-check-label" for="experience2"> 1 an</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="experience3">
-                        <label class="form-check-label" for="experience3">2 ans</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="experience4">
-                        <label class="form-check-label" for="experience4">3 ans</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="experience5">
-                        <label class="form-check-label" for="experience5">4 ans</label>
-                      </div>
-                    </div>
-                  </div>
+
+
                 </div>
-                <hr>
                 <div class="widget">
-                  <div class="widget-title widget-collapse">
-                    <h6>Salaire</h6>
-                    <a class="ms-auto" data-bs-toggle="collapse" href="#Offeredsalary" role="button" aria-expanded="false" aria-controls="Offeredsalary"> <i class="fas fa-chevron-down"></i> </a> </div>
-                    <div class="collapse show" id="Offeredsalary">
-                      <div class="widget-content">
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="Offeredsalary1">
-                          <label class="form-check-label" for="Offeredsalary1">10k - 20k</label>
-                        </div>
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="Offeredsalary2">
-                          <label class="form-check-label" for="Offeredsalary2">20k - 30k</label>
-                        </div>
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="Offeredsalary3">
-                          <label class="form-check-label" for="Offeredsalary3">30k - 40k</label>
-                        </div>
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="Offeredsalary4">
-                          <label class="form-check-label" for="Offeredsalary4">40k - 50k</label>
-                        </div>
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="Offeredsalary5">
-                          <label class="form-check-label" for="Offeredsalary5">50k - 60k</label>
-                        </div>
-                      </div>
-                    </div>
+
+
                   </div>
                     </div>
                   </div>
@@ -204,7 +146,7 @@ job-list -->
                     <div class="row mb-4">
                        <div class="col-md-6">
                         <div class="section-title mb-3 mb-lg-4">
-                          <h6 class="mb-0">1-5 / <span class="text-primary">28 Emplois</span></h6>
+                          <h6 class="mb-0">1-5 / <span class="text-primary"><?= count($toutes_les_offres) ?> Emplois</span></h6>
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -256,19 +198,32 @@ job-list -->
                           </div>
                         </div>
                       <?php endforeach; ?>
-
-
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-center">
                       <div class="col-12 text-center mt-4 mt-md-5">
-                        <ul class="pagination justify-content-center mb-0">
-                          <li class="page-item disabled"> <span class="page-link b-radius-none">Prec</span> </li>
-                          <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#">...</a></li>
-                          <li class="page-item"><a class="page-link" href="#">25</a></li>
-                          <li class="page-item"> <a class="page-link" href="#">Suiv</a> </li>
+                        <ul class="pagination justify-content-center mb-md-4 mb-0">
+
+                            <?php if($page_courante == 1): ?>
+                                  <li class="page-item disabled"> <span class="page-link b-radius-none">Précédent</span> </li>
+                            <?php else: ?>
+                              <li class="page-item "> <a class="page-link" href="/candidat/emplois_page/<?= $page_courante - 1 ?>">Précédent</a> </li>
+                            <?php endif ?>
+
+                            <?php for($i = 1; $i <= $page_totale; $i++): ?> 
+
+                            <?php if($i == $page_courante): ?>
+                              <li class="page-item active" aria-current="page"><span class="page-link"><?= $i ?> </span> <span class="sr-only">(current)</span></li>
+                            <?php else: ?>
+                              <li class="page-item"><a class="page-link" href="/candidat/emplois_page/<?= $i ?>"><?= $i ?></a></li>
+                            <?php endif ?>
+            
+                            <?php endfor; ?>
+
+                            <?php if($page_courante == $page_totale): ?>
+                                  <li class="page-item disabled"> <span class="page-link b-radius-none">Suivant</span> </li>
+                            <?php else: ?>
+                              <li class="page-item "> <a class="page-link" href="/candidat/emplois_page/<?= $page_courante + 1 ?>">Suivant</a> </li>
+                            <?php endif ?>
                         </ul>
                       </div>
                     </div>

@@ -13,7 +13,7 @@ class Formation_Cours_Model extends Model{
     protected $lieu;
     protected $etat;
     protected $description;
-    protected $date_debut;
+    protected $date_debut;      
     protected $date_fin;
 
     public function __construct(){

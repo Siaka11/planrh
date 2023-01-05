@@ -7,11 +7,11 @@ inner banner -->
         <div class="candidates-user-info">
         <div class="jobber-user-info">
             <div class="profile-avatar">
-              <img class="img-fluid "  src="../images/<?= $candidat->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
+              <img class="img-fluid "  src="../images/<?= $admin->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
                 <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="profile-avatar-info ms-4">
-              <h3><?= $candidat->nom ?></h3>
+              <h3><?= $admin->nom ?></h3>
               <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -33,16 +33,6 @@ inner banner -->
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="candidates-skills">
-          <div class="candidates-skills-info">
-            <!-- <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Retour sur le site planrh</a> -->
-          </div>
-          <div class="candidates-required-skills ms-auto mt-sm-0 mt-3 end-0">
-            <a class="btn btn-dark" href="/">Retour au site planrh</a>
-            <!-- <a class="btn btn-dark" href="/backend_candidat/modification_cv/#competence">Ajoutez une compétence</a> -->
-          </div>
-        </div>
     </div>
   </div>
 </div>
@@ -58,14 +48,18 @@ Dashboard Nav -->
         <div class="sticky-top secondary-menu-sticky-top">
           <div class="secondary-menu">
             <ul class="list-unstyled mb-0">
-              <li><a  href="../backend_candidat/">Accueil</a></li>
-              <li><a href="../backend_candidat/profil">Mon Profil</a></li>
-              <li><a href="../backend_candidat/modification_pass">Modifier Mon Pass</a></li>
-              <li><a href="../backend_candidat/imprimer" target="_blank">Mon CV</a></li>
-              <li><a href="../backend_candidat/modification_cv">Modifier Mon CV</a></li>
-              <li><a href="../backend_candidat/liste_emplois" class="active">Emplois</a></li>
-              <li><a href="../backend_candidat/emplois_enregistres">Emploi Enregistré</a></li>
-              <li><a href="../backend_candidat/quitter">Quitter</a></li>
+
+              <li><a  href="/cabinet/">Accueil</a></li>
+              <!-- <li><a href="../cabinet/profil">Mon Profil</a></li> -->
+              <!-- <li><a href="../cabinet/modification_pass">Modifier mon passe</a></li> -->
+              <li><a href="../cabinet/actualites">Offres</a></li>
+              <li><a href="../cabinet/emplois_postules">Emplois postulés</a></li>
+              <li><a href="../cabinet/employeurs">Employeurs</a></li>
+              <li><a href="../cabinet/candidats">Candidats</a></li>
+              <li><a href="../cabinet/formations">Formations</a></li>
+              <li><a class="active"  href="../cabinet/actualites">Actualités</a></li>
+              <li><a href="../main/logout">Quitter</a></li>
+
             </ul>
           </div>
         </div>
@@ -84,9 +78,10 @@ Manage Jobs -->
       <div class="col-md-12">
         <div class="user-dashboard-info-box mb-0">
           <div class="row mb-4">
+          <a  class="btn btn-primary mb-4" href="/cabinet/ajout_actualite">Ajouter une actualité</a>
             <div class="col-md-7 col-sm-5 d-flex align-items-center">
               <div class="section-title-02 mb-0 ">
-                <h4 class="mb-0">Gestion des candatures</h4>
+                <h4 class="mb-0">Liste des actulités</h4>
               </div>
             </div>
             <div class="col-md-5 col-sm-7 mt-3 mt-sm-0">
@@ -100,29 +95,27 @@ Manage Jobs -->
             <table class="table table-bordered" id="myTable">
               <thead class="bg-light">
                 <tr >
-                  <th scope="col">Titre de l'emploi</th>
-                  <th scope="col">Statut</th>
+                  <th scope="col">actualite sur le candidat</th>
+                  <th scope="col">Date de création de la actualite</th>
                   <!-- <th scope="col">Appreciation</th> -->
                   <!-- <th scope="col">Action</th> -->
                 </tr>
               </thead>
               <tbody>
                 <?php $i = 0 ?>
-                <?php foreach($candidat_offres as $candidat_offre) : ?>
+                <?php foreach($actualites as $actualite) : ?>
                   <?php $i++ ?>
                 <tr>
-                  <td scope="row"> <b class="text-dark"><?=  $candidat_offre->offre_titre ?>  </b> 
-                    <p class="mb-1 mt-2">Expire le : <?= $candidat_offre->date_expiration ?></p>
-                    <p class="mb-0">Entreprise : <?= $candidat_offre->employeur_entreprise ?></p>
+                  <td scope="row"> <b class="text-dark">
+                    <div class="job-list-logo">
+                    <img class="img-fluid" src="../images/actualites/<?= $actualite->image ?>" style="width: 200px;height: 160px;" alt="">
+                    </div>
+                    <p class="mb-1 mt-2"><span class="text-decoration-underline">Titre de la actualite :</span><b> <?= $actualite->titre ?></b></p>
+                    <p class="mb-0 "><span class="text-decoration-underline">Description :</span> <?= $actualite->description ?></p>
+
                   </td>
                   <td>
-                      <?php if($candidat_offre->acceptation == 1): ?>
-                        <b class="text-danger"> Refusée</b>
-                      <?php elseif($candidat_offre->acceptation == 2): ?>
-                        <b class="text-success">Préselecionné (e)</b>
-                      <?php else: ?>
-                        <b class="text-primary">En attente</b>
-                      <?php endif ?>
+                        <b class="text-primary"><?= $actualite->date_creation ?></b>
                   </td>
                   <!-- <td><i class="far fa-star"></i></td> -->
                   <!-- <td>

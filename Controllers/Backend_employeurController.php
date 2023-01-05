@@ -60,6 +60,12 @@ class Backend_employeurController extends Controller{
 
     public function offre($id){
 
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
+
         if(isset($_POST['charger'])){
 
             $namedate = new DateTime();
@@ -144,6 +150,11 @@ class Backend_employeurController extends Controller{
 
     public function gestion_candidats(){
 
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
 
         if(isset($_POST['charger'])){
 
@@ -169,11 +180,14 @@ class Backend_employeurController extends Controller{
 
         }
 
+        $postuler_candidat_offre_model = new OffreModel;
+        $candidats_acceptes = $postuler_candidat_offre_model->tous_candidats_postules_by_offre($_SESSION["useremployeur"]["id"], 2);
+
         //Debut de la pagination
         $offre = new OffreModel;
-        $toutes_offres = $offre->findAll();
-        $offre_par_page = 2;
-        $offres_totales = count($toutes_offres);
+        $toutes_offres = $offre->findAllEtat();
+        $offre_par_page = 5;
+        $offres_totales = count($candidats_acceptes);
         $page_totale = ceil($offres_totales / $offre_par_page);
         $page_courante = 1;        
         // Fin de la pagination
@@ -191,7 +205,11 @@ class Backend_employeurController extends Controller{
     }
 
     public function page_candidat($id){
-
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
 
         if(isset($_POST['charger'])){
 
@@ -217,19 +235,22 @@ class Backend_employeurController extends Controller{
 
         }
 
+        $postuler_candidat_offre_model = new OffreModel;
+        $candidats_acceptes = $postuler_candidat_offre_model->tous_candidats_postules_by_offre($_SESSION["useremployeur"]["id"], 2);
+
         //Debut de la pagination
-        $offre = new OffreModel;
+        $offre = new Postuler_Candidat_Offre_Model;
         $toutes_offres = $offre->findAll();
-        $offre_par_page = 2;
-        $offres_totales = count($toutes_offres);
+        var_dump(count($toutes_offres));
+        $offre_par_page = 5;
+        $offres_totales = count($candidats_acceptes);
         $page_totale = ceil($offres_totales / $offre_par_page);
         $page_courante = $id;        
         // Fin de la pagination
 
 
         //Acceptation prend la valeur 2
-        $postuler_candidat_offre_model = new OffreModel;
-        $candidats_acceptes = $postuler_candidat_offre_model->tous_candidats_postules_by_offre($_SESSION["useremployeur"]["id"], 2);
+        
 
         $employeurmodel = new EmployeurModel;
         $employeur = $employeurmodel->find($_SESSION['useremployeur']['id']);
@@ -239,7 +260,11 @@ class Backend_employeurController extends Controller{
     }
 
     public function modification_pass(){
-
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
 
         //echo "hello";
         if(isset($_POST['charger'])){
@@ -324,7 +349,11 @@ class Backend_employeurController extends Controller{
 
     public function liste_offres(){
 
-
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
 
         if(isset($_POST['charger'])){
 
@@ -356,7 +385,7 @@ class Backend_employeurController extends Controller{
 
         //Debut de la pagination
         $offre = new OffreModel;
-        $toutes_offres = $offre->findAll();
+        $toutes_offres = $offre->findAllEtat();
         $offre_par_page = 2;
         $offres_totales = count($toutes_offres);
         $page_totale = ceil($offres_totales / $offre_par_page);
@@ -380,6 +409,11 @@ class Backend_employeurController extends Controller{
 
     public function page_offre($id){
 
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
 
         if(isset($_POST['charger'])){
 
@@ -411,7 +445,7 @@ class Backend_employeurController extends Controller{
 
         //Debut de la pagination
         $offre = new OffreModel;
-        $toutes_offres = $offre->findAll();
+        $toutes_offres = $offre->findAllEtat();
         $offre_par_page = 2;
         $offres_totales = count($toutes_offres);
         $page_totale = ceil($offres_totales / $offre_par_page);
@@ -434,6 +468,12 @@ class Backend_employeurController extends Controller{
     }
 
     public function profil(){
+
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
 
         if(isset($_POST['charger'])){
 
@@ -536,6 +576,11 @@ class Backend_employeurController extends Controller{
 
     public function honoraire(){
 
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
 
         if(isset($_POST['charger'])){
 
@@ -568,7 +613,11 @@ class Backend_employeurController extends Controller{
 
     public function poster_emplois(){
 
-
+        if(!$_SESSION["useremployeur"]["id"]){
+            $_SESSION["message"] = "Veuillez s'il vous plaît vous connecter!";
+            header("Location: /login");
+            exit;
+        }
 
         if(isset($_POST['charger'])){
 

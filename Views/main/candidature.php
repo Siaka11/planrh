@@ -32,26 +32,26 @@ Register -->
           <fieldset>
             <ul class="nav nav-tabs nav-tabs-border d-flex" role="tablist">
               <li class="nav-item me-4">
-                <a class="nav-link active"  data-bs-toggle="tab" href="#candidate" role="tab" >
+                <a class="nav-link active"  href="/candidat/emplois" role="tab" >
                   <div class="d-flex">
                     <div class="tab-icon">
                       <i class="flaticon-users"></i>
                     </div>
                     <div class="ms-3">
-                      <h6 class="mb-0">Candidate</h6>
+                      <h6 class="mb-0">Candidat</h6>
                       <p class="mb-0">J'ai un CV.</p>
                     </div>
                   </div>
                 </a>
               </li>
               <li class="nav-item ms-auto">
-                <a class="nav-link" data-bs-toggle="tab" href="#employer" role="tab">
+                <a class="nav-link" href="/backend_candidat/modification_cv" role="tab">
                   <div class="d-flex">
                     <div class="tab-icon">
                       <i class="flaticon-users"></i>
                     </div>
                     <div class="ms-3">
-                      <h6 class="mb-0">Candidate</h6>
+                      <h6 class="mb-0">Candidat</h6>
                       <p class="mb-0">Je veux créer Mon CV.</p>
                     </div>
                   </div>
@@ -59,7 +59,7 @@ Register -->
               </li>
             </ul>
           </fieldset>
-          <div class="tab-content">
+          <!-- <div class="tab-content">
             <div class="tab-pane active" id="candidate" role="tabpanel">
               <form class="mt-4">
                 <div class="row">
@@ -169,7 +169,7 @@ Register -->
                 </div>
               </form>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

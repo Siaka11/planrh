@@ -21,6 +21,7 @@ class OffreModel extends Model{
     protected $id_employeur;
     protected $id_cabinet;
     protected $date_expiration;
+    protected $etat;
    
 
     public function __construct()
@@ -58,6 +59,23 @@ class OffreModel extends Model{
         )->fetchAll();
     }
 
+    public function tous_candidats_postules(){
+
+        return $this->requete(
+            "SELECT *, candidat.nom as candidat_nom, candidat.poste as candidat_poste, 
+            candidat.contact as candidat_contact, candidat.image as candidat_image, 
+            postuler_candidat_offre.acceptation as acceptation, 
+            employeur.entreprise as employeur_entreprise, offre.date_creation as offre_date_creation,
+            postuler_candidat_offre.id as postuler_candidat_offre_id
+            FROM $this->table
+            INNER JOIN postuler_candidat_offre ON postuler_candidat_offre.id_offre = offre.id
+            INNER JOIN candidat ON candidat.id = postuler_candidat_offre.id_candidat
+            INNER JOIN employeur ON employeur.id = offre.id_employeur
+            ORDER BY offre.id DESC
+            "
+        )->fetchAll();
+    }
+
     public function recupere_tous_offres(){
 
         return $this->requete("
@@ -67,7 +85,22 @@ class OffreModel extends Model{
         FROM $this->table 
         INNER JOIN  employeur ON offre.id_employeur = employeur.id
         INNER JOIN  domaine ON offre.domaine = domaine.id 
-        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id ORDER BY offre.id DESC
+        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
+        WHERE offre.etat = 1
+        ORDER BY offre.id DESC
+        ")->fetchAll();
+    }
+
+    public function recupere_tous_offres_etat(){
+        return $this->requete("
+        SELECT * , domaine.nom as domaine_nom, employeur.entreprise as employeur_entreprise, 
+        typeemploi.nom as typeemploi_nom, employeur.image as employeur_image, offre.id as offre_id,
+        offre.date_creation as offre_date_creation
+        FROM $this->table 
+        INNER JOIN  employeur ON offre.id_employeur = employeur.id
+        INNER JOIN  domaine ON offre.domaine = domaine.id 
+        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
+        ORDER BY offre.id DESC
         ")->fetchAll();
     }
 
@@ -82,6 +115,7 @@ class OffreModel extends Model{
         INNER JOIN  domaine ON offre.domaine = domaine.id 
         INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
         WHERE offre.date_creation BETWEEN  "'.$date1.'" AND  "'.$date2.'"
+        AND offre.etat = 1
         ORDER BY offre.id DESC
         ')->fetchAll();
     }
@@ -95,7 +129,8 @@ class OffreModel extends Model{
         FROM $this->table 
         INNER JOIN  employeur ON offre.id_employeur = employeur.id
         INNER JOIN  domaine ON offre.domaine = domaine.id 
-        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
+        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id
+        WHERE offre.etat = 1
         ORDER BY offre.id DESC LIMIT $depart, $offre_par_page
         ")->fetchAll();
     }
@@ -120,6 +155,33 @@ class OffreModel extends Model{
         //DELETE FROM `offre` WHERE id = 2
         $count = $this->requete("SELECT * FROM $this->table WHERE domaine = ?", [$domaine]);
         return $count = count($count->fetchAll());
+    }
+
+    public function offre_domaine_recherche($domaine){
+
+        $recherche = $this->requete("SELECT * , domaine.nom as domaine_nom, employeur.entreprise as employeur_entreprise, 
+        typeemploi.nom as typeemploi_nom, employeur.image as employeur_image, offre.id as offre_id,
+        offre.date_creation as offre_date_creation
+        FROM $this->table
+        INNER JOIN  employeur ON offre.id_employeur = employeur.id
+        INNER JOIN  domaine ON offre.domaine = domaine.id 
+        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
+        WHERE domaine = ? AND offre.etat = 1", [$domaine]);
+        return  $recherche->fetchAll();
+
+    }
+
+    public function offre_domaine_typeemploi($typeemploi){
+
+        $recherche = $this->requete("SELECT * , domaine.nom as domaine_nom, employeur.entreprise as employeur_entreprise, 
+        typeemploi.nom as typeemploi_nom, employeur.image as employeur_image, offre.id as offre_id,
+        offre.date_creation as offre_date_creation
+        FROM $this->table
+        INNER JOIN  employeur ON offre.id_employeur = employeur.id
+        INNER JOIN  domaine ON offre.domaine = domaine.id 
+        INNER JOIN  typeemploi ON offre.typeemploi = typeemploi.id 
+        WHERE typeemploi = ? AND offre.etat = 1", [$typeemploi]);
+        return  $recherche->fetchAll();
     }
 
     public function offre_domaine_employeur($domaine, $employeur){
@@ -468,6 +530,26 @@ class OffreModel extends Model{
     public function setDate_expiration($date_expiration)
     {
         $this->date_expiration = $date_expiration;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of etat
+     */ 
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * Set the value of etat
+     *
+     * @return  self
+     */ 
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
 
         return $this;
     }

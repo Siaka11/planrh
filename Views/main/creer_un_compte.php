@@ -79,7 +79,7 @@ Register -->
                     <label class="form-label">Date de naissance *</label>
                     <input type="date" name="datenaissance" class="form-control">
                   </div>
-                  <div class="mb-3 col-md-6 select-border">
+                  <div class="mb-3 col-md-12 select-border">
                     <label class="form-label" for="domaine">Domaine</label>
                     <select class="form-control" name="domaine">
                       <?php foreach($domaines as $domaine): ?>
@@ -91,7 +91,7 @@ Register -->
                     <label class="form-label" for="ville">Poste :</label>
                     <input type="text" name="poste" class="form-control" placeholder="commercial">
                   </div>
-                  <div class="mb-3 col-md-6 select-border">
+                  <div class="mb-3 col-md-12 select-border">
                     <label class="form-label" for="domaine">Genre</label>
                     <select class="form-control" name="genre">
                         <option value="homme" >Homme</option>

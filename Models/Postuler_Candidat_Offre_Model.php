@@ -9,6 +9,7 @@ class Postuler_Candidat_Offre_Model extends Model{
     protected $date_creation;
     protected $id_candidat;
     protected $id_offre;
+    protected $acceptation;
 
     public function __construct()
     {
@@ -227,6 +228,26 @@ class Postuler_Candidat_Offre_Model extends Model{
     public function setDate_creation($date_creation)
     {
         $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of acceptation
+     */ 
+    public function getAcceptation()
+    {
+        return $this->acceptation;
+    }
+
+    /**
+     * Set the value of acceptation
+     *
+     * @return  self
+     */ 
+    public function setAcceptation($acceptation)
+    {
+        $this->acceptation = $acceptation;
 
         return $this;
     }

@@ -77,10 +77,8 @@ class LoginController extends Controller{
             $motdepasse = $_POST['motdepasse'];
        
             $employeurmodel = new EmployeurModel;
-            //var_dump($userModel);
             $emailExist = $employeurmodel->findOneByEmail($email);
-            // var_dump($emailExist);
-            // die;
+
             if(!$emailExist){
                 $_SESSION['message'] = 'Le login  ou le mot de passe est incorrect';
                 header('Location: /login');
@@ -110,23 +108,7 @@ class LoginController extends Controller{
                 exit;
             }
 
-            //$user = $candidatmodel->hydrate($emailExist);
-           // var_dump($user);
-
-
-
-            // if ($pass == $motdepasse) {
-            //     $user->setSession();
-            //     var_dump($user);
-            //     header('Location:  /backend_candidat');
-            //     exit;
-            // } else {
-            //     //var_dump($pass);
-                
-            //     $_SESSION['message'] = 'Le mot de passe est incorrect';
-            //     //header('Location: /');
-            //     //exit;
-            // }
+          
 
         }
 

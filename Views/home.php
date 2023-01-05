@@ -118,8 +118,11 @@ Header -->
           <div class="login d-inline-block me-4">
             <?php if((isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) || isset($_SESSION['useremployeur'])): ?>
 
-              <a href="main/logout"><i class="far fa-user pe-2"></i>Deconnexion </a><?=$_SESSION['user']['nom'] ?? "" ?><?=$_SESSION['useremployeur']['nom'] ?? "" ?>
-             
+              <?php if(isset($_SESSION['user'])): ?>
+                <a href="/backend_candidat"><i class="far fa-user pe-2"></i>Mon espace </a><?=$_SESSION['user']['nom'] ?? "" ?>
+              <?php else: ?>
+                <a href="/backend_employeur"><i class="far fa-user pe-2"></i>Mon espace </a><?=$_SESSION['useremployeur']['nom'] ?? "" ?>
+              <?php endif; ?>
 
             <?php else: ?>
               <a href="login.html" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="far fa-user pe-2"></i>Connexion</a>
@@ -326,7 +329,7 @@ Signin Modal Popup -->
                   <div class="col-md-6">
                     <div class="ms-md-3 mt-3 mt-md-0 forgot-pass">
                       <a href="#">Mot de passe Oublié ?</a>
-                      <p class="mt-1">Vous n'avez pas de Compte? <a href="#">Créé le</a></p>
+                      <p class="mt-1">Vous n'avez pas de Compte? <a href="/main/creer_un_compte" class="text-danger">Créé le</a></p>
                     </div>
                   </div>
                 </div>
@@ -353,7 +356,7 @@ Signin Modal Popup -->
                       <a href="#">Mot de passe Oublié ?</a>
                       <div class="form-check mt-2">
                         <input class="form-check-input" type="checkbox" value="" id="Remember-02">
-                        <p class="mt-1">Vous n'avez pas de Compte? <a href="#">Créé le</a></p>
+                        <p class="mt-1">Vous n'avez pas de Compte? <a href="/main/creer_un_compte" class="text-danger">Créé le</a></p>
                       </div>
                     </div>
                   </div>

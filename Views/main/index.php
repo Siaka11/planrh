@@ -27,12 +27,12 @@ banner -->
           <div class="job-search-field">
             <div class="job-search-item">
               <form>
-                <div class="col-sm-12">
+                <!-- <div class="col-sm-12">
                   <div class="form-group mb-md-0 justify-content-center">
                       <input type="text" class="form-control" name="job_title" placeholder="Poste, Entreprise...">
                     <button type="submit" class="btn btn-primary btn-lg m-0"><i class="fas fa-search"></i>Recherche</button>
                   </div>
-                </div>
+                </div> -->
               </form>
             </div>
           </div>
@@ -56,7 +56,7 @@ Action-box -->
         </div>
       </div>
       <div class="col-md-3 text-lg-end">
-        <a class="btn btn-dark" href="#">publier un emploi</a>
+        <a class="btn btn-dark" href="/backend_employeur/poster_emplois">publier un emploi</a>
       </div>
     </div>
   </div>
@@ -100,7 +100,7 @@ Browse listing -->
               
             </div>
             <div class="col-12 justify-content-center d-flex mt-4">
-              <a class="btn btn-white btn-lg" href="#">Plus d'emplois</a>
+              <a class="btn btn-white btn-lg" href="/candidat/emplois">Plus d'emplois</a>
             </div>
           </div>
           <div class="tab-pane fade active show" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -108,7 +108,7 @@ Browse listing -->
               
             </div>
             <div class="col-12 justify-content-center d-flex mb-4">
-              <a class="btn btn-white btn-lg" href="#">Plus d'Emplois</a>
+              <a class="btn btn-white btn-lg" href="/candidat/emplois">Plus d'Emplois</a>
             </div>
           </div>
         </div>
@@ -118,6 +118,7 @@ Browse listing -->
           <div class="widget bg-white p-4">
             <div class="widget-title widget-collapse">
               <h5 class ="testeur">Domaine</h5>
+              <a class="ms-auto" data-bs-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism"> <i class="fas fa-chevron-down"></i> </a>
             </div>
             <div class="collapse show" id="specialism">
               <div class="widget-content"> 
@@ -132,48 +133,26 @@ Browse listing -->
           </div>
           
           <div class="owl-carousel owl-nav-bottom-center mt-4" data-nav-arrow="false" data-nav-dots="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="15" data-autoheight="true">
+           
+            <?php foreach($publicites as $publicite): ?>
+
             <div class="item">
               <div class="employers-grid bg-white py-4">
                 <div class="employers-list-logo pt-0">
-                  <img class="img-fluid" src="images/svg/09.svg" alt="">
+                  <img class="img-fluid" src="../images/actualites/<?= $publicite->image ?>" style="200px; height: 80px" alt="">
                 </div>
                 <div class="employers-list-details">
                   <div class="employers-list-info">
                     <div class="employers-list-title">
-                      <h5 class="mb-0"><a href="#">Pub 01</a></h5>
+                      <h5 class="mb-0"><a href="#"><?= $publicite->titre ?></a></h5>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="item">
-              <div class="employers-grid bg-white py-4">
-                <div class="employers-list-logo pt-0">
-                  <img class="img-fluid" src="images/svg/08.svg" alt="">
-                </div>
-                <div class="employers-list-details">
-                  <div class="employers-list-info">
-                    <div class="employers-list-title">
-                      <h5 class="mb-0"><a href="#">Pub 02</a></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="employers-grid bg-white py-4">
-                <div class="employers-list-logo pt-0">
-                  <img class="img-fluid" src="images/svg/06.svg" alt="">
-                </div>
-                <div class="employers-list-details">
-                  <div class="employers-list-info">
-                    <div class="employers-list-title">
-                      <h5 class="mb-0"><a href="#">Pub 03</a></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+            <?php endforeach; ?>
+
           </div>
         </div>
       </div>
@@ -268,130 +247,130 @@ Category-style -->
               <i class="flaticon-doctor"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_sante = $emploiModel->offre_domaine(8);
             ?>
             <h6>Santé</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_sante ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-taxi"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_chauffeur_cariste = $emploiModel->offre_domaine(9);
             ?>
             <h6>Chauffeurs-Caristes</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_chauffeur_cariste ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-balance"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_juridique = $emploiModel->offre_domaine(10);
             ?>
             <h6>Juridique</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_juridique ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-team"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_administratif = $emploiModel->offre_domaine(11);
             ?>
             <h6>Soutien administratif</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_administratif ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-money"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_finances = $emploiModel->offre_domaine(12);
             ?>
             <h6>Comptabilité-Finances</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_finances ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-salary"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_marketing = $emploiModel->offre_domaine(13);
             ?>
             <h6>Marketing</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_marketing ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-shipped"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_transport = $emploiModel->offre_domaine(14);
             ?>
             <h6>Transport-Logistique</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_transport ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-worker"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_construction = $emploiModel->offre_domaine(15);
             ?>
             <h6>Construction</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_construction ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-job-2"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_achat_appro = $emploiModel->offre_domaine(16);
             ?>
             <h6>Métiers spécialisés-Fabrication</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_construction ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-job-1"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_generale_production = $emploiModel->offre_domaine(17);
             ?>
             <h6>Travail générale-Production</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_generale_production ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-approved"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_direction_cadre = $emploiModel->offre_domaine(18);
             ?>
             <h6>Direction-Cadre</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_direction_cadre ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-fast-food"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_production_alimentaire = $emploiModel->offre_domaine(19);
             ?>
             <h6>Production alimentaire-Restauration</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_production_alimentaire ?> Postes Disponibles</span>
           </a>
           <a href="#" class="category-item">
             <div class="category-icon mb-4">
               <i class="flaticon-coin"></i>
             </div>
             <?php 
-                $nbre_offre_achat_appro = $emploiModel->offre_domaine(1);
+                $nbre_offre_vente = $emploiModel->offre_domaine(20);
             ?>
             <h6>Ventes-Représentations</h6>
-            <span class="mb-0">689 Postes Disponibles</span>
+            <span class="mb-0"><?= $nbre_offre_vente ?> Postes Disponibles</span>
           </a>
         </div>
       </div>
