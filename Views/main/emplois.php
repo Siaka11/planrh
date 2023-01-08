@@ -71,11 +71,11 @@ job-list -->
                     <input type="radio" class="form-check-input" name="temps" value="30" id="dateposted5">
                     <label class="form-check-label" for="dateposted5">Depuis 30jrs</label>
                   </div>
-                  <div class="job-filter-tag">
+                  <div class="job-filter-tag d-flex justify-content-start">
                           <button type="submit" class="btn-primary filter-clear" name="filtre_date">
                             Recherche<i class="fas fa-redo-alt"></i> 
                           </button>
-                          <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>
+                          <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> recherche</a></li>
                   </div>
                 </div>
               </div>
@@ -96,11 +96,11 @@ job-list -->
                       <label class="form-check-label" for="specialism1"><?= $tous_domaine->nom ?></label>
                     </div>
                   <?php endforeach; ?>
-                  <div class="job-filter-tag">
-                    <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>
-                    <button type="submit" class="btn-primary filter-clear" name="filtre_domaine">
+                  <div class="job-filter-tag d-flex justify-content-start">
+                  <button type="submit" class="btn-primary filter-clear" name="filtre_domaine">
                         Recherche<i class="fas fa-redo-alt"></i> 
                     </button>
+                    <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>              
                   </div>
                   </form>
                 </div>
@@ -120,11 +120,11 @@ job-list -->
                       <label class="form-check-label" for="jobtype1"><?= $typeemploi->nom ?></label>
                     </div>
                     <?php endforeach; ?>
-                    <div class="job-filter-tag">
-                    <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>
+                    <div class="job-filter-tag d-flex justify-content-start">
                     <button type="submit" class="btn-primary filter-clear" name="filtre_typeemploi">
                         Recherche<i class="fas fa-redo-alt"></i> 
                     </button>
+                    <li class="invisible"><a href="#"><depuis 24h<i class="fas fa-times-circle"></i> </a></li>         
                   </div>
                   </div>
                   </form>
@@ -146,20 +146,20 @@ job-list -->
                     <div class="row mb-4">
                        <div class="col-md-6">
                         <div class="section-title mb-3 mb-lg-4">
-                          <h6 class="mb-0">1-5 / <span class="text-primary"><?= count($toutes_les_offres) ?> Emplois</span></h6>
+                          <h6 class="mb-0"><span class="text-primary"><?= count($offres) ?> Emplois</span></h6>
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <div class="job-filter-tag">
+                        <div class="job-filter-tag d-flex justify-content-start">
                         <ul class="list-unstyled">
-                          <li><a href="#">depuis <?php  $filtre == 0 ? "Ce jour" : $filtre ; ?><i class="fas fa-times-circle"></i> </a></li>
-                          <li><a class="filter-clear" href="#">Recherche<i class="fas fa-redo-alt"></i> </a></li>
+                          <!-- <li><a href="#">depuis <?php  $filtre == 0 ? "Ce jour" : $filtre ; ?><i class="fas fa-times-circle"></i> </a></li> -->
+                          <!-- <li><a class="filter-clear" href="#">Recherche<i class="fas fa-redo-alt"></i> </a></li> -->
                         </ul>
                       </div>
                       </div>
                     </div>
                     <div class="job-filter mb-4 d-sm-flex align-items-center">
-                      <div class="job-alert-bt"> <a class="btn btn-md btn-dark" href="#"><i class="fa fa-envelope"></i>Activez une alerte</a> </div>
+                        <!-- <div class="job-alert-bt"> <a class="btn btn-md btn-dark" href="#"><i class="fa fa-envelope"></i>Activez une alerte</a> </div> -->
                       <div class="job-shortby ms-sm-auto d-flex align-items-center">
                       </div>
                     </div>

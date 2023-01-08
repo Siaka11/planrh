@@ -18,6 +18,40 @@ class ActualitesModel extends Model{
 
     
 
+    public function limite_actualite_nvlle_version(){
+        return $this->requete("
+        SELECT * 
+        FROM $this->table 
+        LIMIT $fin OFFSET $depart
+        ")->fetchAll();
+    }
+
+    public function limite_actualite_une(){
+        return $this->requete("
+        SELECT * FROM $this->table ORDER BY id DESC
+        LIMIT 0,4
+        ")->fetchAll();
+    }
+
+    public function derniere_actualite(){
+        return $this->requete("
+        SELECT * FROM $this->table ORDER BY id DESC
+        LIMIT 0,1
+        ")->fetch();
+    }
+    public function actualite_autre(){
+        return $this->requete("
+        SELECT * FROM $this->table ORDER BY id DESC
+        LIMIT 4,3
+        ")->fetchAll();
+    }
+
+    public function actualite_autre_premier(){
+        return $this->requete("
+        SELECT * FROM $this->table ORDER BY id DESC
+        LIMIT 4,1
+        ")->fetch();
+    }
     /**
      * Get the value of id_candidat
      */ 

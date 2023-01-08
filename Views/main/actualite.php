@@ -2,25 +2,25 @@
 <style>
 
 
-    .playlist {
+    .seconde_playlist, .playlist {
       width: 100%;
       float: left;
     }
 
-    .playlist ul {
+    .seconde_playlist, .playlist ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    .playlist li {
+    .seconde_playlist, .playlist li {
       list-style: none;
       cursor: pointer;
       padding-bottom: 10px;
       border-bottom: 1px solid #ddd;
     }
 
-    .playlist li:hover {
+    .seconde_playlist li:hover, .playlist li:hover {
       background-color: #26aeef;
       color: white
     }
@@ -51,20 +51,20 @@ blog -->
       <div class="col-lg-8">
           <div class="blog-post text-center">
             <div class="blog-post-image">
-              <img class="img-fluid video-player" id="video" src="images/actualites/<?= $actualites_der->image ?>" alt="">
+              <img class="img-fluid image-player" id="image" src="images/actualites/<?= $actualites_derniere->image ?>" alt="">
             </div>
             <div class="blog-post-content">
               <div class="blog-post-details">
                 <div class="blog-post-title">
-                  <h4 id="titre"><?= $actualites_der->titre ?></h4>
+                  <h4 id="titre"><?= $actualites_derniere->titre ?></h4>
                 </div>
                 <div class="blog-post-description">
-                  <p class="mb-0" id="description"><?= $actualites_der->description ?></p>
+                  <p class="mb-0" id="description"><?= $actualites_derniere->description ?></p>
                 </div>
               </div>
               <div class="blog-post-footer">
                 <div class="blog-post-time">
-                  <a href="#"><i class="far fa-clock"></i><?= $actualites_der->date_creation ?></a>
+                  <p id="temps"><i class="far fa-clock"></i><?= $actualites_derniere->date_creation ?></p>
                 </div>
                 <!-- <div class="blog-post-time">
                   <a href="#"><i class="far fa-comment"></i>(4)</a>
@@ -84,9 +84,45 @@ blog -->
               </div>
             </div>
           </div>
+
+          <div class="blog-post text-center mt-4">
+            <div class="blog-post-image">
+              <img class="img-fluid image-player" id="seconde_image" src="images/actualites/<?= $actualite_autre_premier->image ?>" alt="">
+            </div>
+            <div class="blog-post-content">
+              <div class="blog-post-details">
+                <div class="blog-post-title">
+                  <h4 id="seconde_titre"><?= $actualite_autre_premier->titre ?></h4>
+                </div>
+                <div class="blog-post-description">
+                  <p class="mb-0" id="seconde_description"><?= $actualite_autre_premier->description ?></p>
+                </div>
+              </div>
+              <div class="blog-post-footer">
+                <div class="blog-post-time">
+                  <p id = "seconde_temps" ><i class="far fa-clock"></i><?= $actualite_autre_premier->date_creation ?></p>
+                </div>
+                <!-- <div class="blog-post-time">
+                  <p><i class="far fa-comment"></i>(2)</p>
+                </div> -->
+                <div class="blog-post-share">
+                  <div class="share-box">
+                    <a href="#"> <i class="fas fa-share-alt"></i><span class="ps-2">Partagez</span></a>
+                    <ul class="list-unstyled share-box-social">
+                      <li> <a href="#"><i class="fab fa-facebook-f"></i></a> </li>
+                      <li> <a href="#"><i class="fab fa-twitter"></i></a> </li>
+                      <li> <a href="#"><i class="fab fa-linkedin"></i></a> </li>
+                      <li> <a href="#"><i class="fab fa-instagram"></i></a> </li>
+                      <li> <a href="#"><i class="fab fa-pinterest"></i></a> </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         
         <!-- <div class="blog-post blog-post-you-tube text-center mt-5">
-          <div class="js-video [youtube, widescreen]">
+          <div class="js-image [youtube, widescreen]">
             <iframe src="https://www.youtube.com/embed/nrJtHemSPW4?rel=0" allowfullscreen></iframe>
           </div>
           <div class="blog-post-content">
@@ -105,16 +141,64 @@ blog -->
         <div class="blog-sidebar">
           <div class="widget">
             <div class="widget-title">
-              <h5>Autres Actualités</h5>
+              <h5 class="text-uppercase">à la une</h5>
             </div>
             <div class="playlist">
-              <?php foreach($actualites as $actualite): ?>
+              <?php foreach($limite_actualite_une as $actualite): ?>
               <div class="d-flex align-items-start">
                 <div class="avatar avatar-xl">
-                  <img data-image="images/actualites/<?= $actualite->image ?>" data-titre ="<?= $actualite->titre ?>" data-description="<?= $actualite->description ?>" class="img-fluid" src="images/actualites/<?= $actualite->image ?>" alt="">
+                  <img data-image="images/actualites/<?= $actualite->image ?>" data-titre ="<?= $actualite->titre ?>" data-description="<?= $actualite->description ?>" data-temps="<?= $actualite->date_creation ?>" class="img-fluid" src="images/actualites/<?= $actualite->image ?>" alt="">
                 </div>
                 <div class="ms-3 recent-posts">
-                  <li data-image="images/actualites/<?= $actualite->image ?>" data-titre ="<?= $actualite->titre ?>" data-description="<?= $actualite->description ?>"><?= $util->texte_cinquante($actualite->titre)  ?></li>
+                  <li data-image="images/actualites/<?= $actualite->image ?>" data-titre ="<?= $actualite->titre ?>" data-description="<?= $actualite->description ?>" data-temps="<?= $actualite->date_creation ?>"><?= $util->texte_cinquante($actualite->titre)  ?></li>
+                  <p class="d-none" ><?= $actualite->titre ?></p>
+                  <p class="d-block font-sm mt-1 text-light" href="#"><?= $actualite->date_creation ?></p>
+                </div>
+              </div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+          
+          <div class="widget">
+            <div class="section-title mb-0">
+              <h5>Publicité ici :</h5>
+            </div>
+            <div class="owl-carousel owl-nav-top-right" data-nav-arrow="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="5">
+              <div class="item">
+                <div class="testimonial-item-02-small text-center">
+                  <div class="testimonial-content">
+                    <p>Publicité 01 </p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimonial-item-02-small text-center">
+                  <div class="testimonial-content">
+                    <p>Publicité 02</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimonial-item-02-small text-center">
+                  <div class="testimonial-content">
+                    <p>Publicité 01 </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="widget">
+            <div class="widget-title">
+              <h5 class="text-uppercase">autres actualités</h5>
+            </div>
+            <div class="seconde_playlist">
+              <?php foreach($actualite_autre as $actualite): ?>
+              <div class="d-flex align-items-start">
+                <div class="avatar avatar-xl">
+                  <img data-image-seconde="images/actualites/<?= $actualite->image ?>" data-titre-seconde="<?= $actualite->titre ?>" data-description-seconde="<?= $actualite->description ?>" data-temps-seconde="<?= $actualite->date_creation ?>" class="img-fluid" src="images/actualites/<?= $actualite->image ?>" alt="">
+                </div>
+                <div class="ms-3 recent-posts">
+                  <li data-image-seconde="images/actualites/<?= $actualite->image ?>" data-titre-seconde="<?= $actualite->titre ?>" data-description-seconde="<?= $actualite->description ?>" data-temps-seconde="<?= $actualite->date_creation ?>"><?= $util->texte_cinquante($actualite->titre)  ?></li>
                   <p class="d-none" ><?= $actualite->titre ?></p>
                   <p class="d-block font-sm mt-1 text-light" href="#"><?= $actualite->date_creation ?></p>
                 </div>
@@ -180,34 +264,7 @@ blog -->
               </ul>
             </div>
           </div>
-          <div class="widget">
-            <div class="section-title mb-0">
-              <h5>Publicité ici :</h5>
-            </div>
-            <div class="owl-carousel owl-nav-top-right" data-nav-arrow="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="5">
-              <div class="item">
-                <div class="testimonial-item-02-small text-center">
-                  <div class="testimonial-content">
-                    <p>Publicité 01 </p>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial-item-02-small text-center">
-                  <div class="testimonial-content">
-                    <p>Publicité 02</p>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial-item-02-small text-center">
-                  <div class="testimonial-content">
-                    <p>Publicité 01 </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -215,11 +272,21 @@ blog -->
 </section>
 
 <script>
-    // Get a reference to the video player and the playlist
-    const video = document.querySelector('#video');
+    // Get a reference to the image player and the playlist
+    const image = document.querySelector('#image');
     const playlist = document.querySelector('.playlist');
     const titre = document.querySelector('#titre');
     const description = document.querySelector('#description');
+    const temps = document.querySelector('#temps');
+
+    //seconde playmist
+
+    const seconde_image = document.querySelector('#seconde_image');
+    const seconde_playlist = document.querySelector('.seconde_playlist');
+    const seconde_titre = document.querySelector('#seconde_titre');
+    const seconde_description = document.querySelector('#seconde_description');
+    const seconde_temps = document.querySelector('#seconde_temps');
+
 
     // Add an event listener to the playlist items
     playlist.addEventListener('click', e => {
@@ -227,22 +294,44 @@ blog -->
       const clickedItem = e.target;
       //console.log(clickedItem)
 
-      // Get the video source from the data attribute
-      const videoSource = clickedItem.getAttribute('data-image');
+      // Get the image source from the data attribute
+      const imageSource = clickedItem.getAttribute('data-image');
       const imageTitre = clickedItem.getAttribute('data-titre')
       const imageDescription = clickedItem.getAttribute('data-description')
+      const imageTemps = clickedItem.getAttribute('data-temps')
 
-      console.log(video.src)
-      console.log("et")
-      console.log(videoSource)
-      var imgLinkArray = video.src.split('/');
-      var imgName = imgLinkArray.pop();
-      console.log("et")
-      console.log(imgName)
-      // Update the video source and play the video
-      video.src = videoSource;
+
+
+      // console.log(image.src)
+      // console.log("et")
+      // console.log(imageSource)
+      // var imgLinkArray = image.src.split('/');
+      // var imgName = imgLinkArray.pop();
+      // console.log("et")
+      // console.log(imgName)
+      // Update the image source and play the image
+      image.src = imageSource;
       titre.innerHTML = imageTitre
       description.innerHTML = imageDescription
+      temps.innerHTML = imageTemps
+
+    });
+
+    seconde_playlist.addEventListener('click', e => {
+      // Get the clicked item
+      const clickedItem = e.target;
+      console.log(seconde_image)
+
+      // Get the image source from the data attribute
+      const imageSourceSeconde = clickedItem.getAttribute('data-image-seconde');
+      const imageTitreSeconde = clickedItem.getAttribute('data-titre-seconde')
+      const imageDescriptionSeconde = clickedItem.getAttribute('data-description-seconde')
+      const imageTempsSeconde = clickedItem.getAttribute('data-temps-seconde')
+
+      seconde_image.src = imageSourceSeconde;
+      seconde_titre.innerHTML = imageTitreSeconde
+      seconde_description.innerHTML = imageDescriptionSeconde
+      seconde_temps.innerHTML = imageTempsSeconde
 
     });
   </script>

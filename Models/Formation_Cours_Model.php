@@ -15,6 +15,7 @@ class Formation_Cours_Model extends Model{
     protected $description;
     protected $date_debut;      
     protected $date_fin;
+    protected $cout;
 
     public function __construct(){
         $this->table = "formation_cours";
@@ -203,6 +204,26 @@ class Formation_Cours_Model extends Model{
     public function setDate_fin($date_fin)
     {
         $this->date_fin = $date_fin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cout
+     */ 
+    public function getCout()
+    {
+        return $this->cout;
+    }
+
+    /**
+     * Set the value of cout
+     *
+     * @return  self
+     */ 
+    public function setCout($cout)
+    {
+        $this->cout = $cout;
 
         return $this;
     }

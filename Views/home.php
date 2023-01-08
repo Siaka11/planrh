@@ -119,9 +119,11 @@ Header -->
             <?php if((isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) || isset($_SESSION['useremployeur'])): ?>
 
               <?php if(isset($_SESSION['user'])): ?>
-                <a href="/backend_candidat"><i class="far fa-user pe-2"></i>Mon espace </a><?=$_SESSION['user']['nom'] ?? "" ?>
+                <a href="/backend_candidat"><i class="far fa-user pe-2"></i>Mon espace </a>
+                <!-- <?=$_SESSION['user']['nom'] ?? "" ?> -->
               <?php else: ?>
-                <a href="/backend_employeur"><i class="far fa-user pe-2"></i>Mon espace </a><?=$_SESSION['useremployeur']['nom'] ?? "" ?>
+                <a href="/backend_employeur"><i class="far fa-user pe-2"></i>Mon espace </a>
+                <!-- <?=$_SESSION['useremployeur']['nom'] ?? "" ?> -->
               <?php endif; ?>
 
             <?php else: ?>

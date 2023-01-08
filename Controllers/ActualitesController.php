@@ -21,14 +21,18 @@ class ActualitesController extends Controller
         $actualitesmodel = new ActualitesModel();
         $actualites = $actualitesmodel->findAll();
 
-        $dernier_act = count($actualites);
-        $actualites_der = $actualitesmodel->find(2);
+        $actualites_derniere = $actualitesmodel->derniere_actualite();
 
         $offremodel = new OffreModel();
-
         $util = new Util();
 
-        $this->render('main/actualite.php', compact("actualites", "tous_domaines", "offremodel", "actualites_der", "util"));
+        $limite_actualite_une = $actualitesmodel->limite_actualite_une();
+
+        $actualite_autre = $actualitesmodel->actualite_autre();
+
+        $actualite_autre_premier = $actualitesmodel->actualite_autre_premier();
+        $this->render('main/actualite.php', compact("actualites", "tous_domaines", "offremodel", "actualites_derniere", "util", 'limite_actualite_une', 'actualite_autre', 'actualite_autre_premier'));
+
     }
 
  

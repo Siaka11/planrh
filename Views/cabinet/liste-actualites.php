@@ -95,7 +95,7 @@ Manage Jobs -->
             <table class="table table-bordered" id="myTable">
               <thead class="bg-light">
                 <tr >
-                  <th scope="col">actualite sur le candidat</th>
+                  <th scope="col" class="text-uppercase">à la une </th>
                   <th scope="col">Date de création de la actualite</th>
                   <!-- <th scope="col">Appreciation</th> -->
                   <!-- <th scope="col">Action</th> -->
@@ -103,7 +103,7 @@ Manage Jobs -->
               </thead>
               <tbody>
                 <?php $i = 0 ?>
-                <?php foreach($actualites as $actualite) : ?>
+                <?php foreach($actualites_une  as $actualite) : ?>
                   <?php $i++ ?>
                 <tr>
                   <td scope="row"> <b class="text-dark">
@@ -129,21 +129,46 @@ Manage Jobs -->
                </tbody>
             </table>
           </div>
-          <!-- <div class="row justify-content-center">
-            <div class="col-12 text-center">
-              <ul class="pagination mt-3">
-                <li class="page-item disabled me-auto">
-                  <span class="page-link b-radius-none">Prec</span>
-                </li>
-                <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item ms-auto">
-                  <a class="page-link" href="#">Suiv</a>
-                </li>
-              </ul>
-            </div>
-          </div> -->
+
+          <div class="user-dashboard-table table-responsive">
+            <table class="table table-bordered" id="myTable">
+              <thead class="bg-light">
+                <tr >
+                  <th scope="col" class="text-uppercase">Autres actualités </th>
+                  <th scope="col">Date de création de la actualite</th>
+                  <!-- <th scope="col">Appreciation</th> -->
+                  <!-- <th scope="col">Action</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i = 0 ?>
+                <?php foreach($actualites_autre as $actualite) : ?>
+                  <?php $i++ ?>
+                <tr>
+                  <td scope="row"> <b class="text-dark">
+                    <div class="job-list-logo">
+                    <img class="img-fluid" src="../images/actualites/<?= $actualite->image ?>" style="width: 200px;height: 160px;" alt="">
+                    </div>
+                    <p class="mb-1 mt-2"><span class="text-decoration-underline">Titre de la actualite :</span><b> <?= $actualite->titre ?></b></p>
+                    <p class="mb-0 "><span class="text-decoration-underline">Description :</span> <?= $actualite->description ?></p>
+
+                  </td>
+                  <td>
+                        <b class="text-primary"><?= $actualite->date_creation ?></b>
+                  </td>
+                  <!-- <td><i class="far fa-star"></i></td> -->
+                  <!-- <td>
+                    <ul class="list-unstyled mb-0 d-flex">
+                      <li><a href="#" class="text-primary" data-bs-toggle="tooltip" title="Afficher"><i class="far fa-eye"></i></a></li>
+                      <li><a href="#" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                    </ul>
+                  </td> -->
+                </tr>
+                <?php endforeach; ?>
+               </tbody>
+            </table>
+          </div>
+          
         </div>
       </div>
     </div>

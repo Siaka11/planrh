@@ -144,7 +144,10 @@ class CabinetController extends Controller{
         $actualitesmodel = new ActualitesModel();
         $actualites = $actualitesmodel->findAll();
 
-        return $this->render('cabinet/liste-actualites.php', compact('admin', 'actualites'), 'home_backend_cabinet.php');
+        $actualites_une = $actualitesmodel->limite_actualite_une();
+        $actualites_autre = $actualitesmodel->actualite_autre();
+
+        return $this->render('cabinet/liste-actualites.php', compact('admin', 'actualites_une', 'actualites_autre'), 'home_backend_cabinet.php');
 
 
     }
