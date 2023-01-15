@@ -89,7 +89,7 @@ Browse listing -->
             </ul>
           </div>
           <div class="job-found ms-auto">
-            <span class="badge badge-lg bg-primary">24123</span>
+            <span class="badge badge-lg bg-primary"><?= count($offres) ?></span>
             <h6 class="ms-3 mb-0">Emplois Disponibles</h6>
           </div>
         </div>

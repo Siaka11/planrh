@@ -101,6 +101,11 @@ Header -->
               <li><a class="dropdown-item" href="/candidat/recrutement">Processus de Recrutement</a></li>
             </ul>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/recrutementinternational" aria-haspopup="true" aria-expanded="false">
+             Recrutement internationale</i>
+            </a>
+          </li>
           <li class="nav-item ">
             <a class="nav-link dropdown-toggle" href="/formations" aria-haspopup="true" aria-expanded="false">
               Formations</i>
@@ -179,10 +184,9 @@ Footer -->
           <div class="footer-link">
             <h5 class="text-dark mb-4">Emplois</h5>
             <ul class="list-unstyled">
-              <li><a href="#">Trouver un emploi</a></li>
-              <li><a href="#">Parcourir les domaine</a></li>
-              <li><a href="#">Soumettre un CV</a></li>
-              <li><a href="#">Se connecter</a></li>
+              <li><a href="/candidat/emplois">Trouver un emploi</a></li>
+              <li><a href="/backend_candidat/modification_cv">Soumettre un CV</a></li>
+              <li><a href="/login">Se connecter</a></li>
             </ul>
           </div>
         </div>
@@ -190,11 +194,11 @@ Footer -->
           <div class="footer-link">
             <h5 class="text-dark mb-4">Employeur</h5>
             <ul class="list-unstyled">
-              <li><a href="/employeur/backend-employeur-poster-emplois.php">Publier un emploi</a></li>
-              <li><a href="#">Gestion de la paie</a></li>
-              <li><a href="#">Consultation RH</a></li>
-              <li><a href="#">Chasse de Tête</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="/backend_employeur/poster_emplois">Publier un emploi</a></li>
+              <li><a href="/employeur/gestion_paie">Gestion de la paie</a></li>
+              <li><a href="/employeur/consultation_rh">Consultation RH</a></li>
+              <li><a href="/employeur/chasseur_de_tete">Chasse de Tête</a></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
         </div>

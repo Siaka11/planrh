@@ -78,7 +78,22 @@ Manage Jobs -->
       <div class="col-md-12">
         <div class="user-dashboard-info-box mb-0">
           <div class="row mb-4">
-          <a  class="btn btn-primary mb-4" href="/cabinet/ajout_actualite">Ajouter une actualité</a>
+            <div class="col-md-4 col-sm-4 d-flex align-items-center">
+              <div class="section-title-02 mb-0 ">
+              <a  class="btn btn-primary mb-4" href="/cabinet/ajout_actualite">Ajouter une actualité</a>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="section-title-02 mb-0">
+                <a  class="btn btn-primary" href="/cabinet/ajout_video">Ajouter une vidéo</a>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="section-title-02 mb-0">
+                <a  class="btn btn-primary " href="/cabinet/ajout_motivation">Ajouter une motivation</a>
+              </div>
+            </div>
+
             <div class="col-md-7 col-sm-5 d-flex align-items-center">
               <div class="section-title-02 mb-0 ">
                 <h4 class="mb-0">Liste des actulités</h4>
@@ -86,7 +101,6 @@ Manage Jobs -->
             </div>
             <div class="col-md-5 col-sm-7 mt-3 mt-sm-0">
               <div class="search">
-                <!-- <i class="fas fa-search"></i> -->
                 <input type="text" class="form-control"  id="myInput" onkeyup="myFunction()" placeholder="Recherche....">
               </div>
             </div>
@@ -97,8 +111,8 @@ Manage Jobs -->
                 <tr >
                   <th scope="col" class="text-uppercase">à la une </th>
                   <th scope="col">Date de création de la actualite</th>
-                  <!-- <th scope="col">Appreciation</th> -->
-                  <!-- <th scope="col">Action</th> -->
+                  <th scope="col">Action</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -118,12 +132,11 @@ Manage Jobs -->
                         <b class="text-primary"><?= $actualite->date_creation ?></b>
                   </td>
                   <!-- <td><i class="far fa-star"></i></td> -->
-                  <!-- <td>
+                  <td>
                     <ul class="list-unstyled mb-0 d-flex">
-                      <li><a href="#" class="text-primary" data-bs-toggle="tooltip" title="Afficher"><i class="far fa-eye"></i></a></li>
-                      <li><a href="#" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                      <li><a href="/cabinet/supprimer_actualite/<?= $actualite->id ?>" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
                     </ul>
-                  </td> -->
+                  </td>
                 </tr>
                 <?php endforeach; ?>
                </tbody>
@@ -136,7 +149,7 @@ Manage Jobs -->
                 <tr >
                   <th scope="col" class="text-uppercase">Autres actualités </th>
                   <th scope="col">Date de création de la actualite</th>
-                  <!-- <th scope="col">Appreciation</th> -->
+                  <th scope="col">Action</th>
                   <!-- <th scope="col">Action</th> -->
                 </tr>
               </thead>
@@ -157,18 +170,116 @@ Manage Jobs -->
                         <b class="text-primary"><?= $actualite->date_creation ?></b>
                   </td>
                   <!-- <td><i class="far fa-star"></i></td> -->
-                  <!-- <td>
+                  <td>
                     <ul class="list-unstyled mb-0 d-flex">
-                      <li><a href="#" class="text-primary" data-bs-toggle="tooltip" title="Afficher"><i class="far fa-eye"></i></a></li>
-                      <li><a href="#" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                      <li><a href="/cabinet/supprimer_actualite/<?= $actualite->id ?>" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
                     </ul>
-                  </td> -->
+                  </td>
                 </tr>
                 <?php endforeach; ?>
                </tbody>
             </table>
           </div>
+          <div class="row mb-4">
+
+            <div class="col-md-7 col-sm-5 d-flex align-items-center">
+              <div class="section-title-02 mb-0 ">
+                <h4 class="mb-0">Liste des vidéos</h4>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-7 mt-3 mt-sm-0">
+              <div class="search">
+                <input type="text" class="form-control"  id="myInput" onkeyup="myFunction()" placeholder="Recherche....">
+              </div>
+            </div>
+            <div class="user-dashboard-table table-responsive">
+              <table class="table table-bordered" id="myTable">
+                <thead class="bg-light">
+                  <tr >
+                    <th scope="col" class="text-uppercase">Autres actualités </th>
+                    <th scope="col">Date de création de la actualite</th>
+                    <th scope="col">Action</th>
+                    <!-- <th scope="col">Action</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i = 0 ?>
+                  <?php foreach($videos as $actualite) : ?>
+                    <?php $i++ ?>
+                  <tr>
+                    <td scope="row"> <b class="text-dark">
+
+                      <p class="mb-1 mt-2"><span class="text-decoration-underline">Titre de la actualite :</span><b> <?= $actualite->titre ?></b></p>
+
+                    </td>
+                    <td>
+                          <b class="text-primary"><?= $actualite->date_creation ?></b>
+                    </td>
+                    <!-- <td><i class="far fa-star"></i></td> -->
+                    <td>
+                      <ul class="list-unstyled mb-0 d-flex">
+                        <li><a href="/cabinet/supprimer_video/<?= $actualite->id ?>" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+
+          </div> 
           
+          <div class="row mb-4">
+
+            <div class="col-md-7 col-sm-5 d-flex align-items-center">
+              <div class="section-title-02 mb-0 ">
+                <h4 class="mb-0">Liste des motivations</h4>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-7 mt-3 mt-sm-0">
+              <div class="search">
+                <input type="text" class="form-control"  id="myInput" onkeyup="myFunction()" placeholder="Recherche....">
+              </div>
+            </div>
+            <div class="user-dashboard-table table-responsive">
+              <table class="table table-bordered" id="myTable">
+                <thead class="bg-light">
+                  <tr >
+                    <th scope="col" class="text-uppercase">Autres actualités </th>
+                    <th scope="col">Date de création de la actualite</th>
+                    <th scope="col">Action</th>
+                    <!-- <th scope="col">Action</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i = 0 ?>
+                  <?php foreach($motivations as $actualite) : ?>
+                    <?php $i++ ?>
+                  <tr>
+                    <td scope="row"> <b class="text-dark">
+
+                      <p class="mb-1 mt-2"><span class="text-decoration-underline">Titre de la actualite :</span><b> <?= $actualite->titre ?></b></p>
+                      <p class="mb-0 "><span class="text-decoration-underline">Auteur :</span> <?= $actualite->auteur ?></p>
+                      <p class="mb-0 "><span class="text-decoration-underline">Description :</span> <?= $actualite->description ?></p>
+
+                    </td>
+                    <td>
+                          <b class="text-primary"><?= $actualite->date_creation ?></b>
+                    </td>
+                    <!-- <td><i class="far fa-star"></i></td> -->
+                    <td>
+                      <ul class="list-unstyled mb-0 d-flex">
+                        <li><a href="/cabinet/supprimer_motivation/<?= $actualite->id ?>" class="text-danger" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+
+          </div> 
+
         </div>
       </div>
     </div>

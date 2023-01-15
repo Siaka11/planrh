@@ -1,8 +1,10 @@
 <?php
 namespace App\Controllers;
-use App\Controllers\Controller;
+use App\Models\OffreModel;
+use App\Models\DomaineModel;
 use App\Models\CandidatModel;
 use App\Models\EmployeurModel;
+use App\Controllers\Controller;
 
 class EmployeurController extends Controller{
 
@@ -13,6 +15,11 @@ class EmployeurController extends Controller{
 
     public function erecrutement(){
 
+        $domainemodel = new DomaineModel;
+        $domaines = $domainemodel->findAll();
+
+        $emploiModel = new OffreModel();
+
         if(isset($_POST['connexion_candidat'])){
             //die('hello');
             $email = strip_tags($_POST['email']);
@@ -115,10 +122,16 @@ class EmployeurController extends Controller{
 
         }
 
-        return $this->render('main/erecrutement.php', [], 'home_employeur.php');
+        return $this->render('main/erecrutement.php', compact('domaines', 'emploiModel'), 'home_employeur.php');
     }
 
     public function recrutement_permanent(){
+
+        $domainemodel = new DomaineModel;
+        $domaines = $domainemodel->findAll();
+
+        $emploiModel = new OffreModel();
+
         if(isset($_POST['connexion_candidat'])){
             //die('hello');
             $email = strip_tags($_POST['email']);
@@ -221,11 +234,16 @@ class EmployeurController extends Controller{
 
         }
 
-        return $this->render('main/recrutement-permanent.php', [], 'home_employeur.php');
+        return $this->render('main/recrutement-permanent.php', compact('domaines', 'emploiModel'), 'home_employeur.php');
     }
 
     public function chasseur_de_tete(){
 
+        $domainemodel = new DomaineModel;
+        $domaines = $domainemodel->findAll();
+
+        $emploiModel = new OffreModel();
+
         if(isset($_POST['connexion_candidat'])){
             //die('hello');
             $email = strip_tags($_POST['email']);
@@ -328,11 +346,16 @@ class EmployeurController extends Controller{
 
         }
 
-        return $this->render('main/chasseur-de-tete.php', [], 'home_employeur.php');
+        return $this->render('main/chasseur-de-tete.php', compact('domaines', 'emploiModel'), 'home_employeur.php');
     }
 
     public function placement_temporaire(){
 
+        $domainemodel = new DomaineModel;
+        $domaines = $domainemodel->findAll();
+
+        $emploiModel = new OffreModel();
+
         if(isset($_POST['connexion_candidat'])){
             //die('hello');
             $email = strip_tags($_POST['email']);
@@ -436,11 +459,16 @@ class EmployeurController extends Controller{
         }
 
 
-        return $this->render('main/placement-temporaire.php', [], 'home_employeur.php');
+        return $this->render('main/placement-temporaire.php', compact('domaines', 'emploiModel'), 'home_employeur.php');
     }
 
     public function consultation_rh(){
 
+        $domainemodel = new DomaineModel;
+        $domaines = $domainemodel->findAll();
+
+        $emploiModel = new OffreModel();
+
         if(isset($_POST['connexion_candidat'])){
             //die('hello');
             $email = strip_tags($_POST['email']);
@@ -544,11 +572,16 @@ class EmployeurController extends Controller{
         }
 
 
-        return $this->render('main/consultation-rh.php', [], 'home_employeur.php');
+        return $this->render('main/consultation-rh.php', compact('domaines', 'emploiModel'), 'home_employeur.php');
     }
 
     public function gestion_paie(){
 
+        $domainemodel = new DomaineModel;
+        $domaines = $domainemodel->findAll();
+
+        $emploiModel = new OffreModel();
+
         if(isset($_POST['connexion_candidat'])){
             //die('hello');
             $email = strip_tags($_POST['email']);
@@ -652,11 +685,16 @@ class EmployeurController extends Controller{
         }
 
 
-        return $this->render('main/gestion-paie.php', [], 'home_employeur.php');
+        return $this->render('main/gestion-paie.php', compact('domaines', 'emploiModel'), 'home_employeur.php');
     }
 
     public function impartition(){
 
+        $domainemodel = new DomaineModel;
+        $domaines = $domainemodel->findAll();
+
+        $emploiModel = new OffreModel();
+
         if(isset($_POST['connexion_candidat'])){
             //die('hello');
             $email = strip_tags($_POST['email']);
@@ -760,11 +798,16 @@ class EmployeurController extends Controller{
         }
 
 
-        return $this->render('main/impartition.php', [], 'home_employeur.php');
+        return $this->render('main/impartition.php', compact('domaines', 'emploiModel'), 'home_employeur.php');
     }
 
     public function verification(){
 
+        $domainemodel = new DomaineModel;
+        $domaines = $domainemodel->findAll();
+
+        $emploiModel = new OffreModel();
+
         if(isset($_POST['connexion_candidat'])){
             //die('hello');
             $email = strip_tags($_POST['email']);
@@ -867,8 +910,8 @@ class EmployeurController extends Controller{
 
         }
 
-        
-        return $this->render('main/verification.php', [], 'home_employeur.php');
+
+        return $this->render('main/verification.php', compact('domaines', 'emploiModel'), 'home_employeur.php');
     }
     
     

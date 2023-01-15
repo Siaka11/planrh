@@ -1,5 +1,14 @@
 
+<?php
 
+use App\Models\EmployeurModel;
+use App\Core\Util;
+use App\Models\JaimeModel;
+$util = new Util();
+
+
+
+?>
 <!--=================================
 inner banner -->
 <div class="header-inner bg-light text-center">
@@ -30,7 +39,7 @@ category -->
         <p>Vous pouvez aussi recourir au service de gestion de la paie de Bédard Ressources de façon permanente. En externalisant la rémunération de vos employés et en la confiant à Bédard Ressources, vous n’avez plus à vous soucier des aspects administratifs liés à la paie. Et vous réalisez par le fait même d’importantes économies.</p>
       </div>
     </div>
-    
+<!--     
      <div class="col-lg-12">
       <br>
         <div class="accordion accordion-style" id="accordion-Two">
@@ -93,7 +102,7 @@ category -->
           </div>
         </div>
       </div>
-  </div>
+  </div> -->
   </div>
   <br> <br> 
 </section>

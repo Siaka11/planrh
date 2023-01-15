@@ -5,17 +5,19 @@ use DateTime;
 use App\Core\Util;
 use App\Models\AdminModel;
 use App\Models\OffreModel;
+use App\Models\VideoModel;
 use App\Models\CandidatModel;
 use App\Models\EmployeurModel;
+use App\Models\FormationModel;
+use App\Models\publiciteModel;
 use App\Controllers\Controller;
 use App\Models\ActualitesModel;
-use App\Models\Formation_Cours_Model;
-use App\Models\Postuler_Candidat_Offre_Model;
-use App\Models\FormationModel;
 use App\Models\CompetenceModel;
 use App\Models\ExperienceModel;
+use App\Models\MotivationModel;
 use App\Models\RecompenseModel;
-use App\Models\publiciteModel;
+use App\Models\Formation_Cours_Model;
+use App\Models\Postuler_Candidat_Offre_Model;
 
 
 
@@ -213,6 +215,114 @@ class CabinetController extends Controller{
 
     }
 
+    public function ajout_motivation(){
+
+        $formationmodel = new MotivationModel();
+
+        if(isset($_POST['ajout_motivation'])){
+
+            $titre = strip_tags($_POST['titre']);
+            $description = strip_tags($_POST['description']);
+            $auteur = strip_tags($_POST['auteur']);
+        
+
+
+            $formationmodel
+                        ->setTitre($titre)
+                        ->setDescription($description)
+                        ->setAuteur($auteur)        
+                        ;
+        
+
+            $formationmodel->createOne();
+
+            $_SESSION["message"] = "Une nouvelle motivation a été ajoutée avec succès!";
+            header("Location: /cabinet/actualites");
+
+        }
+
+        
+
+        $adminmodel = new AdminModel();
+        $admin = $adminmodel->find(1);
+
+        return $this->render('cabinet/ajout_motivation.php', compact('admin'), 'home_backend_cabinet.php');
+
+
+    }
+
+    public function ajout_video(){
+
+        $videomodel = new VideoModel();
+
+        if(isset($_POST['ajout_video'])){
+
+            $titre = strip_tags($_POST['titre']);
+            $lien = strip_tags($_POST['lien']);
+
+
+            $videomodel
+                        ->setTitre($titre)
+                        ->setLien($lien)         
+                        ;
+        
+
+            $videomodel->createOne();
+
+            $_SESSION["message"] = "Une nouvelle Vidéo a été ajoutée avec succès!";
+            header("Location: /cabinet/actualites");
+
+        }
+
+        
+
+        $adminmodel = new AdminModel();
+        $admin = $adminmodel->find(1);
+
+        return $this->render('cabinet/ajout_video.php', compact('admin'), 'home_backend_cabinet.php');
+
+
+    }
+
+    public function supprimer_actualite($id){
+
+
+        $formationmodel = new ActualitesModel();
+        $formations = $formationmodel->delete($id);
+
+        $_SESSION["message"] = "Vous avez supprimé cette actualités!";
+            header("Location: /cabinet/actualites");
+            exit;
+
+
+    }
+
+    public function supprimer_video($id){
+
+
+        $formationmodel = new VideoModel();
+        $formations = $formationmodel->delete($id);
+
+        $_SESSION["message"] = "Vous avez supprimé cette vidéo!";
+            header("Location: /cabinet/actualites");
+            exit;
+
+
+    }
+
+    public function supprimer_motivation($id){
+
+
+        $formationmodel = new MotivationModel();
+        $formations = $formationmodel->delete($id);
+
+        $_SESSION["message"] = "Vous avez supprimé cette motivation!";
+            header("Location: /cabinet/actualites");
+            exit;
+
+
+    }
+
     public function ajout_publicite(){
 
         $formationmodel = new PubliciteModel();
@@ -266,7 +376,14 @@ class CabinetController extends Controller{
         $actualites_une = $actualitesmodel->limite_actualite_une();
         $actualites_autre = $actualitesmodel->actualite_autre();
 
-        return $this->render('cabinet/liste-actualites.php', compact('admin', 'actualites_une', 'actualites_autre'), 'home_backend_cabinet.php');
+        $videomodel = new VideoModel();
+        $videos = $videomodel->findAll();
+
+        $motivationmodel = new MotivationModel();
+        $motivations = $motivationmodel->findAll();
+
+
+        return $this->render('cabinet/liste-actualites.php', compact('admin', 'actualites_une', 'actualites_autre', 'videos', 'motivations'), 'home_backend_cabinet.php');
 
 
     }

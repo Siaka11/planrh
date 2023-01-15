@@ -112,6 +112,13 @@ class Model extends Db
         return $query->fetchAll();
     }
 
+    public function findWithLimit()
+    {
+        //  $this->db = Db::getInstance();
+        $query = $this->requete("SELECT * FROM   $this->table ORDER BY id DESC LIMIT 0,1");
+        return $query->fetchAll();
+    }
+
     public function findAllWithLimit($depart, $annonceParPage)
     {
         //  $this->db = Db::getInstance();

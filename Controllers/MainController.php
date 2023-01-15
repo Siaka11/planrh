@@ -9,16 +9,17 @@ use App\Models\OffreModel;
 use App\Models\OffresModel;
 use App\Models\DomaineModel;
 use App\Models\CandidatModel;
-use PHPMailer\PHPMailer\SMTP;
 use App\Models\EmployeurModel;
 use App\Models\PubliciteModel;
 use App\Controllers\Controller;
 use App\Models\TypeEmploiModel;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\PHPMailer;
 use App\Models\Aimer_Candidat_Offre_Model;
 use App\Models\Postuler_Candidat_Offre_Model;
 use App\Models\Formation_Cours_Model;
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 
 class MainController extends Controller
@@ -139,8 +140,10 @@ class MainController extends Controller
         $publicitemodel = new PubliciteModel();
         $publicites = $publicitemodel->findAll();
 
+        $offres = $emploiModel->findAll();
+
         
-        $this->render('main/index.php', compact('emploiRecent', 'domaine', 'emploiModel', 'publicites'));
+        $this->render('main/index.php', compact('emploiRecent', 'domaine', 'emploiModel', 'publicites', 'offres'));
     }
 
     public function creer_un_compte(){
@@ -215,15 +218,22 @@ class MainController extends Controller
                 //Server settings
                // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
                 $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = 'smtp.office365.com';                    //Set the SMTP server to send through
+                // $mail->Host       = 'smtp.office365.com';                    //Set the SMTP server to send through
+                // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                // $mail->Username   = 'dsi-appli@artci.ci';                     //SMTP username
+                // $mail->Password   = 'SABD/2022#';                               //SMTP password
+                // $mail->SMTPSecure = 'STARTTLS';            //Enable implicit TLS encryption
+                ////
+                $mail->Host       = 'smtp.hostinger.com';                    //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'dsi-appli@artci.ci';                     //SMTP username
-                $mail->Password   = 'SABD/2022#';                               //SMTP password
-                $mail->SMTPSecure = 'STARTTLS';            //Enable implicit TLS encryption
+                $mail->Username   = 'lamutuelle@mudesgo.com';                     //SMTP username
+                $mail->Password   = '@dmin/MUDESGO-2023#'; 
+                $mail->SMTPSecure = 'tls';  
+                ////
                 $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                // $mail->SMTPDebug = 3;
                 //Recipients
-                $mail->setFrom('dsi-appli@artci.ci');
+                $mail->setFrom('lamutuelle@mudesgo.com');
                 $mail->addAddress($email, 'You karlo');
                 $mail->CharSet = "utf-8";// set charset to utf8
 
@@ -315,15 +325,22 @@ class MainController extends Controller
                 //Server settings
                // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
                 $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = 'smtp.office365.com';                    //Set the SMTP server to send through
+                // $mail->Host       = 'smtp.office365.com';                    //Set the SMTP server to send through
+                // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                // $mail->Username   = 'dsi-appli@artci.ci';                     //SMTP username
+                // $mail->Password   = 'SABD/2022#';                               //SMTP password
+                // $mail->SMTPSecure = 'STARTTLS';            //Enable implicit TLS encryption
+                ////
+                $mail->Host       = 'smtp.hostinger.com';                    //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'dsi-appli@artci.ci';                     //SMTP username
-                $mail->Password   = 'SABD/2022#';                               //SMTP password
-                $mail->SMTPSecure = 'STARTTLS';            //Enable implicit TLS encryption
+                $mail->Username   = 'lamutuelle@mudesgo.com';                     //SMTP username
+                $mail->Password   = '@dmin/MUDESGO-2023#'; 
+                $mail->SMTPSecure = 'tls';  
+                ////
                 $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                // $mail->SMTPDebug = 3;
                 //Recipients
-                $mail->setFrom('dsi-appli@artci.ci');
+                $mail->setFrom('lamutuelle@mudesgo.com');
                 $mail->addAddress($email, 'You karlo');
                 $mail->CharSet = "utf-8";// set charset to utf8
 
@@ -349,7 +366,9 @@ class MainController extends Controller
                 $mail->send();
                 $_SESSION['message'] = "Votre compte a été crée.<br/>
                 Votre mot de passe : $createdefaultpass <br/>
-                Merci de vous rendre également sur votre boîte mail pour récupérer le mot de passe.";                header("Location: /main");
+                Merci de vous rendre également sur votre boîte mail pour récupérer le mot de passe.";
+                
+                header("Location: /main");
                 exit;
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -557,6 +576,7 @@ class MainController extends Controller
         $postuler_offre = new Postuler_Candidat_Offre_Model;
         $postuler_by_id = $postuler_offre->postuler_by_offre_candidat($id, $_SESSION['user']['id']);
 
+
         $this->render('main/offres.php', compact('offre', 'aime_offres', 'offre_by_id', 'id', 'postuler_by_id'), "home_second.php");
     }
 
@@ -610,12 +630,67 @@ class MainController extends Controller
             //die('okay');
             $postuler_offre = new Postuler_Candidat_Offre_Model;
 
+            $candidatmodel = new CandidatModel();
+            $candidat = $candidatmodel->find($_SESSION["user"]['id']);
+
             $postuler_offre
                   ->setId_candidat($_SESSION["user"]['id'])
                   ->setId_offre($_POST['id_offre'])
                   ;
                   //var_dump($aime_offre);die;
                   $postuler_offre->createOne();
+            
+                  $mail = new PHPMailer(true);
+
+                  try {
+                      //Server settings
+                     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                      $mail->isSMTP();                                            //Send using SMTP
+                      // $mail->Host       = 'smtp.office365.com';                    //Set the SMTP server to send through
+                      // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                      // $mail->Username   = 'dsi-appli@artci.ci';                     //SMTP username
+                      // $mail->Password   = 'SABD/2022#';                               //SMTP password
+                      // $mail->SMTPSecure = 'STARTTLS';            //Enable implicit TLS encryption
+                      ////
+                      $mail->Host       = 'smtp.hostinger.com';                    //Set the SMTP server to send through
+                      $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                      $mail->Username   = 'lamutuelle@mudesgo.com';                     //SMTP username
+                      $mail->Password   = '@dmin/MUDESGO-2023#'; 
+                      $mail->SMTPSecure = 'tls';  
+                      ////
+                      $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                     // $mail->SMTPDebug = 3;
+                      //Recipients
+                      $mail->setFrom('lamutuelle@mudesgo.com');
+                      $mail->addAddress($candidat->email, 'You karlo');
+                      $mail->CharSet = "utf-8";// set charset to utf8
+      
+                      //Content
+                      $mail->isHTML(true);                                  //Set email format to HTML
+                      $mail->Subject =  "Postulat pour une offre sur PlanRH";
+                      $mail->Body    = '
+                      Bonjour '.$candidat->nom.',<br/>
+                      Vous venez de postuler à une offre d\'emploi
+                      <br/>
+                      <br/>
+      
+                      
+                      <br/>
+                      PLANRH vous remercie de votre attachement à notre plateforme .
+                      <br/>
+                      Revenir au site: <a href="www.planrh.com/main/login">www.planrh.com</a>
+                      ';
+                      //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                  
+                      $mail->send();
+                     
+                  } catch (Exception $e) {
+                      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                  }
+      
+                  $_SESSION['message'] = "Adresse mail ou mot de passe incorrect ";
+                  header("Location: /main/");
+                  exit;
 
             $data = array("valeur"=> 1);
             //var_dump($data);

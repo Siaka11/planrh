@@ -1,4 +1,13 @@
+<?php
 
+use App\Models\EmployeurModel;
+use App\Core\Util;
+use App\Models\JaimeModel;
+$util = new Util();
+
+
+
+?>
 
 <!--=================================
 inner banner -->
@@ -89,7 +98,7 @@ inner banner -->
     <div>
       <br>
     </div>
-  <div class="accordion accordion-style" id="accordion-Two">
+    <!-- <div class="accordion accordion-style" id="accordion-Two">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Vous êtes à la recherche d’un partenaire pour le recrutement de votre personnel ? <i class="fas fa-chevron-down fa-xs"></i></button>
@@ -148,7 +157,7 @@ inner banner -->
             </div>
           </div>
         </div>
-  </div>
+  </div> -->
 
   <br> <br> 
 </section>

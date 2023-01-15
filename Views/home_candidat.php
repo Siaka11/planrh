@@ -54,6 +54,14 @@ header -->
 </div>
 <?php endif; ?>
 <header class="header bg-dark">
+<div class="actu">
+      <marquee class="defil">
+          <li style="text-decoration: none;">cabinet spécialisé en Ressource Humaine: tél. +1 5148846349</li>
+      </marquee>
+      <div class="nouvel">
+        <li>NEWS</li>
+      </div>
+  </div>
   <nav class="navbar navbar-static-top navbar-expand-lg header-sticky">
     <div class="container-fluid">
       <button id="nav-icon4" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
@@ -71,7 +79,7 @@ header -->
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="/actualites" aria-haspopup="true" aria-expanded="false">
-              Auctualités
+              Actualités
             </a>
           </li>
           <li class="nav-item dropdown">
@@ -100,6 +108,11 @@ header -->
             </ul>
           </li>
           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/recrutementinternational" aria-haspopup="true" aria-expanded="false">
+             Recrutement internationale</i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="/formations" aria-haspopup="true" aria-expanded="false">
               Formations</i>
             </a>
@@ -114,17 +127,21 @@ header -->
       </div>
       <div class="add-listing"> 
       <div class="login d-inline-block me-4">
-            <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])): ?>
-             
+      <?php if((isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) || isset($_SESSION['useremployeur'])): ?>
+
+      <?php if(isset($_SESSION['user'])): ?>
+        <a href="/backend_candidat"><i class="far fa-user pe-2"></i>Mon espace </a>
+        <!-- <?=$_SESSION['user']['nom'] ?? "" ?> -->
+      <?php else: ?>
+        <a href="/backend_employeur"><i class="far fa-user pe-2"></i>Mon espace </a>
+        <!-- <?=$_SESSION['useremployeur']['nom'] ?? "" ?> -->
+      <?php endif; ?>
+
+      <?php else: ?>
+      <a href="login.html" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="far fa-user pe-2"></i>Connexion</a>
 
 
-              <a href="main/logout"><i class="far fa-user pe-2"></i>Deconnexion</a>
-
-            <?php else: ?>
-              <a href="login.html" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="far fa-user pe-2"></i>Connexion</a>
-
-            
-            <?php endif; ?>
+      <?php endif; ?>
           </div>
     </div>
   </nav>
@@ -146,16 +163,16 @@ footer-->
         d="M-0.000,-0.001 L1923.000,-0.001 L1923.000,84.999 C1608.914,41.669 1279.532,19.653 962.500,19.000 C635.773,18.326 323.692,40.344 -0.000,84.999 C-0.000,-83.334 -0.000,168.332 -0.000,-0.001 Z"/>
       </svg>
     </div>
+
     <div class="container pt-5">
       <div class="row mt-5">
         <div class="col-lg-3 col-md-6">
           <div class="footer-link">
             <h5 class="text-dark mb-4">Emplois</h5>
             <ul class="list-unstyled">
-              <li><a href="#">Trouver un emploi</a></li>
-              <li><a href="#">Parcourir les domaine</a></li>
-              <li><a href="#">Soumettre un CV</a></li>
-              <li><a href="#">Se connecter</a></li>
+              <li><a href="/candidat/emplois">Trouver un emploi</a></li>
+              <li><a href="/backend_candidat/modification_cv">Soumettre un CV</a></li>
+              <li><a href="/login">Se connecter</a></li>
             </ul>
           </div>
         </div>
@@ -163,11 +180,11 @@ footer-->
           <div class="footer-link">
             <h5 class="text-dark mb-4">Employeur</h5>
             <ul class="list-unstyled">
-              <li><a href="#">Publier un emploi</a></li>
-              <li><a href="#">Gestion de la paie</a></li>
-              <li><a href="#">Consultation RH</a></li>
-              <li><a href="#">Chasse de Tête</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="/backend_employeur/poster_emplois">Publier un emploi</a></li>
+              <li><a href="/employeur/gestion_paie">Gestion de la paie</a></li>
+              <li><a href="/employeur/consultation_rh">Consultation RH</a></li>
+              <li><a href="/employeur/chasseur_de_tete">Chasse de Tête</a></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -183,6 +200,8 @@ footer-->
             </form>
           </div>
         </div>
+
+
         <!--
         <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
           <h5 class="text-dark mb-4">Download App</h5>

@@ -1,4 +1,13 @@
+<?php
 
+use App\Models\EmployeurModel;
+use App\Core\Util;
+use App\Models\JaimeModel;
+$util = new Util();
+
+
+
+?>
 
 <!--=================================
 inner banner -->
@@ -121,7 +130,7 @@ category -->
       </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
      <div class="col-lg-12">
       <br>
         <div class="accordion accordion-style" id="accordion-Two">
@@ -184,7 +193,7 @@ category -->
           </div>
         </div>
       </div>
-  </div>
+  </div> -->
   </div>
   <br> <br> 
 </section>

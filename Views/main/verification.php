@@ -92,65 +92,6 @@ category -->
     </p>
      <div class="col-lg-12">
       <br>
-        <div class="accordion accordion-style" id="accordion-Two">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Vous avez plusieurs candidats à évaluer? <i class="fas fa-chevron-down fa-xs"></i></button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion-Two">
-              <div class="accordion-body">
-                <form class="mt-4">
-                <div class="row">
-                  <div class="mb-3 col-md-6">
-                    <label class="form-label" for="Username">Nom *</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="mb-3 col-md-6">
-                    <label class="form-label">Prénoms *</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="mb-3 col-md-6">
-                    <label class="form-label">Compagnie *</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="mb-3 col-6">
-                    <label class="form-label" for="ville">Ville *</label>
-                    <input type="text" class="form-control">
-                  </div>
-
-                  <div class="mb-3 col-6">
-                    <label class="form-label" for="ville">Téléphone *</label>
-                    <input type="text" class="form-control">
-                  </div>
-
-                  <div class="mb-3 col-6">
-                    <label class="form-label" for="ville">Email * </label>
-                    <input type="text" class="form-control">
-                  </div>
-
-                  <div class="form-group col-12 mb-0">
-                    <label class="form-label" for="domaine">Message</label>
-                    <textarea rows="8" class="form-control" id="message"></textarea>
-                  </div>
-                  <div class="mb-3 col-12">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="Remember-02">
-                      <label class="form-check-label" for="Remember-02">
-                        J'accepte d'être informé sur les services offerts par Plan RH
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <a class="btn btn-primary d-block" href="#">Soumettre</a>
-                  </div>
-                </div>
-              </form>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
   </div>
   </div>

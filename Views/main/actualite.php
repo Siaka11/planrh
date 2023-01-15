@@ -136,36 +136,38 @@ blog -->
             </div>
           </div>
         </div> -->
-        <div class="blog-post blog-post-you-tube text-center mt-5">
-          <div class="js-video [youtube, widescreen]">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/J2gOrZ-xgK8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="blog-post-content">
-            <div class="blog-post-details">
-              <div class="blog-post-title">
-                <h4><a href="#">La guerre Russie Ukraine en Image</a></h4>
+        <?php foreach($videos as $video): ?>
+
+          <div class="blog-post blog-post-you-tube text-center mt-5">
+            <div class="js-video [youtube, widescreen]">
+              <iframe width="560" height="315" src="<?= $video->lien ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="blog-post-content">
+              <div class="blog-post-details">
+                <div class="blog-post-title">
+                  <h4><?= $video->titre ?></h4>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <?php endforeach ?>
 
+        <?php foreach($motivations as $motivation): ?>
         <div class="blog-post blog-post-quote mt-4 bg-primary">
           <div class="blog-post-content">
             <div class="blockquote text-center">
               <blockquote class="text-white mb-0">
                 <i class="fas fa-quote-right"></i>
-                <h4>Motivation</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and standard dummy text ever since the 1500s.</p>
-                <cite>– Auteur -</cite>
+                <h4><?= $motivation->titre ?></h4>
+                <p><?= $motivation->description ?></p>
+                <cite>– <?= $motivation->auteur ?> -</cite>
               </blockquote>
             </div>
             <div class="blog-post-footer text-center">
               <div class="blog-post-time">
-                <a href="#"><i class="far fa-clock"></i>20 Fevrier 2021</a>
+                <a href="#"><i class="far fa-clock"></i><?= $motivation->date_creation ?>/a>
               </div>
-              <div class="blog-post-time">
-                <a href="#"><i class="far fa-comment"></i>(1)</a>
-              </div>
+
               <div class="blog-post-share">
                 <div class="share-box share-dark-bg">
                   <a href="#"> <i class="fas fa-share-alt"></i><span class="ps-2">Partagez</span></a>
@@ -181,6 +183,7 @@ blog -->
             </div>
           </div>
         </div>
+        <?php endforeach ?>
       </div>
       <div class="col-lg-4 mt-4 mt-lg-0">
         <div class="blog-sidebar">
@@ -265,7 +268,7 @@ blog -->
               <?php endforeach; ?>
             </ul>
           </div>
-          <div class="widget">
+          <!-- <div class="widget">
             <div class="newsletter p-4 bg-dark">
               <p class="text-white mb-0">Abonnez-vous à notre newsletter pour plus d'actualités</p>
               <div class="search my-3">
@@ -280,7 +283,7 @@ blog -->
                 <i class="far fa-envelope"></i>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="widget">
             <div class="widget-title">
               <h5>Abonnez-vous & Suivez-nous : </h5>
