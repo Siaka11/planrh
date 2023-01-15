@@ -365,6 +365,25 @@ class Backend_candidatController extends Controller{
             exit;
         }
 
+        if(isset($_POST['chargercv'])){
+
+            $namepdf = new DateTime();
+            $firstpdf = $namepdf->getTimestamp();
+
+            //create file's name
+            Util::uploader_cv($firstpdf);
+
+            $cv = $firstpdf.'.pdf';
+
+            $candidat = new CandidatModel;
+            $candidat ->setId($_SESSION['user']['id'])
+                          ->setCv($cv)
+                          ;
+                         
+              
+             $candidat->update();
+        }
+
         if(isset($_POST['charger'])){
 
             $namedate = new DateTime();

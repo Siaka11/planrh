@@ -18,13 +18,34 @@ inner banner -->
 <!--=================================
 inner banner -->
 
+<div class="container">
+    <div class="row" style="text-align:center;">
+      <div class="col-12 section-title-02">
+        <h5 class="text-center">Description : <span style="font-size: 12px"> <?= $offre->offre_description ?></span></h5>
+        <p class="m-3"><?= $offre->competence ?></p>
+        
 
-<section class="space-ptb m-5">
-  <div class="row justify-content-center text-center">
-    
-  
+    </div>
+  </div>
+</div> 
+
+<!-- <div class="container">
+    <div class="row" style="text-align:center;">
+      <div class="col-12 section-title-02">
+        <h5 class="text-center">Compétence : <span style="font-size: 12px"> <?= $offre->competence ?></span></h5>
+        <p class="m-3"><?= $offre->competence ?></p>
+        
+
+    </div>
+  </div>
+</div>  -->
+
+
+<section class="space-ptb">
+  <div class="row ">
+
     <div class="col-1 ">
-      <div class="postuler-btn">
+      <div class="postuler-btn mt-5">
         <div class="postuler-content">
         <b class="compteurPostuler d-none" > <?= ($postuler_by_id) ? "1" : "0"  ?></b> 
           <span class="text">
@@ -33,8 +54,9 @@ inner banner -->
         </div>
       </div>
     </div>
+
     <div class="col-1 ">
-      <div class="heart-btn1">
+      <div class="heart-btn1 mt-5">
           <div class="content">
             <span class="heart"></span>
             <span class="text">
@@ -48,28 +70,7 @@ inner banner -->
     </div>
     
   </div>
-  <!-- <div class="heart-btn">
-      <div class="content">
-        <span class="heart"> </span>
-        
-        <span class="text">
-          <b class="compteurLike" > 0 </b> 
-          Like
-        </span>
-      </div>
-    </div> -->
-    
-  <div class="container mt-5">
-    <div class="row" style="text-align:center;">
-      <div class="col-12 section-title-02">
-        <h5 class="text-center">Description : <span style="font-size: 12px"> <?= $offre->description ?></span></h5>
-        <p><?= $offre->competence ?></p>
 
-      </div>
-    </div>
-
-
-  <br> <br> 
 </section>
 <!--=================================
 Service -->

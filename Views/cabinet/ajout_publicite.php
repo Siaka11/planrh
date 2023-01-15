@@ -79,9 +79,9 @@ My Profile -->
       <div class="col-md-12">
         <div class="user-dashboard-info-box">
           <div class="section-title-02 mb-2 d-grid">
-            <h4>Formation</h4>
+            <h4>Publicité</h4>
           </div>
-          <form method="POST">
+          <form method="POST" enctype= "multipart/form-data">
          
 
             <div class="row">
@@ -90,37 +90,14 @@ My Profile -->
                 <input type="text" name="titre" class="form-control" >
               </div>
               <div class="form-group mb-3 col-md-6">
-                <label class="form-label">Auteur</label>
-                <input type="text" name="auteur" class="form-control" >
+                <label class="form-label">Image</label>
+                <input type='file' name='avatar'id='file' class='form-control' ><br>
               </div>
-              <div class="form-group mb-3 col-md-12">
-                <label class="form-label">Lieu</label>
-                <input type="text" name="lieu" class="form-control" >
-              </div>
-              <div class="form-group mb-3 col-md-12">
-                <label class="form-label">Coût</label>
-                <input type="text" name="cout" class="form-control" >
-              </div>
-              <div class="form-group mb-3  col-md-6 datetimepickers">
-                <label class="form-label">Date de debut</label>
-                <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
-                  <input type="date" name="date_debut" class="form-control datetimepicker-input"  data-target="#datetimepicker-01">
-                </div>
-              </div>
-              <div class="form-group mb-3 col-md-6 datetimepickers">
-                <label class="form-label">Date de fin</label>
-                <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
-                  <input type="date" name="date_fin" class="form-control datetimepicker-input"  data-target="#datetimepicker-01">
-                </div>
-              </div>
-              <div class="form-group mb-0 col-md-12">
-                <label class="form-label">Description</label>
-                <textarea name="description" class="form-control" rows="5" ></textarea>
-              </div>
+    
             </div>
           
             </div>
-             <button class="btn btn-md btn-primary" name="ajout_formation" > Ajouter une nouvelle formation</button>
+             <button class="btn btn-md btn-primary" name="ajout_publicite" > Ajouter une nouvelle publicité</button>
         
           </form>
         </div>

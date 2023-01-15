@@ -61,7 +61,7 @@ Register -->
           </fieldset>
           <div class="tab-content">
             <div class="tab-pane active" id="candidate" role="tabpanel">
-              <form class="mt-4" method= "POST">
+              <form class="mt-4" method= "POST" enctype="multipart/form-data">
                 <div class="row">
                   <div class="mb-3 col-md-6">
                     <label class="form-label" for="Username">Nom et Prénoms *</label>
@@ -101,6 +101,10 @@ Register -->
                   <div class="mb-3 col-12">
                     <label class="form-label" for="ville">Salaire :</label>
                     <input type="text" name="salaire" class="form-control" placeholder="200000">
+                  </div>
+                  <div class="mb-3 col-12">
+                    <label class="form-label" for="ville">Votre cv :</label>
+                    <input type="file" name="pdf" class="form-control" placeholder="">
                   </div>
                   <div class="form-group col-12 mb-0">
                     <label class="form-label" for="domaine">Décrivez-vous</label>

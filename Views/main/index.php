@@ -139,7 +139,7 @@ Browse listing -->
             <div class="item">
               <div class="employers-grid bg-white py-4">
                 <div class="employers-list-logo pt-0" style="width: 100%; height:110px">
-                  <img class="" src="../images/actualites/<?= $publicite->image ?>" style="width:100%; height: 100%" alt="">
+                  <img class="" src="../images/publicites/<?= $publicite->image ?>" style="width:100%; height: 100%" alt="">
                 </div>
                 <div class="employers-list-details">
                   <div class="employers-list-info">

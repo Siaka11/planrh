@@ -3507,7 +3507,7 @@ iframe {
     position: relative;
     z-index: 9; }
     .job-list:hover a.job-list-favourite {
-      color: #e74c3c;
+      color: #ffffff;
       -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
               box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1); }
 
@@ -3562,21 +3562,14 @@ iframe {
           flex: 0 0 90px; }
 
 .job-list-favourite-time .job-list-favourite {
-  display: inline-block;
-  position: relative;
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-  border: 1px solid #eeeeee;
-  border-radius: 100%;
-  text-align: center;
+
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   margin-bottom: 20px;
   font-size: 16px;
-  color: #969696; }
+}
   .job-list-favourite-time .job-list-favourite:hover {
-    background: #ffffff;
+    background: #63b2f2;
     color: #e74c3c; }
 
 .job-list-favourite-time span {

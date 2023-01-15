@@ -7,6 +7,7 @@ use App\Models\OffreModel;
 use App\Models\DomaineModel;
 use App\Controllers\Controller;
 use App\Models\ActualitesModel;
+use App\Models\PubliciteModel;
 
 
 class ActualitesController extends Controller
@@ -30,8 +31,11 @@ class ActualitesController extends Controller
 
         $actualite_autre = $actualitesmodel->actualite_autre();
 
+        $publicitemodel = new PubliciteModel();
+        $publicites = $publicitemodel->findAll();
+
         $actualite_autre_premier = $actualitesmodel->actualite_autre_premier();
-        $this->render('main/actualite.php', compact("actualites", "tous_domaines", "offremodel", "actualites_derniere", "util", 'limite_actualite_une', 'actualite_autre', 'actualite_autre_premier'));
+        $this->render('main/actualite.php', compact("actualites", "tous_domaines", "offremodel", "actualites_derniere", "util", 'limite_actualite_une', 'actualite_autre', 'actualite_autre_premier', 'publicites'));
 
     }
 

@@ -136,10 +136,10 @@ Header -->
 
            
           </div>
-           <a class="btn btn-white btn-md" href="#">
+           <!-- <a class="btn btn-white btn-md" href="#">
             <img src="images/ca.png">
-          </a>
-        </div>
+          </a> -->
+      </div>
     </div>
   </nav>
 </header>

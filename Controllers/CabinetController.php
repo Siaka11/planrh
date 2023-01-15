@@ -11,6 +11,13 @@ use App\Controllers\Controller;
 use App\Models\ActualitesModel;
 use App\Models\Formation_Cours_Model;
 use App\Models\Postuler_Candidat_Offre_Model;
+use App\Models\FormationModel;
+use App\Models\CompetenceModel;
+use App\Models\ExperienceModel;
+use App\Models\RecompenseModel;
+use App\Models\publiciteModel;
+
+
 
 
 
@@ -56,6 +63,32 @@ class CabinetController extends Controller{
 
     }
 
+    public function candidat_informations($id){
+
+
+        $findFormation = new FormationModel;
+        $findFormation = $findFormation->findBy(["id_candidat" =>$id]);
+
+        $findExperience = new ExperienceModel;
+        $findExperience = $findExperience->findBy(["id_candidat" =>$id]);
+
+        $findReccompense = new RecompenseModel;
+        $findReccompense = $findReccompense->findBy(["id_candidat" =>$id]);
+
+        $comptencemodel = new CompetenceModel;
+        $comptencemodels = $comptencemodel->findBy(["id_candidat" =>$id]);
+
+
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($id);
+
+        $adminmodel = new AdminModel();
+        $admin = $adminmodel->find(1);
+
+
+        return $this->render('cabinet/candidat_informatons.php', compact('admin','findFormation', 'findExperience', 'findReccompense', 'comptencemodels', 'candidat'), 'home_backend_cabinet.php');
+    }
+
     public function emplois_postules(){
 
 
@@ -96,6 +129,47 @@ class CabinetController extends Controller{
 
     }
 
+
+    public function publicites(){
+
+        $adminmodel = new AdminModel();
+        $admin = $adminmodel->find(1);
+
+        $publicitemodel = new PubliciteModel();
+        $publicites = $publicitemodel->findAll();
+        return $this->render('cabinet/liste-publicites.php', compact('admin', 'publicites'), 'home_backend_cabinet.php');
+
+
+    }
+
+    public function formation($id){
+
+      
+
+        $formationmodel = new Formation_Cours_Model();
+        $formations = $formationmodel->delete($id);
+
+        $_SESSION["message"] = "Vous avez supprimé cette formation!";
+            header("Location: /cabinet/formations");
+            exit;
+
+
+    }
+
+    public function publicite($id){
+
+      
+
+        $formationmodel = new PubliciteModel();
+        $formations = $formationmodel->delete($id);
+
+        $_SESSION["message"] = "Vous avez supprimé cette publicité!";
+            header("Location: /cabinet/publicites");
+            exit;
+
+
+    }
+
     public function ajout_formation(){
 
             $formationmodel = new Formation_Cours_Model();
@@ -108,6 +182,8 @@ class CabinetController extends Controller{
                 $date_fin = strip_tags($_POST['date_fin']);
                 $auteur = strip_tags($_POST['auteur']);
                 $lieu = strip_tags($_POST['lieu']);
+                $cout = strip_tags($_POST['cout']);
+
 
                 $formationmodel
                             ->setTitre($titre)
@@ -115,7 +191,8 @@ class CabinetController extends Controller{
                             ->setDescription($description)
                             ->setDate_fin($date_fin)
                             ->setAuteur($auteur)
-                            ->setLieu($lieu)            
+                            ->setLieu($lieu)  
+                            ->setCout($cout)          
                             ;
             
 
@@ -135,6 +212,48 @@ class CabinetController extends Controller{
 
 
     }
+
+    public function ajout_publicite(){
+
+        $formationmodel = new PubliciteModel();
+
+        if(isset($_POST['ajout_publicite'])){
+
+            $titre = strip_tags($_POST['titre']);
+
+            $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+
+            $namedate = new DateTime();
+            $name = $namedate->getTimestamp();
+
+            //create file's name
+            Util::uploaderpub($name);
+
+            $image = $name.'.'.$extensionUpload;
+
+
+            $formationmodel
+                        ->setTitre($titre)
+                        ->setImage($image)        
+                        ;
+        
+
+            $formationmodel->createOne();
+
+            $_SESSION["message"] = "Une nouvelle publicité a été ajoutée avec succès!";
+            header("Location: /cabinet/publicites");
+
+        }
+
+        
+
+    $adminmodel = new AdminModel();
+    $admin = $adminmodel->find(1);
+
+    return $this->render('cabinet/ajout_publicite.php', compact('admin'), 'home_backend_cabinet.php');
+
+
+}
 
     public function actualites(){
 
@@ -268,6 +387,8 @@ class CabinetController extends Controller{
     }
 
 
+
+
     public function logout()
     {
         if($_SESSION['admin']){
@@ -277,6 +398,23 @@ class CabinetController extends Controller{
         header('Location: /main' );
     }
     
+
+    public function affiche_cv_pdf($candidat){
+
+        //var_dump($candidat);die;
+        $info_candidat= explode('-', $candidat);
+        $nom = $info_candidat[0];
+        $id_candidat = $info_candidat[1];
+        $candidatmodel = new CandidatModel;
+        $candidat = $candidatmodel->find($id_candidat);
+
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="images/'.$candidat->cv.'"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        @readfile('images/'.$candidat->cv.'');
+    }
+
     
 }
 

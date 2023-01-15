@@ -10,7 +10,7 @@ Signin -->
           <div class="section-title">
            <h4 class="text-center">Connectez-vous à votre compte</h4>
           </div>
-          <fieldset>
+          <!-- <fieldset>
             <legend class="px-2">Choisissez votre type de compte</legend>
             <ul class="nav nav-tabs nav-tabs-border d-flex" role="tablist">
               <li class="nav-item me-4">
@@ -28,7 +28,7 @@ Signin -->
               </li>
 
             </ul>
-          </fieldset>
+          </fieldset> -->
           <div class="tab-content">
             <div class="tab-pane active" id="candidate" role="tabpanel">
               <form method="POST" class="mt-4">

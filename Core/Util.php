@@ -76,6 +76,65 @@ class Util {
     return $string ? implode(' ', $string) . '' : 'Aujourd\'hui';
     }
 
+    
+
+    public static function uploaderpub($info){
+
+        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+            $tailleMax = 5097152;
+            $extensionsValides = array('jpg', 'jpeg', 'gif', 'png', 'webp');
+            if($_FILES['avatar']['size'] <= $tailleMax) {
+               $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+               if(in_array($extensionUpload, $extensionsValides)) {
+             
+                  $chemin = "../public_html/images/publicites/".$info.".".$extensionUpload;
+                  //var_dump($_FILES['avatar']['tmp_name']);
+                  //die;
+                  $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+                  if($resultat) {
+                    echo "Image mise à hour avec succès";
+  
+                  } else {
+                     $msg = "Erreur durant l'importation de votre photo de profil";
+                  }
+               } else {
+                  $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+               }
+            } else {
+               $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+            }
+         }
+    }
+
+
+    public static function uploader_cv($info){
+
+        if(isset($_FILES['pdf']) AND !empty($_FILES['pdf']['name'])) {
+            $tailleMax = 5097152;
+            $extensionsValides = array('pdf');
+            if($_FILES['pdf']['size'] <= $tailleMax) {
+               $extensionUpload = strtolower(substr(strrchr($_FILES['pdf']['name'], '.'), 1));
+               if(in_array($extensionUpload, $extensionsValides)) {
+                  $ectensionrecommended = "pdf";
+                  $chemin = "../public_html/images/".$info.".".$ectensionrecommended;
+                  //var_dump($_FILES['avatar']['tmp_name']);
+                  //die;
+                  $resultat = move_uploaded_file($_FILES['pdf']['tmp_name'], $chemin);
+                  if($resultat) {
+                    echo "Image mise à hour avec succès";
+  
+                  } else {
+                     $msg = "Erreur durant l'importation de votre photo de profil";
+                  }
+               } else {
+                  $msg = "Votre cv doit être au format PDF, jpeg";
+               }
+            } else {
+               $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+            }
+         }
+    }
+
     public static function uploader($info){
 
       if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
@@ -130,7 +189,7 @@ class Util {
                $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
             }
          }
-      }
+    }
 
     public static function uploadervideo($info){
         //die('enter');

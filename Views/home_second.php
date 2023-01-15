@@ -139,6 +139,14 @@
 <!--=================================
 header -->
 <header class="header bg-dark">
+<div class="actu">
+      <marquee class="defil">
+          <li style="text-decoration: none;">cabinet spécialisé en Ressource Humaine: tél. +1 5148846349</li>
+      </marquee>
+      <div class="nouvel">
+        <li>NEWS</li>
+      </div>
+  </div>
   <nav class="navbar navbar-static-top navbar-expand-lg header-sticky">
     <div class="container-fluid">
       <button id="nav-icon4" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
@@ -156,7 +164,7 @@ header -->
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="/actualites" aria-haspopup="true" aria-expanded="false">
-              Auctualités
+              Actualités
             </a>
           </li>
           <li class="nav-item dropdown active">
@@ -376,52 +384,53 @@ Signin Modal Popup -->
           </fieldset>
           <div class="tab-content">
             <div class="tab-pane active" id="candidate" role="tabpanel">
-              <form class="mt-4">
+              <form class="mt-4" method="POST">
                 <div class="row">
                   <div class="form-group col-12 mb-3">
                     <label class="form-label" for="Email2">User* :</label>
-                    <input type="text" class="form-control" id="Email22">
+                    <input type="text" name="email" class="form-control" id="Email22">
                   </div>
                   <div class="form-group col-12 mb-3">
                     <label class="form-label" for="password2">Mot de Passe *</label>
-                    <input type="password" class="form-control" id="password32">
+                    <input type="password" name="motdepasse" class="form-control" id="password32">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <a class="btn btn-primary d-grid" href="#">Connexion</a>
+                    
+                    <button class="btn btn-primary d-grid" name="connexion_candidat" >Connexion</button>
                   </div>
                   <div class="col-md-6">
                     <div class="ms-md-3 mt-3 mt-md-0 forgot-pass">
                       <a href="#">Mot de passe Oublié ?</a>
-                      <p class="mt-1">Vous n'avez pas de Compte? <a href="#">Créé le</a></p>
+                      <p class="mt-1">Vous n'avez pas de Compte? <a href="/main/creer_un_compte" class="text-danger">Créé le</a></p>
                     </div>
                   </div>
                 </div>
               </form>
             </div>
             <div class="tab-pane fade" id="employer" role="tabpanel">
-              <form class="mt-4">
+              <form method="POST" class="mt-4" >
                 <div class="row">
                   <div class="form-group col-12 mb-3">
                     <label class="form-label" for="Email2">User * :</label>
-                    <input type="text" class="form-control" id="Email2">
+                    <input type="text" name="email" class="form-control" id="Email2">
                   </div>
                   <div class="form-group col-12 mb-3">
                     <label class="form-label" for="password2">Mot de Passe *</label>
-                    <input type="password" class="form-control" id="password2">
+                    <input type="password" name="motdepasse" class="form-control" id="password2">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <a class="btn btn-primary d-grid" href="#">Connexion</a>
+                    <button class="btn btn-primary d-grid" name="connexion_employeur">Connexion</button>
                   </div>
                   <div class="col-md-6">
                     <div class="ms-md-3 mt-3 mt-md-0">
                       <a href="#">Mot de passe Oublié ?</a>
                       <div class="form-check mt-2">
                         <input class="form-check-input" type="checkbox" value="" id="Remember-02">
-                        <p class="mt-1">Vous n'avez pas de Compte? <a href="#">Créé le</a></p>
+                        <p class="mt-1">Vous n'avez pas de Compte? <a href="/main/creer_un_compte" class="text-danger">Créé le</a></p>
                       </div>
                     </div>
                   </div>

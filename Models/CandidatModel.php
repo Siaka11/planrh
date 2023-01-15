@@ -22,6 +22,7 @@ class CandidatModel extends Model{
     protected $twitter;
     protected $linkedin;
     protected $image;
+    protected $cv;
     protected $date_creation;
     
 
@@ -416,6 +417,26 @@ class CandidatModel extends Model{
     public function setDate_creation($date_creation)
     {
         $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cv
+     */ 
+    public function getCv()
+    {
+        return $this->cv;
+    }
+
+    /**
+     * Set the value of cv
+     *
+     * @return  self
+     */ 
+    public function setCv($cv)
+    {
+        $this->cv = $cv;
 
         return $this;
     }

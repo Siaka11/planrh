@@ -88,6 +88,25 @@
         </div>
       </div>
       <div class="col-lg-4 text-lg-end">
+        <a class="btn btn-primary btn-md mb-4 mb-lg-2 " data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdropcv" target="_blank">Modifier votre cv uploadé</a>
+        <div class="profile-avatar-info ms-4">
+              <div class="modal fade" id="staticBackdropcv" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Modifier votre cv</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form method='post' action='' enctype="multipart/form-data">
+                      <input type='file' name='pdf'id='file' class='form-control' ><br>
+                      <input type='submit' class='btn btn-info' value='Changer mon cv' name="chargercv" id='btn_upload'>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
         <a class="btn btn-primary btn-md mb-4 mb-lg-0" href="/backend_candidat/imprimer" target="_blank">Aperçu de mon CV</a>
       </div>
       <div class="col-12">

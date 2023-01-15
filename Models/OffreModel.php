@@ -138,7 +138,7 @@ class OffreModel extends Model{
     public function find_offre_by_id_offre($id){
 
         return $this->requete("
-        SELECT * , domaine.nom as domaine_nom FROM $this->table 
+        SELECT * , domaine.nom as domaine_nom, offre.description as offre_description FROM $this->table 
         INNER JOIN  employeur ON offre.id_employeur = employeur.id
         INNER JOIN  domaine ON offre.domaine = domaine.id
         WHERE offre.id = ?"

@@ -136,6 +136,51 @@ blog -->
             </div>
           </div>
         </div> -->
+        <div class="blog-post blog-post-you-tube text-center mt-5">
+          <div class="js-video [youtube, widescreen]">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/J2gOrZ-xgK8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="blog-post-content">
+            <div class="blog-post-details">
+              <div class="blog-post-title">
+                <h4><a href="#">La guerre Russie Ukraine en Image</a></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-post blog-post-quote mt-4 bg-primary">
+          <div class="blog-post-content">
+            <div class="blockquote text-center">
+              <blockquote class="text-white mb-0">
+                <i class="fas fa-quote-right"></i>
+                <h4>Motivation</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and standard dummy text ever since the 1500s.</p>
+                <cite>– Auteur -</cite>
+              </blockquote>
+            </div>
+            <div class="blog-post-footer text-center">
+              <div class="blog-post-time">
+                <a href="#"><i class="far fa-clock"></i>20 Fevrier 2021</a>
+              </div>
+              <div class="blog-post-time">
+                <a href="#"><i class="far fa-comment"></i>(1)</a>
+              </div>
+              <div class="blog-post-share">
+                <div class="share-box share-dark-bg">
+                  <a href="#"> <i class="fas fa-share-alt"></i><span class="ps-2">Partagez</span></a>
+                  <ul class="list-unstyled share-box-social">
+                    <li> <a href="#"><i class="fab fa-facebook-f"></i></a> </li>
+                    <li> <a href="#"><i class="fab fa-twitter"></i></a> </li>
+                    <li> <a href="#"><i class="fab fa-linkedin"></i></a> </li>
+                    <li> <a href="#"><i class="fab fa-instagram"></i></a> </li>
+                    <li> <a href="#"><i class="fab fa-pinterest"></i></a> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-lg-4 mt-4 mt-lg-0">
         <div class="blog-sidebar">
@@ -164,28 +209,24 @@ blog -->
               <h5>Publicité ici :</h5>
             </div>
             <div class="owl-carousel owl-nav-top-right" data-nav-arrow="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="5">
+            <?php foreach($publicites as $publicite): ?>
+
               <div class="item">
-                <div class="testimonial-item-02-small text-center">
-                  <div class="testimonial-content">
-                    <p>Publicité 01 </p>
+                <div class="employers-grid bg-white py-4">
+                  <div class="employers-list-logo pt-0" style="width: 100%; height:110px">
+                    <img class="" src="../images/publicites/<?= $publicite->image ?>" style="width:100%; height: 100%" alt="">
+                  </div>
+                  <div class="employers-list-details">
+                    <div class="employers-list-info">
+                      <div class="employers-list-title">
+                        <h5 class="mb-0"><a href="#"><?= $publicite->titre ?></a></h5>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="testimonial-item-02-small text-center">
-                  <div class="testimonial-content">
-                    <p>Publicité 02</p>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial-item-02-small text-center">
-                  <div class="testimonial-content">
-                    <p>Publicité 01 </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+              <?php endforeach; ?>
           </div>
           <div class="widget">
             <div class="widget-title">

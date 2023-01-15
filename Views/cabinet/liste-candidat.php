@@ -96,6 +96,8 @@ Manage Jobs -->
                 <tr >
                   <th scope="col">Information sur le candidat</th>
                   <th scope="col">Date de la création du compte</th>
+                  <th scope="col">A propos du candidat</th>
+
                   <!-- <th scope="col">Appreciation</th> -->
                   <!-- <th scope="col">Action</th> -->
                 </tr>
@@ -107,7 +109,9 @@ Manage Jobs -->
                 <tr>
                   <td scope="row"> <b class="text-dark">
                     <div class="job-list-logo">
-                    <img class="img-fluid" src="../images/<?= $candidats->image ?>" style="width: 50px;height: 50px;border-radius: 50%;" alt="">
+                    <a href="../cabinet/candidat_informations/<?= $candidats->id?>">
+                      <img class="img-fluid" src="../images/<?= $candidats->image ?>" style="width: 50px;height: 50px;border-radius: 50%;" alt="">
+                    </a>
                     </div>
                     <p class="mb-1 mt-2"><span class="text-decoration-underline">Non du candidat :</span> <?= $candidats->nom ?></p>
                     <p class="mb-0 "><span class="text-decoration-underline">Contact :</span> <?= $candidats->contact ?></p>
@@ -121,7 +125,7 @@ Manage Jobs -->
                   <td>
                         <b class="text-primary"><?= $candidats->date_creation ?></b>
                   </td>
-                  <!-- <td><i class="far fa-star"></i></td> -->
+                  <td class="text-center"><a href="../cabinet/candidat_informations/<?= $candidats->id?>"><i class="far fa-eye"></i></a></td>
                   <!-- <td>
                     <ul class="list-unstyled mb-0 d-flex">
                       <li><a href="#" class="text-primary" data-bs-toggle="tooltip" title="Afficher"><i class="far fa-eye"></i></a></li>

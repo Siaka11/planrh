@@ -16,7 +16,7 @@ Employer Dashboard -->
                 
                     <div class="candidates-info-count">
                     <a href="/cabinet/employeur">
-                        <h3 class="mb-0 text-white">1</h3>
+                        <h3 class="mb-0 text-white"><a href="/cabinet/employeurs"><i class="far fa-eye"></i></a></h3>
                     </a>
 
                     </div>
@@ -32,7 +32,7 @@ Employer Dashboard -->
                 </div>
                 <div class="candidates-info-count">
                     <a href="">
-                        <h3 class="mb-0 text-white">1</h3>
+                        <h3 class="mb-0 text-white"><a href="/cabinet/candidats"><i class="far fa-eye"></i></a></h3>
                     </a>
                 </div>
               </div>
@@ -40,8 +40,8 @@ Employer Dashboard -->
 
         </div>
         <div class="row mb-3 mb-lg-5 mt-3 mt-lg-0">
-            <div class="col-lg-4 mb-4 mb-lg-0">
-              <div class="candidates-feature-info bg-dark">
+            <!-- <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="candidates-feature-info" style="background-color: #00aeef ">
                 <div class="candidates-info-icon text-white">
                   <i class="fas fa-globe-asia"></i>
                 </div>
@@ -50,12 +50,12 @@ Employer Dashboard -->
                 </div>
                 <div class="candidates-info-count">
                     <a href="">
-                        <h3 class="mb-0 text-white">1</h3>
+                        <h3 class="mb-0 text-white"><a href="/cabinet/employeurs"><i class="far fa-eye"></i></a></h3>
                     </a>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-4 mb-4 mb-lg-0">
+            </div> -->
+            <!-- <div class="col-lg-4 mb-4 mb-lg-0">
               <div class="candidates-feature-info bg-success">
                 <div class="candidates-info-icon text-white">
                   <i class="fas fa-thumbs-up"></i>
@@ -84,7 +84,7 @@ Employer Dashboard -->
                     </a>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="row mb-3 mb-lg-5 mt-3 mt-lg-0">
             <div class="col-lg-4 mb-4 mb-lg-0">
@@ -97,7 +97,7 @@ Employer Dashboard -->
                 </div>
                 <div class="candidates-info-count">
                     <a href="">
-                        <h3 class="mb-0 text-white">1</h3>
+                        <h3 class="mb-0 text-white"><a href="/cabinet/offres"><i class="far fa-eye"></i></a></h3>
                     </a>
                 </div>
               </div>
@@ -112,7 +112,7 @@ Employer Dashboard -->
                 </div>
                 <div class="candidates-info-count">
                     <a href="">
-                        <h3 class="mb-0 text-white">1</h3>
+                        <h3 class="mb-0 text-white"><a href="/cabinet/formations"><i class="far fa-eye"></i></a></h3>
                     </a>
                 </div>
               </div>
@@ -129,7 +129,22 @@ Employer Dashboard -->
                 </div>
                 <div class="candidates-info-count">
                     <a href="">
-                        <h3 class="mb-0 text-white">1</h3>
+                        <h3 class="mb-0 text-white"><a href="/cabinet/actualites"><i class="far fa-eye"></i></a></h3>
+                    </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="candidates-feature-info "style="background-color: #00aeef "">
+                <div class="candidates-info-icon text-white">
+                  <i class="fas fa-globe-asia"></i>
+                </div>
+                <div class="candidates-info-content">
+                 <h6 class="candidates-info-title text-white">Publicités</h6>
+                </div>
+                <div class="candidates-info-count">
+                    <a href="">
+                        <h3 class="mb-0 text-white"><a href="/cabinet/publicites"><i class="far fa-eye"></i></a></h3>
                     </a>
                 </div>
               </div>

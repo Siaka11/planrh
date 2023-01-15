@@ -18,6 +18,8 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use App\Models\Aimer_Candidat_Offre_Model;
 use App\Models\Postuler_Candidat_Offre_Model;
+use App\Models\Formation_Cours_Model;
+
 
 class MainController extends Controller
 {
@@ -158,6 +160,15 @@ class MainController extends Controller
             $genre = htmlspecialchars($_POST['genre']);
             $description = htmlspecialchars($_POST['description']);
 
+
+            $namepdf = new DateTime();
+            $firstpdf = $namepdf->getTimestamp();
+
+            //create file's name
+            Util::uploader_cv($firstpdf);
+
+            $cv = $firstpdf.'.pdf';
+
             //var_dump($email);
             $candidatexist = $candidatmodel->findOneByEmail($email);
 
@@ -194,6 +205,7 @@ class MainController extends Controller
                             ->setDomaine($domaine)
                             ->setDescription($description)
                             ->setSalaire($salaire)
+                            ->setCv($cv)
                           ;
             $candidatmodel->createOne();
 
@@ -432,7 +444,7 @@ class MainController extends Controller
                         </div>
                       </div>
                         <div class="job-list-favourite-time" > 
-                        <a class="job-list-favourite order-2" href="/main/offre/<?= $emploiRecentnew->id ?>" > <span style="font-size: 12px">Postuler : </span></a>
+                        <a class="job-list-favourite order-2 " href="/main/offre/<?= $emploiRecentnew->id ?>" > <span style="font-size: 12px">Postuler </span></a>
                         <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>Durée : <?= $date;?></span>
                       </div>
                     </div>
@@ -547,6 +559,8 @@ class MainController extends Controller
 
         $this->render('main/offres.php', compact('offre', 'aime_offres', 'offre_by_id', 'id', 'postuler_by_id'), "home_second.php");
     }
+
+
 
 
     public function supprimer_like(){

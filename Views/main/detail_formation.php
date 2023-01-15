@@ -42,56 +42,9 @@ job-grid -->
         right-sidebar -->
         <div class="row mb-4">
           <div class="col-12">
-            <h6 class="mb-0"><span class="text-primary"><?= count($formations)?> Formations Disponibles</span></h6>
-          </div>
-        </div>
-        <div class="job-filter mb-4 d-sm-flex align-items-center">
-          <div class="job-shortby ms-sm-auto d-flex align-items-center">
-            <form class="form-inline" method="POST">
-              <div class="d-sm-flex align-items-center mb-0">
-                <div class="short-by">
-                  
-                  <select class="form-control basic-select" name="filtre">
-                  <?php foreach($filtres as $formation): ?>
-                    <option value="<?= $formation->titre ?>"><?= $formation->titre ?></option>
-                  <?php endforeach; ?>
-                  </select>
-                </div>
-              </div>
-              <button class="btn btn-outline-primary" type="submit" name="recherche">Recherche</button>
-
-            </form>
-            <div class="filter-btn ms-sm-3 ms-auto"> 
-           </div>
           </div>
         </div>
 
-          <div class="row">
-          <?php foreach($formations as $formation): ?>
-            <div class="col-md-6 col-lg-4">
-              <div class="job-list job-grid">
-                <div class="job-list-logo">
-                  <img class="img-fluid" src="images/<?= $formation->image ?>" alt="">
-                </div>
-                <div class="job-list-details">
-                  <div class="job-list-info">
-                    <div class="job-list-title">
-                      <h5 class="mb-0"><a href="../formations/details_formation/<?= $formation->id ?>"><?= $formation->titre ?></a></h5>
-                    </div>
-                    <div class="job-list-option">
-                      <ul class="list-unstyled">
-                        <li> <span>via : </span> <?= $formation->auteur ?></li>
-                        <li><i class="fas fa-map-marker-alt pe-1"></i><?= $formation->lieu ?></li>
-                        <li><i class="fas fa-filter pe-1"></i>Du <?= $formation->date_debut ?> au <?= $formation->date_fin ?></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <?php endforeach; ?>
-
-          </div>
 
         <!-- <div class="row">
           <div class="col-12 text-center mt-4">
