@@ -3,9 +3,9 @@
 banner -->
 <section class="banner-bg-slider">
   <div id="bg-slider">
-    <img src="images/bg-slider/01.jpg" alt="">
-    <img src="images/bg-slider/02.jpg" alt="">
-    <img src="images/bg-slider/03.jpg" alt="">
+    <img src="../images/bg-slider/01.jpg" alt="">
+    <img src="../images/bg-slider/02.jpg" alt="">
+    <img src="../images/bg-slider/03.jpg" alt="">
   </div>
   <div class="banner-bg-slider-content">
     <div class="container">
@@ -438,7 +438,7 @@ Why You Choose -->
   <div class="container-fluid p-0">
     <div class="row align-self-center m-0">
       <div class="col-md-6 p-0">
-        <div class="bg-holder h-100" style="background-image: url(images/bg/cover-bg-2.jpg); background-size: cover;"></div>
+        <div class="bg-holder h-100" style="background-image: url(../images/bg/cover-bg-2.jpg); background-size: cover;"></div>
       </div>
       <div class="col-xl-6 col-lg-6 col-md-12">
         <div class="feature-content">

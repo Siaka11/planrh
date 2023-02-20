@@ -18,6 +18,7 @@ require '../phpmailer/Exception.php';
 require '../phpmailer/PHPMailer.php';
 require '../phpmailer/SMTP.php';
 
+define('FR', 'fr');
 
 
 require_once "../Autoloader.php";

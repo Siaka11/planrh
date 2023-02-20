@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta name="keywords" content="Plan Rh" />
     <meta name="description" content="Site de recrutement et de placement" />
@@ -15,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
 
     <!-- CSS Global Compulsory (Do not remove)-->
-    <link rel="stylesheet" href="css/font-awesome/all.min.css" />
+    <link rel="stylesheet" href="/planrh/css/font-awesome/all.min.css" />
     <link rel="stylesheet" href="css/flaticon/flaticon.css" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
 
@@ -69,10 +70,10 @@ Header -->
       <div class="navbar-collapse collapse justify-content-start">
         <ul class="nav navbar-nav">
           <li class="nav-item ">
-            <a class="nav-link dropdown-toggle" id="one" href="/main" aria-haspopup="true" aria-expanded="false">Accueil</a>
+            <a class="nav-link dropdown-toggle" id="one" href="/<?= FR ?>/main" aria-haspopup="true" aria-expanded="false">Accueil</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link dropdown-toggle" href="/actualites" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/actualites" aria-haspopup="true" aria-expanded="false">
               Actualités
             </a>
           </li>
@@ -81,14 +82,14 @@ Header -->
               Employeur<i class="fas fa-chevron-down fa-xs"></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/employeur/erecrutement">Recrutement & Placement</a></li>
-              <li><a class="dropdown-item" href="/employeur/recrutement_permanent">Recrutement Parmanent</a></li>
-              <li><a class="dropdown-item" href="/employeur/chasseur_de_tete">Chasse de tête</a></li>
-              <li><a class="dropdown-item" href="/employeur/placement_temporaire">Placement Temporaire</a></li>
-              <li><a class="dropdown-item" href="/employeur/consultation_rh">Consultation RH</a></li>
-              <li><a class="dropdown-item" href="/employeur/gestion_paie">Gestion de la Paie</a></li>
-              <li><a class="dropdown-item" href="/employeur/impartition">Impartition</a></li>
-              <li><a class="dropdown-item" href="/employeur/verification">Vérification Pré-emploi</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/erecrutement">Recrutement & Placement</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/recrutement_permanent">Recrutement Parmanent</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/chasseur_de_tete">Chasse de tête</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/placement_temporaire">Placement Temporaire</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/consultation_rh">Consultation RH</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/gestion_paie">Gestion de la Paie</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/impartition">Impartition</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/verification">Vérification Pré-emploi</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -96,24 +97,24 @@ Header -->
               Candidats <i class="fas fa-chevron-down fa-xs"></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/candidat/emplois">Emplois Disponibles</a></li>
-              <li><a class="dropdown-item" href="/candidat/candidature">Candidatures Spontannées</a></li>
-              <li><a class="dropdown-item" href="/candidat/recrutement">Processus de Recrutement</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/candidat/emplois">Emplois Disponibles</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/candidat/candidature">Candidatures Spontannées</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/candidat/recrutement">Processus de Recrutement</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/recrutementinternational" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/recrutementinternational" aria-haspopup="true" aria-expanded="false">
              Recrutement internationale</i>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link dropdown-toggle" href="/formations" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/formations" aria-haspopup="true" aria-expanded="false">
               Formations</i>
             </a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/contact" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/contact" aria-haspopup="true" aria-expanded="false">
               Nous Joindre</i>
             </a>
           </li>
@@ -124,10 +125,10 @@ Header -->
             <?php if((isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) || isset($_SESSION['useremployeur'])): ?>
 
               <?php if(isset($_SESSION['user'])): ?>
-                <a href="/backend_candidat"><i class="far fa-user pe-2"></i>Mon espace </a>
+                <a href="/<?= FR ?>/backend_candidat"><i class="far fa-user pe-2"></i>Mon espace </a>
                 <!-- <?=$_SESSION['user']['nom'] ?? "" ?> -->
               <?php else: ?>
-                <a href="/backend_employeur"><i class="far fa-user pe-2"></i>Mon espace </a>
+                <a href="/<?= FR ?>/backend_employeur"><i class="far fa-user pe-2"></i>Mon espace </a>
                 <!-- <?=$_SESSION['useremployeur']['nom'] ?? "" ?> -->
               <?php endif; ?>
 
@@ -184,9 +185,9 @@ Footer -->
           <div class="footer-link">
             <h5 class="text-dark mb-4">Emplois</h5>
             <ul class="list-unstyled">
-              <li><a href="/candidat/emplois">Trouver un emploi</a></li>
-              <li><a href="/backend_candidat/modification_cv">Soumettre un CV</a></li>
-              <li><a href="/login">Se connecter</a></li>
+              <li><a href="/<?= FR ?>/candidat/emplois">Trouver un emploi</a></li>
+              <li><a href="/<?= FR ?>/backend_candidat/modification_cv">Soumettre un CV</a></li>
+              <li><a href="/<?= FR ?>/login">Se connecter</a></li>
             </ul>
           </div>
         </div>
@@ -194,11 +195,11 @@ Footer -->
           <div class="footer-link">
             <h5 class="text-dark mb-4">Employeur</h5>
             <ul class="list-unstyled">
-              <li><a href="/backend_employeur/poster_emplois">Publier un emploi</a></li>
-              <li><a href="/employeur/gestion_paie">Gestion de la paie</a></li>
-              <li><a href="/employeur/consultation_rh">Consultation RH</a></li>
-              <li><a href="/employeur/chasseur_de_tete">Chasse de Tête</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><a href="/<?= FR ?>/backend_employeur/poster_emplois">Publier un emploi</a></li>
+              <li><a href="/<?= FR ?>/employeur/gestion_paie">Gestion de la paie</a></li>
+              <li><a href="/<?= FR ?>/employeur/consultation_rh">Consultation RH</a></li>
+              <li><a href="/<?= FR ?>/employeur/chasseur_de_tete">Chasse de Tête</a></li>
+              <li><a href="/<?= FR ?>/contact">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -502,7 +503,7 @@ Javascript -->
       let domaine = get_filter('domaine');
       //console.log(domaine)
       $.ajax({
-        url: "/main/fetch_data",
+        url: "/fr/main/fetch_data",
         method:"POST",
         data: {action: action, domaine: domaine},
         success:function(data){

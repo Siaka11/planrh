@@ -13,9 +13,9 @@ $util = new Util();
 banner -->
 <section class="banner-bg-slider">
   <div id="bg-slider">
-    <img src="images/bg-slider/01.jpg" alt="">
-    <img src="images/bg-slider/02.jpg" alt="">
-    <img src="images/bg-slider/03.jpg" alt="">
+    <img src="../images/bg-slider/01.jpg" alt="">
+    <img src="../images/bg-slider/02.jpg" alt="">
+    <img src="../images/bg-slider/03.jpg" alt="">
   </div>
   <div class="banner-bg-slider-content">
     <div class="container">
@@ -81,10 +81,10 @@ Browse listing -->
           <div class="style-01">
             <ul class="nav nav-tabs justify-content-center d-flex mt-0" id="myTab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link  active" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Emplois récents</a>
+                <a class="nav-link  active" style="color: white!important" id="profile-tab"  data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Emplois récents</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Emplois populaires</a>
+                <a class="nav-link" id="contact-tab" style="color: white!important" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Emplois populaires</a>
               </li>
             </ul>
           </div>
@@ -386,7 +386,7 @@ Why You Choose -->
   <div class="container-fluid p-0">
     <div class="row align-self-center m-0">
       <div class="col-md-6 p-0">
-        <div class="bg-holder h-100" style="background-image: url(images/bg/cover-bg-2.jpg); background-size: cover;"></div>
+        <div class="bg-holder h-100" style="background-image: url(../images/bg/cover-bg-2.jpg); background-size: cover;"></div>
       </div>
       <div class="col-xl-6 col-lg-6 col-md-12">
         <div class="feature-content">
@@ -452,32 +452,32 @@ Top Companies -->
         <div class="owl-carousel owl-nav-bottom-center" data-nav-arrow="false" data-nav-dots="true" data-items="4" data-md-items="3" data-sm-items="2" data-xs-items="1" data-xx-items="1" data-space="15" data-autoheight="true">
           <div class="item">
             <div class="employers-grid mb-4 mb-lg-0">
-              <img src="images/feature-1.jpg">
+              <img src="../images/feature-1.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-md-0">
-              <img src="images/feature-2.jpg">
+              <img src="../images/feature-2.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-lg-0">
-              <img src="images/feature-3.jpg">
+              <img src="../images/feature-3.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-md-0">
-              <img src="images/feature-1.jpg">
+              <img src="../images/feature-1.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-md-0">
-              <img src="images/feature-2.jpg">
+              <img src="../images/feature-2.jpg">
             </div>
           </div>
           <div class="item">
             <div class="employers-grid mb-4 mb-lg-0">
-              <img src="images/feature-3.jpg">
+              <img src="../images/feature-3.jpg">
             </div>
           </div>
         </div>

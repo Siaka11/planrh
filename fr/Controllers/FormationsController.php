@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
-use App\Controllers\Controller;
+namespace App\fr\Controllers;
+
+use App\fr\Controllers\Controller;
 use App\Models\Formation_Cours_Model;
 
 

@@ -1,6 +1,9 @@
 <?php
-namespace App\Controllers;
-use App\Controllers;
+
+namespace App\fr\Controllers;
+
+
+use App\fr\Controllers\Controller;
 
 class ContactController extends Controller{
 

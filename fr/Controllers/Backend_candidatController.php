@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\fr\Controllers;
 
 use DateTime;
 use App\Core\Util;
@@ -16,6 +16,8 @@ use App\Models\ExperienceModel;
 use App\Models\RecompenseModel;
 use App\Models\Aimer_Candidat_Offre_Model;
 use App\Models\Postuler_Candidat_Offre_Model;
+use App\fr\Controllers\Controller;
+
 
 class Backend_candidatController extends Controller{
 

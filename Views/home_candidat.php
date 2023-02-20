@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <base href="/planrh/">
+    <base href="/">
     <meta charset="utf-8">
     <meta name="keywords" content="Plan Rh" />
     <meta name="description" content="Site de recrutement et de placement" />
@@ -11,23 +11,23 @@
     <title>Candidature | Plan RH </title>
 
     <!-- Favicon -->
-    <link href="../images/log.png" rel="shortcut icon" />
+    <link href="images/log.png" rel="shortcut icon" />
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
 
     <!-- CSS Global Compulsory (Do not remove)-->
-    <link rel="stylesheet" href="../css/font-awesome/all.min.css" />
-    <link rel="stylesheet" href="../css/flaticon/flaticon.css" />
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome/all.min.css" />
+    <link rel="stylesheet" href="css/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
 
     <!-- Page CSS Implementing Plugins (Remove the plugin CSS here if site does not use that feature)-->
-    <link rel="stylesheet" href="../css/range-slider/ion.rangeSlider.css" />
-    <link rel="stylesheet" href="../css/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="../css/subtle-slideshow.css" />
+    <link rel="stylesheet" href="css/range-slider/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="css/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/subtle-slideshow.css" />
 
     <!-- Template Style -->
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
 
@@ -70,15 +70,15 @@ header -->
           <span></span>
       </button>
       <a class="navbar-brand" href="index.html">
-        <img class="img-fluid" src="../images/logo.png" alt="logo">
+        <img class="img-fluid" src="images/logo.png" alt="logo">
       </a>
       <div class="navbar-collapse collapse justify-content-start">
         <ul class="nav navbar-nav">
           <li class="nav-item dropdown">
-            <a class="nav-link" href="/main" role="button" aria-haspopup="true" aria-expanded="false">Accueil</a>
+            <a class="nav-link" href="/<?= FR ?>/main" role="button" aria-haspopup="true" aria-expanded="false">Accueil</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/actualites" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/actualites" aria-haspopup="true" aria-expanded="false">
               Actualités
             </a>
           </li>
@@ -87,14 +87,14 @@ header -->
               Employeur<i class="fas fa-chevron-down fa-xs"></i>
             </a>
             <ul class="dropdown-menu">
-            <li ><a class="dropdown-item" href="/employeur/erecrutement">Recrutement & Placement</a></li>
-              <li><a class="dropdown-item" href="/employeur/recrutement_permanent">Recrutement Parmanent</a></li>
-              <li><a class="dropdown-item" href="/employeur/chasseur_de_tete">Chasse de tête</a></li>
-              <li><a class="dropdown-item" href="/employeur/placement_temporaire">Placement Temporaire</a></li>
-              <li><a class="dropdown-item" href="/employeur/consultation_rh">Consultation RH</a></li>
-              <li><a class="dropdown-item" href="/employeur/gestion_paie">Gestion de la Paie</a></li>
-              <li><a class="dropdown-item" href="/employeur/impartition">Impartition</a></li>
-              <li><a class="dropdown-item" href="/employeur/verification">Vérification Pré-emploi</a></li>
+            <li ><a class="dropdown-item" href="/<?= FR ?>/employeur/erecrutement">Recrutement & Placement</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/recrutement_permanent">Recrutement Parmanent</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/chasseur_de_tete">Chasse de tête</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/placement_temporaire">Placement Temporaire</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/consultation_rh">Consultation RH</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/gestion_paie">Gestion de la Paie</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/impartition">Impartition</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/employeur/verification">Vérification Pré-emploi</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown active">
@@ -102,24 +102,24 @@ header -->
               Candidats <i class="fas fa-chevron-down fa-xs"></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/candidat/emplois">Emplois Disponibles</a></li>
-              <li ><a class="dropdown-item" href="/candidat/candidature">Candidatures Spontannées</a></li>
-              <li><a class="dropdown-item" href="/candidat/recrutement">Processus de Recrutement</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/candidat/emplois">Emplois Disponibles</a></li>
+              <li ><a class="dropdown-item" href="/<?= FR ?>/candidat/candidature">Candidatures Spontannées</a></li>
+              <li><a class="dropdown-item" href="/<?= FR ?>/candidat/recrutement">Processus de Recrutement</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/recrutementinternational" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/recrutementinternational" aria-haspopup="true" aria-expanded="false">
              Recrutement internationale</i>
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/formations" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/formations" aria-haspopup="true" aria-expanded="false">
               Formations</i>
             </a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/contact" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/contact" aria-haspopup="true" aria-expanded="false">
               Nous Joindre</i>
             </a>
           </li>
@@ -384,15 +384,15 @@ Javascript -->
 
 
     <!-- JS Global Compulsory (Do not remove)-->
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script src="../js/popper/popper.min.js"></script>
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/popper/popper.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
 
     <!-- Page JS Implementing Plugins (Remove the plugin script here if site does not use that feature)-->
     <script src="js/select2/select2.full.js"></script>
 
     <!-- Template Scripts (Do not remove)-->
-    <<script src="../js/custom.js"></script>
+    <<script src="js/custom.js"></script>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <base href="/planrh/">
+    <base href="/">
     <meta charset="utf-8">
     <meta name="keywords" content="Plan Rh" />
     <meta name="description" content="Site de recrutement et de placement" />
@@ -11,22 +11,22 @@
     <title>Accueil | Tableau de Bord</title>
 
     <!-- Favicon -->
-    <link href="../images/log.png" rel="shortcut icon" />
+    <link href="images/log.png" rel="shortcut icon" />
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
 
     <!-- CSS Global Compulsory (Do not remove)-->
-    <link rel="stylesheet" href="../css/font-awesome/all.min.css" />
-    <link rel="stylesheet" href="../css/flaticon/flaticon.css" />
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome/all.min.css" />
+    <link rel="stylesheet" href="css/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- map -->
-    <link rel="stylesheet" href="../css/apexcharts/apexcharts.css" />
+    <link rel="stylesheet" href="css/apexcharts/apexcharts.css" />
 
     <!-- Template Style -->
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
 </head>
@@ -43,7 +43,7 @@ inner banner -->
       <div class="col-12">
         <div class="jobber-user-info">
             <div class="profile-avatar">
-            <img class="img-fluid "  src="../images/<?= $admin->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
+            <img class="img-fluid "  src="images/<?= $admin->image ?>" style=" width: 100px;height: 100px;border-radius: 50%;" alt="" data-bs-target="#staticBackdrop">
               <i class="fas fa-pencil-alt" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
             </div>
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -84,16 +84,16 @@ Dashboard Nav -->
           <div class="secondary-menu">
             <ul>
               <li><a  href="/cabinet/">Accueil</a></li>
-              <!-- <li><a href="../cabinet/profil">Mon Profil</a></li> -->
-              <!-- <li><a href="../cabinet/modification_pass">Modifier mon passe</a></li> -->
-              <li><a href="../cabinet/offres">Offres</a></li>
-              <li><a href="../cabinet/emplois_postules">Candidatures</a></li>
-              <li><a href="../cabinet/employeurs">Employeurs</a></li>
-              <li><a href="../cabinet/candidats">Candidats</a></li>
-              <li><a href="../cabinet/formations">Formations</a></li>
-              <li><a href="../cabinet/publicites">publicites</a></li>
-              <li><a href="../cabinet/actualites">Actualités</a></li>
-              <li><a href="../cabinet/logout">Quitter</a></li>
+              <!-- <li><a href="cabinet/profil">Mon Profil</a></li> -->
+              <!-- <li><a href="cabinet/modification_pass">Modifier mon passe</a></li> -->
+              <li><a href="cabinet/offres">Offres</a></li>
+              <li><a href="cabinet/emplois_postules">Candidatures</a></li>
+              <li><a href="cabinet/employeurs">Employeurs</a></li>
+              <li><a href="cabinet/candidats">Candidats</a></li>
+              <li><a href="cabinet/formations">Formations</a></li>
+              <li><a href="cabinet/publicites">publicites</a></li>
+              <li><a href="cabinet/actualites">Actualités</a></li>
+              <li><a href="cabinet/logout">Quitter</a></li>
             </ul>
           </div>
         </div>
@@ -127,8 +127,8 @@ footer -->
             <div class="d-flex justify-content-md-start justify-content-center">
               <ul class="list-unstyled d-flex mb-0">
                 <li><a href="#">FAQ</a></li>
-                <li><a href="../#">A propos de nous</a></li>
-                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="#">A propos de nous</a></li>
+                <li><a href="contact.html">Contact</a></li>
               </ul>
             </div>
           </div>
@@ -154,18 +154,18 @@ Back To Top-->
 Javascript -->
 
     <!-- JS Global Compulsory (Do not remove)-->
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script src="../js/popper/popper.min.js"></script>
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/popper/popper.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
 
     <!-- map -->
-    <script src="../js/apexcharts/apexcharts.min.js"></script>
+    <script src="js/apexcharts/apexcharts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     
 
     <!-- Template Scripts (Do not remove)-->
-    <script src="../js/custom.js"></script>
+    <script src="js/custom.js"></script>
 
     <script>
 

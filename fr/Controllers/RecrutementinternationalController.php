@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controllers;
+namespace App\fr\Controllers;
 
 use App\Core\Util;
 use App\Models\OffreModel;
 use App\Models\VideoModel;
 use App\Models\DomaineModel;
 use App\Models\PubliciteModel;
-use App\Controllers\Controller;
+use App\fr\Controllers\Controller;
 use App\Models\ActualitesModel;
 use App\Models\MotivationModel;
 

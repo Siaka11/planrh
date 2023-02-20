@@ -1,7 +1,8 @@
 <?php
 
 
-namespace App\Controllers;
+namespace App\fr\Controllers;
+
 use DateTime;
 use App\Core\Util;
 use App\Models\Model;
@@ -11,7 +12,7 @@ use App\Models\DomaineModel;
 use App\Models\CandidatModel;
 use App\Models\EmployeurModel;
 use App\Models\PubliciteModel;
-use App\Controllers\Controller;
+use App\Fr\Controllers\Controller;
 use App\Models\TypeEmploiModel;
 use App\Models\Aimer_Candidat_Offre_Model;
 use App\Models\Postuler_Candidat_Offre_Model;
@@ -385,7 +386,7 @@ class MainController extends Controller
         header('Location: /' );
     }
 
-    public function fetch_data(){      
+    public function fetch_data(){  
         if(isset($_POST['action'])){
             $emploiModel = new OffreModel();
             $emploiRecent = $emploiModel->findAllEtat();
@@ -407,52 +408,50 @@ class MainController extends Controller
 
 
                     ?>
-                  <div class="col-lg-6 col-sm-6">
-                    <div class="job-list job-grid">
-                      <div class="job-list-logo ">
-                        <img class="img-fluid" src="images/<?= $new->image ?>" alt="">
-                      </div>
-                      <div class="job-list-details">
-                        <div class="job-list-info">
-                          <div class="job-list-title">
-                            <h6><a href="#"><?=$emploiRecentnew->titre?></a></h6>
-                          </div>
-                          <div class="job-list-option">
-                            <ul class="list-unstyled">
-                              <li>
-                              
-                                
-                                <span class="job-list-via"> via : <?=$new->entreprise ?></span>
-                                <a class="job-list-company-name" href="#">Compagnie</a>
-                              </li>
-                              <li><i class="fas fa-map-marker-alt pe-1"></i><?=$emploiRecentnew->adresse ?></li>
-                              <li><i class="fas fa-filter pe-1"></i>
-                              <?php
-
-                                $date = $util->mydateago("$emploiRecentnew->date_creation");
-                              
-                              $arr = $type_emploi->type_emploi($emploiRecentnew->typeemploi);
-                              echo $arr->nom;
-
-                              ?>
-                              </li>
-                              <li><a class="part-time" href="#"><i class="fas fa-suitcase pe-1"></i>
-                                <?php
-                                    $domaine = $domaineModel->domaine_employeur($emploiRecentnew->domaine); 
-                                    echo $domaine->nom
-                                
-                                ?>
-                              </a></li>
-                            </ul>
-                          </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="job-list job-grid">
+                        <div class="job-list-logo ">
+                            <img class="img-fluid" src="images/<?= $new->image ?>" alt="">
                         </div>
-                      </div>
-                        <div class="job-list-favourite-time" > 
-                        <a class="job-list-favourite order-2 " href="/main/offre/<?= $emploiRecentnew->id ?>" > <span style="font-size: 12px">Postuler </span></a>
-                        <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>Durée : <?= $date;?></span>
-                      </div>
+                        <div class="job-list-details">
+                            <div class="job-list-info">
+                            <div class="job-list-title">
+                                <h6><a href="#"><?=$emploiRecentnew->titre?></a></h6>
+                            </div>
+                            <div class="job-list-option">
+                                <ul class="list-unstyled">
+                                <li>                        
+                                    <span class="job-list-via"> via : <?=$new->entreprise ?></span>
+                                    <a class="job-list-company-name" href="#">Compagnie</a>
+                                </li>
+                                <li><i class="fas fa-map-marker-alt pe-1"></i><?=$emploiRecentnew->adresse ?></li>
+                                <li><i class="fas fa-filter pe-1"></i>
+                                <?php
+
+                                    $date = $util->mydateago("$emploiRecentnew->date_creation");
+                                
+                                $arr = $type_emploi->type_emploi($emploiRecentnew->typeemploi);
+                                echo $arr->nom;
+
+                                ?>
+                                </li>
+                                <li><a class="part-time" href="#"><i class="fas fa-suitcase pe-1"></i>
+                                    <?php
+                                        $domaine = $domaineModel->domaine_employeur($emploiRecentnew->domaine); 
+                                        echo $domaine->nom
+                                    
+                                    ?>
+                                </a></li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                            <div class="job-list-favourite-time" > 
+                            <a class="job-list-favourite order-2 " href="/main/offre/<?= $emploiRecentnew->id ?>" > <span style="font-size: 12px">Postuler </span></a>
+                            <span class="job-list-time order-1"><i class="far fa-clock pe-1"></i>Durée : <?= $date;?></span>
+                        </div>
+                        </div>
                     </div>
-                  </div>
                 <?php endforeach; ?>
   
             <?php      
@@ -535,7 +534,7 @@ class MainController extends Controller
 
         }else{
 
-            header('Location: /main');
+           // header('Location: /main');
         }
 
 

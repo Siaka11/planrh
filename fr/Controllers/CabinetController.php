@@ -1,5 +1,6 @@
 <?php
-namespace App\Controllers;
+
+namespace App\fr\Controllers;
 
 use DateTime;
 use App\Core\Util;
@@ -10,7 +11,7 @@ use App\Models\CandidatModel;
 use App\Models\EmployeurModel;
 use App\Models\FormationModel;
 use App\Models\publiciteModel;
-use App\Controllers\Controller;
+use App\fr\Controllers\Controller;
 use App\Models\ActualitesModel;
 use App\Models\CompetenceModel;
 use App\Models\ExperienceModel;

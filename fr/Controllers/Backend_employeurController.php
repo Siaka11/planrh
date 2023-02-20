@@ -1,5 +1,6 @@
 <?php
-namespace App\Controllers;
+
+namespace App\fr\Controllers;
 
 use DateTime;
 use TypeError;
@@ -7,7 +8,7 @@ use App\Core\Util;
 use App\Models\OffreModel;
 use App\Models\DomaineModel;
 use App\Models\EmployeurModel;
-use App\Controllers\Controller;
+use App\fr\Controllers\Controller;
 use App\Models\TypeEmploiModel;
 use App\Models\TypeDemandeModel;
 use App\Models\TypeSalaireModel;
