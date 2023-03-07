@@ -25,20 +25,17 @@ blog-detail -->
         <div class="blog-detail">
           <div class="blog-post">
             <div class="blog-post-title">
-              <h4>7 Things are Making your Resume look Dated</h4>
-            </div>
-            <div class="blog-post-category">
-              <a class="mb-0" href="#">Recruitment</a>
+              <h4><?= $forum->titre ?></h4>
             </div>
             <div class="blog-post-footer border-0 justify-content-start">
               <div class="blog-post-time">
-                <a href="#"> <i class="far fa-clock"></i>25 March 2020</a>
+                <i class="far fa-clock"></i><?= $forum->date_creation ?>
               </div>
               <div class="blog-post-author">
-                <span> By <a href="#"> <img class="img-fluid" src="images/avatar/01.jpg" alt="">Felica queen</a> </span>
+                <span> par <a href="#"> <img class="img-fluid" src="images/avatar/01.jpg" alt=""><?= $forum->auteur ?></a> </span>
               </div>
               <div class="blog-post-comment">
-                <a href="#"> <i class="far fa-comment"></i>(15) </a>
+                <!-- <a href="#"> <i class="far fa-comment"></i>(15) </a> -->
               </div>
             </div>
             <div class="blog-post-image">
@@ -46,67 +43,12 @@ blog-detail -->
             </div>
             <div class="blog-post-content mt-4">
               <div class="blog-post-description">
-                <p class="mb-0">The first thing to remember about success is that it is a process – nothing more, nothing less. There is really no magic to it and it’s not reserved only for a select few people. As such, success really has nothing to do with luck, coincidence or fate. It really comes down to understanding.</p>
+                <p class="mb-0"><?= $forum->description ?></p>
+                
               </div>
-              <i class="text-primary d-block lead my-3">There are basically six key areas to higher achievement. Some people will tell you there are four while others may tell you there are eight. One thing for certain though, is that.</i>
-              <p>If success is a process with a number of defined steps, then it is just like any other process. So, what is the first step in any process?</p>
-              <div class="row">
-                <div class="col-lg-7">
-                  <img class="img-fluid mb-3" src="images/blog/02.jpg" alt="">
-                </div>
-                <div class="col-lg-5 mb-3">
-                  <img class="img-fluid" src="images/blog/09.jpg" alt="">
-                </div>
-              </div>
-              <p>Making a decision to do something – this is the first step. We all know that nothing moves until someone makes a decision. The first action is always in making the decision to proceed. This is a fundamental step, which most people overlook.</p>
-              <blockquote class="blockquote">
-                <p>Without clarity, you send a very garbled message out to the Universe. We know that the Law of Attraction says that we will attract what we focus on, so if we don’t have clarity, we will attract confusion.</p>
-                <cite>– Alice Williams</cite>
-              </blockquote>
-              <p>The sad thing is the majority of people have no clue about what they truly want. They have no clarity. When asked the question, responses will be superficial at best, and at worst.</p>
-              <div class="blog-post-tags mb-4 align-items-center d-flex">
-                <span>Popular-Tags:</span>
-                <ul class="list-inline mb-0 mt-2 mt-sm-0 ms-sm-3">
-                  <li class="list-inline-item"><a href="#">Career</a></li>
-                  <li class="list-inline-item"><a href="#">Advice</a></li>
-                  <li class="list-inline-item"><a href="#">Recruitment</a></li>
-                </ul>
-              </div>
-              <nav class="navigation post-navigation">
-                <div class="nav-links">
-                  <div class="nav-previous">
-                    <a href="#"><span class="pagi-text"> PREV</span><span class="nav-title"> Lawn court villa</span></a>
-                  </div>
-                  <div class="nav-next">
-                    <a href="#"><span class="nav-title"> Executive 4 bed WDM ranch</span> <span class="pagi-text">NEXT</span></a> </div>
-                  </div>
-                </nav>
                 <div class="mt-4">
-                  <h5 class="mb-3">About Author</h5>
-                  <div class="border p-4">
-                    <div class="d-sm-flex">
-                      <div class="avatar avatar-xlll mb-3 mb-sm-0">
-                        <img class="img-fluid rounded-circle" src="images/avatar/01.jpg" alt="">
-                      </div>
-                      <div class="ps-sm-4">
-                        <h6 class="mb-3"> <span class="text-primary"> Posted by:</span> Alice Williams</h6>
-                        <p>SMART is an acronym for Specific, Measurable, Achievable, Realistic and Time Sensitive – S-M-A-R-T. Knowing what you want and setting SMART goals as mileposts on your quest cannot help but give you clarity!</p>
-                        <div class="social-icon d-flex">
-                          <span>Follow us:</span>
-                          <ul class="list-unstyled mb-0 ms-3 list-inline">
-                            <li class="list-inline-item"> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
-                            <li class="list-inline-item"> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
-                            <li class="list-inline-item"> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
-                            <li class="list-inline-item"> <a href="#"> <i class="fab fa-linkedin"></i> </a> </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-4">
-                  <h5 class="mb-3">Related Post</h5>
-                  <div class="row">
+                  <h5 class="mb-1">Espace commentaire</h5>
+                  <!-- <div class="row">
                     <div class="col-12">
                       <div class="owl-carousel " data-nav-dots="true" data-items="2" data-md-items="2" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="15">
                         <div class="item">
@@ -204,11 +146,11 @@ blog-detail -->
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <hr class="my-5" />
                   <div class="d-flex mb-3">
                     <div class="avatar avatar-lg">
-                      <img src="images/avatar/01.jpg" class="img-fluid rounded-circle" alt="...">
+                      <img src="images/avatar/03.jpg" class="img-fluid rounded-circle" alt="...">
                     </div>
                     <div class="media-body ms-3 border p-4">
                       <div class="d-flex">
@@ -289,7 +231,7 @@ blog-detail -->
         </div>
         <div class="col-lg-4 mt-5 mt-lg-0">
           <div class="blog-sidebar">
-            <div class="widget">
+            <!-- <div class="widget">
               <div class="widget-title">
                 <h5>Search Job</h5>
               </div>
@@ -297,8 +239,8 @@ blog-detail -->
                 <i class="fas fa-search"></i>
                 <input type="text" class="form-control" placeholder="Search...">
               </div>
-            </div>
-            <div class="widget">
+            </div> -->
+            <!-- <div class="widget">
               <div class="widget-title">
                 <h5>About The Blog</h5>
               </div>
@@ -308,38 +250,22 @@ blog-detail -->
                 <li class="mb-2">Most people believe that success is difficult.</li>
                 <li class="mb-2">They’re wrong – it’s not!</li>
               </ol>
-            </div>
+            </div> -->
             <div class="widget">
               <div class="widget-title">
-                <h5>Recent Posts</h5>
+                <h5>Les récents forums</h5>
               </div>
-              <div class="d-flex mb-3 align-items-start">
-                <div class="avatar avatar-xl">
-                  <img class="img-fluid" src="images/blog/06.jpg" alt="">
+              <?php foreach($forums as $forum ): ?>
+                <div class="d-flex mb-3 align-items-start">
+                  <div class="avatar avatar-xl">
+                    <img class="img-fluid" src="images/blog/06.jpg" alt="">
+                  </div>
+                  <div class="ms-3 recent-posts">
+                    <a href="/<?= FR ?>/forum/list/<?= $forum->id ?>"><b><?= $forum->titre ?></b></a>
+                    <a class="d-block font-sm mt-1 text-light" href="/<?= FR ?>/forum/list/<?= $forum->id ?>"><?= $forum->date_creation ?></a>
+                  </div>
                 </div>
-                <div class="ms-3 recent-posts">
-                  <a href="#"><b>Expanding Access to Tech Talent</b></a>
-                  <a class="d-block font-sm mt-1 text-light" href="#">25 Feb 2020</a>
-                </div>
-              </div>
-              <div class="d-flex mb-3 align-items-start">
-                <div class="avatar avatar-xl">
-                  <img class="img-fluid" src="images/blog/07.jpg" alt="">
-                </div>
-                <div class="ms-3 recent-posts">
-                  <a href="#"><b>How to become an Account Manager</b></a>
-                  <a class="d-block font-sm mt-1 text-light" href="#">20 March 2020</a>
-                </div>
-              </div>
-              <div class="d-flex mb-3 align-items-start">
-                <div class="avatar avatar-xl">
-                  <img class="img-fluid" src="images/blog/08.jpg" alt="">
-                </div>
-                <div class="ms-3 recent-posts">
-                  <a href="#"><b>Job interview tips for older workers</b></a>
-                  <a class="d-block font-sm mt-1 text-light" href="#">15 Jan 2020</a>
-                </div>
-              </div>
+              <?php endforeach ?>
             </div>
             <div class="widget">
               <div class="widget-title">

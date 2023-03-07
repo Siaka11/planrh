@@ -46,9 +46,12 @@ Advertise A Job -->
           <div class="feature-info-icon mb-3">
             <i class="flaticon-contract"></i>
           </div>
-          <div class="feature-info-content">
-            <p class="mb-0">L’affichage : Nous affichons sur les sites d’emploi gouvernementaux et privés. L’affichage permet d’exprimer la volonté de recrutement locale.</p>
-          </div>
+          <a href="/fr/recrutementinternational/destination/1">
+            <div class="feature-info-content">
+              <p class="mb-0">
+              <b>Ontario</b>: Avant d’embaucher un travailleur étranger au Canada, un employeur basé en Ontario doit généralement obtenir une étude d’impact sur le marché du travail (EIMT) positive au préalable. Cependant, il existe différentes situations pour lesquelles l’obtention d’une EIMT n’est pas nécessaire.</p>
+            </div>
+          </a>
         </div>
       </div>
       <div class="col-md-6 mb-4">
@@ -56,9 +59,11 @@ Advertise A Job -->
           <div class="feature-info-icon mb-3">
             <i class="flaticon-profiles"></i>
           </div>
-          <div class="feature-info-content">
-            <p class="mb-0">La présélection : Nous faisons une présélection des CV que nous avons en notre possession pour mieux répondre à la fiche descriptive du poste ou des postes à pourvoir.</p>
-          </div>
+          <a href="/fr/recrutementinternational/destination/2">
+            <div class="feature-info-content">
+            <p class="mb-0"><b>Québec</b>: Pour faciliter l’embauche d’un travailleur étranger au Canada, un employeur basé au Québec bénéficie de certaines exemptions. </p>
+            </div>
+          </a>
         </div>
       </div>
       <div class="col-md-6 mb-4 mb-md-0">
@@ -66,9 +71,11 @@ Advertise A Job -->
           <div class="feature-info-icon mb-3">
             <i class="flaticon-profiles"></i>
           </div>
-          <div class="feature-info-content">
-            <p class="mb-0">La Sélection : Elle consiste à faire les entrevues pour retenir les meilleurs candidats. L’Employeur peut organiser au besoin des entrevues avec les différents candidats.</p>
-          </div>
+          <a href="/fr/recrutementinternational/destination/3">
+            <div class="feature-info-content">
+              <p class="mb-0"><b>Atlantique (NB, NS.PEI, NL)</b>: Avant d’embaucher un travailleur étranger au Canada, un employeur basé en Ontario doit généralement obtenir une étude d’impact sur le marché du travail (EIMT) positive au préalable. Cependant, il existe différentes situations pour lesquelles l’obtention d’une EIMT n’est pas nécessaire. </p>
+            </div>
+          </a>
         </div>
       </div>
       <div class="col-md-6 mb-4 mb-md-0">
@@ -76,10 +83,12 @@ Advertise A Job -->
           <div class="feature-info-icon mb-3">
             <i class="flaticon-profiles"></i>
           </div>
-          <div class="feature-info-content">
-            <p class="mb-0">Contrat de travail : Selon le modèle type qui vous sera transmis.</p>
-            <p>&nbsp;</p>
-          </div>
+          <a href="/fr/recrutementinternational/destination/4">
+            <div class="feature-info-content">
+              <p class="mb-0"><b>L’Ouest Canadien</b>: Avant d’embaucher un travailleur étranger au Canada, un employeur basé en Ontario doit généralement obtenir une étude d’impact sur le marché du travail (EIMT) positive au préalable. Cependant, il existe différentes situations pour lesquelles l’obtention d’une EIMT n’est pas nécessaire.</p>
+              <p>&nbsp;</p>
+            </div>
+          </a >
           <span>&nbsp;</span>
         </div>
       </div>

@@ -41,7 +41,92 @@
     .favouritejaime{
       color: red;
     }
+
+    .language-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .language-dropdown-toggle {
+      background-color: #eee;
+      border: none;
+      color: #333;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .language-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      z-index: 1;
+    }
+
+    .language-dropdown-menu li {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .language-dropdown-menu li:hover {
+      background-color: #eee;
+    }
+
+    .language-dropdown-menu li.active {
+      background-color: #333;
+      color: #fff;
+    }
+
+    /* my account css */
+    .account-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .account-dropdown-toggle {
+      background-color: #eee;
+      border: none;
+      color: #333;
+      padding: 10px 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .account-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      z-index: 1;
+    }
+
+    .account-dropdown-menu li {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .account-dropdown-menu li:hover {
+      background-color: #eee;
+    }
+
+    .account-dropdown-menu li.active {
+      background-color: #333;
+      color: #fff;
+    }
+
     </style>
+    
 <body>
 
 
@@ -112,7 +197,11 @@ Header -->
               Formations</i>
             </a>
           </li>
-
+          <li class="nav-item ">
+            <a class="nav-link dropdown-toggle" href="/<?= FR ?>/forum" aria-haspopup="true" aria-expanded="false">
+              Forum</i>
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="/<?= FR ?>/contact" aria-haspopup="true" aria-expanded="false">
               Nous Joindre</i>
@@ -121,27 +210,67 @@ Header -->
         </ul>
       </div>
       <div class="add-listing">
-          <div class="login d-inline-block me-4">
-            <?php if((isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) || isset($_SESSION['useremployeur'])): ?>
+          <?php if((isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) || isset($_SESSION['useremployeur'])): ?>
 
-              <?php if(isset($_SESSION['user'])): ?>
-                <a href="/<?= FR ?>/backend_candidat"><i class="far fa-user pe-2"></i>Mon espace </a>
-                <!-- <?=$_SESSION['user']['nom'] ?? "" ?> -->
-              <?php else: ?>
-                <a href="/<?= FR ?>/backend_employeur"><i class="far fa-user pe-2"></i>Mon espace </a>
-                <!-- <?=$_SESSION['useremployeur']['nom'] ?? "" ?> -->
-              <?php endif; ?>
+            <div class="account-dropdown">
+              <button class="account-dropdown-toggle">
+                Mon compte
+              </button>
+              <ul class="account-dropdown-menu">
 
-            <?php else: ?>
-              <a href="login.html" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="far fa-user pe-2"></i>Connexion</a>
+                <li data-lang="access">
+                  <?php if((isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) || isset($_SESSION['useremployeur'])): ?>
 
-            
-            <?php endif; ?>
+                  <?php if(isset($_SESSION['user'])): ?>
+                    <a href="/<?= FR ?>/backend_candidat">Mon espace </a>
+                    <!-- <?=$_SESSION['user']['nom'] ?? "" ?> -->
+                  <?php else: ?>
+                    <a href="/<?= FR ?>/backend_employeur">Mon espace </a>
+                    <!-- <?=$_SESSION['useremployeur']['nom'] ?? "" ?> -->
+                  <?php endif; ?>
 
-            
+                  <?php else: ?>
+                  <a href="login.html" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="far fa-user pe-2"></i>Connexion</a>
 
-           
+
+                  <?php endif; ?>
+                </li>
+                <li data-lang="connexion">
+                  <a href="/<?= FR ?>/backend_candidat/quitter">Déconnexion</a>
+                </li>
+              </ul>
+            </div>
+          <?php else: ?>
+                <a href="/<?= FR ?>/login" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="far fa-user pe-2"></i>Connexion</a>
+
+
+          <?php endif; ?>
+
+          <div class="language-dropdown">
+            <button class="language-dropdown-toggle">
+              <img src="images/ca.png" alt="English Flag">
+              French
+            </button>
+            <ul class="language-dropdown-menu">
+              <li data-lang="en">
+                <img src="images/ca.png" alt="English Flag">
+                <a href="/en/main">English</a>
+              </li>
+              <li data-lang="fr">
+                <img src="images/ca.png" alt="French Flag">
+                <a href="/fr/">French</a>
+              </li>
+              <li data-lang="es">
+                <img src="images/ca.png" alt="Spanish Flag">
+                <a href="/sp/main">Español</a>
+              </li>
+              <li data-lang="es">
+                <img src="images/ca.png" alt="Spanish Flag">
+                <a href="/pr/main">Portuguese</a>
+              </li>
+            </ul>
           </div>
+
            <!-- <a class="btn btn-white btn-md" href="#">
             <img src="images/ca.png">
           </a> -->
@@ -501,16 +630,43 @@ Javascript -->
       //alert('okay')
       let action = 'fetch_data'
       let domaine = get_filter('domaine');
-      //console.log(domaine)
-      $.ajax({
-        url: "/fr/main/fetch_data",
-        method:"POST",
-        data: {action: action, domaine: domaine},
-        success:function(data){
-          
-          $('.filter_data').html(data)
-        }
-      })
+      const url = window.location.href;
+        // Séparer l'URL en parties en utilisant le caractère /
+      const urlParts = url.split('/');
+
+      // Afficher chaque partie de l'URL dans la console
+      console.log(urlParts[0]); // http:
+      console.log(urlParts[2]); // localhost:8888
+      console.log(urlParts[3]); // en
+      console.log(urlParts[4]); // main
+      switch(urlParts[3]){
+        case "en":
+            $.ajax({
+              url: "/en/main/fetch_data",
+              method:"POST",
+              data: {action: action, domaine: domaine},
+              success:function(data){
+                
+                $('.filter_data').html(data)
+              }
+            })
+          break
+        case "fr":
+            $.ajax({
+              url: "/fr/main/fetch_data",
+              method:"POST",
+              data: {action: action, domaine: domaine},
+              success:function(data){
+                
+                $('.filter_data').html(data)
+              }
+            })
+          break
+        default:
+          console.log('okay')
+
+      }
+
 
     }
 
@@ -543,6 +699,93 @@ Javascript -->
     
 
       })
+
+      $(document).ready(function() {
+        // Set default language to English
+        var lang = 'en';
+        
+        // Listen for click events on the dropdown toggle button
+        $('.language-dropdown-toggle').click(function() {
+          // Toggle the visibility of the dropdown menu
+          $('.language-dropdown-menu').toggle();
+        });
+        
+        // Listen for click events on the dropdown menu items
+        $('.language-dropdown-menu li').click(function() {
+          // Remove the active class from all items
+          $('.language-dropdown-menu li').removeClass('active');
+          
+          // Add the active class to the clicked item
+          $(this).addClass('active');
+          
+          // Get the data-lang attribute of the clicked item
+          lang = $(this).attr('data-lang');
+          
+          // Update the text of the toggle button
+          $('.language-dropdown-toggle').text($(this).text());
+          
+          // Call a function to update the language
+          updateLanguage(lang);
+          
+          // Hide the dropdown menu
+          $('.language-dropdown-menu').hide();
+        });
+        
+        // Function to update the language
+        function updateLanguage(lang) {
+          // Use a switch statement to update the text of elements based on the selected language
+          // switch (lang) {
+          //   case 'en':
+          //     $('h1').text('Welcome');
+          //     $('p').text('This is the English version of the page.');
+          //     break;
+          //   case 'fr':
+          //     $('h1').text('Bienvenue');
+          //     $('p').text('Ceci est la version française de la page.');
+          //     break;
+          //   case 'es':
+          //     $('h1').text('Bienvenido');
+          //     $('p').text('Esta es la versión en español de la página.');
+          //     break;
+          // }
+        }
+        
+        // Call the function to update the language on page load
+        updateLanguage(lang);
+      });
+
+      $(document).ready(function() {
+        // Set default language to English
+        var lang = 'en';
+        
+        // Listen for click events on the dropdown toggle button
+        $('.account-dropdown-toggle').click(function() {
+          // Toggle the visibility of the dropdown menu
+          $('.account-dropdown-menu').toggle();
+        });
+        
+        // Listen for click events on the dropdown menu items
+        $('.account-dropdown-menu li').click(function() {
+          // Remove the active class from all items
+          $('.account-dropdown-menu li').removeClass('active');
+          
+          // Add the active class to the clicked item
+          $(this).addClass('active');
+          
+          // Get the data-lang attribute of the clicked item
+          lang = $(this).attr('data-lang');
+          
+          // Update the text of the toggle button
+          $('.account-dropdown-toggle').text($(this).text());
+          
+          // Call a function to update the account
+          updateaccount(lang);
+          
+          // Hide the dropdown menu
+          $('.account-dropdown-menu').hide();
+        });
+        
+      });
     </script>
     
 </body>

@@ -1,13 +1,7 @@
 <?php
 
 
-
-
-
-
 namespace App\Core;
-
-use App\Fr\Controllers\MainController;
 
 
 class Main
@@ -30,6 +24,17 @@ class Main
         // }
         // On récupère l'adresse
         $uri = $_SERVER['REQUEST_URI'];
+        //var_dump($uri);
+
+        switch($uri){
+            // case "/":
+            //     header("Location: /fr/main");
+            //     break;
+            // case "/fr":
+            //     header("Location: /fr/main");
+            //     break;   
+        }
+
 
         // On vérifie si elle n'est pas vide et si elle se termine par un /
         if (!empty($uri) && $uri != '/' && $uri[-1] === '/') {
@@ -46,39 +51,93 @@ class Main
 
         // On sépare les paramètres et on les met dans le tableau $params
         $params = explode('/', $_GET['p']);
-        //var_dump($params);
+        // var_dump($params);
         
 
-        $controller = '\\App\\Fr\\Controllers\\' . ucfirst($params[1] ?? "") . 'Controller';
+        //$controller = '\\App\\fr\\Controllers\\' . ucfirst($params[1] ?? "") . 'Controller';
+        //$controller = '\\App\\en\\Controllers\\' . ucfirst($params[1] ?? "") . 'Controller';
+
 
         // Si au moins 1 paramètre existe
         $params_test = $params[2] ?? "";
-        //var_dump($params_test);
+        //var_dump($params[0]);die;
 
         if ($params != "") {
+
+            switch($params[0]){
+                // case "fr":
+                //     $controller = '\\App\\fr\\Controllers\\' . ucfirst($params[1] ?? "") . 'Controller';
+                //     break;
+                case "en":
+                    $controller = '\\App\\en\\Controllers\\' . ucfirst($params[1] ?? "") . 'Controller';
+                    break;
+            }
+
+            if($params[0] === "fr"){
+                $controller = '\\App\\fr\\Controllers\\' . ucfirst($params[1] ?? "") . 'Controller';
+                $action = $params[2] ?? 'index';
+                $controller = new $controller();
+                if (method_exists($controller, $action)) {
+                    //var_dump($controller);
+                    //$controller->$action();
+                    // Si il reste des paramètres, on appelle la méthode en envoyant les paramètres sinon on l'appelle "à vide"
+                   (isset($params[3])) ? call_user_func_array(["App\en\Controllers\MainController", $action], [$params[3]]) : $controller->$action();
+                } else {
+                    // On envoie le code réponse 404
+                    http_response_code(404);
+                    echo "La page recherchée n'existe pas";
+                }
+
+
+            }elseif($params[0] === "en"){
+
+                $controller = '\\App\\en\\Controllers\\' . ucfirst($params[1] ?? "") . 'Controller';
+                //var_dump($controller);die('en');
+
+                $action = $params[2] ?? 'index';
+
+                // On instancie le contrôleur
+                $controller = new $controller();
+                if (method_exists($controller, $action)) {
+                    //var_dump($action);
+                    //$controller->$action();
+                    // Si il reste des paramètres, on appelle la méthode en envoyant les paramètres sinon on l'appelle "à vide"
+                   (isset($params[3])) ? call_user_func_array(["App\en\Controllers\MainController", $action], [$params[3]]) : $controller->$action();
+                } else {
+                    // On envoie le code réponse 404
+                    http_response_code(404);
+                    echo "La page recherchée n'existe pas";
+                }
+
+            }else{
+                echo "oky";
+            }
             // On sauvegarde le 1er paramètre dans $controller en mettant sa 1ère lettre en majuscule, en ajoutant le namespace des controleurs et en ajoutant "Controller" à la fin
             // On sauvegarde le 2ème paramètre dans $action si il existe, sinon index
-            $action = $params[2] ?? 'index';
+            // $action = $params[2] ?? 'index';
 
-            // On instancie le contrôleur
-            $controller = new $controller();
-            if(count($params) == 1){
-                echo "re";
-                $controller = new MainController();
+            // // On instancie le contrôleur
+            // $controller = new $controller();
+            // // if(count($params) == 1){
+            // //     var_dump($controller);die;
 
-                // On appelle la méthode index
-                $controller->index();
-            }
+            // //     $controller = new MainController();
+
+            // //     // On appelle la méthode index
+            // //     $controller->index();
+            // // }
            
-            //var_dump($controller);
-            if (method_exists($controller, $action)) {
-                // Si il reste des paramètres, on appelle la méthode en envoyant les paramètres sinon on l'appelle "à vide"
-                (isset($params[3])) ? call_user_func_array([$controller, $action], [$params[3]]) : $controller->$action();
-            } else {
-                // On envoie le code réponse 404
-                http_response_code(404);
-                echo "La page recherchée n'existe pas";
-            }
+            // //var_dump($controller);
+            // if (method_exists($controller, $action)) {
+            //     var_dump($action);
+            //     $controller->$action();
+            //     // Si il reste des paramètres, on appelle la méthode en envoyant les paramètres sinon on l'appelle "à vide"
+            //    //(isset($params[3])) ? call_user_func_array(["App\en\Controllers\MainController", $action], [$params[3]]) : $controller->$action();
+            // } else {
+            //     // On envoie le code réponse 404
+            //     http_response_code(404);
+            //     echo "La page recherchée n'existe pas";
+            // }
 
         }
         else {

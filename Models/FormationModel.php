@@ -18,9 +18,6 @@ class FormationModel extends Model{
     {
         $this->table = "formation";
     }
-
-    
-
     /**
      * Get the value of id
      */ 

@@ -2,8 +2,6 @@
 
 use App\Core\Main;
 use App\Autoloader;
-use App\Core\Router;
-use App\Models\Model;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
